@@ -1,3 +1,48 @@
-{{ include('base.html.twig') }}
+<HTML>
+<style>
+    body { background-color: #222 }
+    #container {
+        position: relative;
+        display: block;
+    }
 
-<h1>Your lucky number is {{ number }}</h1>
+    .box {
+        width: 150px; height: 150px;
+        position: absolute; top:35px; left: 50px;
+        font-size: 40px;
+        line-height:150px;
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+</style>
+
+<BODY>
+    <div id="container">
+        <div class="box"><img src="{{ asset('build/images/poza.png') }}"></div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@1.6.5/kute.min.js"></script>
+    <!-- KUTE.js core -->
+    <script>
+
+        //identify the element
+        var el = document.querySelector('.box');
+
+        //built the tween object
+        var tween = KUTE.fromTo(el,{left:-250, top:0},{left:500, top:300});
+        var tween2 = KUTE.fromTo(el,{left:500, top:400, rotateZ:0},{left:700, top:400, rotateZ:360},{transformOrigin: '180% 180%'});
+        var tween3 = KUTE.fromTo(el,{left:700, top:400, opacity:1},{left:1550, top:0, opacity:0}, {easing:'easingCubicIn'});
+
+        tween.chain(tween2);
+        tween2.chain(tween3);
+
+        //start the animation
+        tween.start();
+    </script>
+
+</body>
