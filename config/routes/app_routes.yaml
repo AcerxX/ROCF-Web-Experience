@@ -1,0 +1,3 @@
+superman:
+    path: /superman
+    controller: App\Controller\SupermanController::superman

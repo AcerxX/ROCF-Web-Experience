@@ -1,11 +1,15 @@
 homepage:
-    path: /
+    path: /{_locale}
     controller: App\Controller\HomepageController::homepage
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
 
-
-# config/routes.yaml
-
-superman:
-    path: /superman
-    controller: App\Controller\SupermanController::superman
-
+app:
+    resource: routes/app_routes.yaml
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
