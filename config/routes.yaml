@@ -1,12 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+homepage:
+    path: /
+    controller: App\Controller\HomepageController::homepage
 
 
 # config/routes.yaml
 
-# the "app_lucky_number" route name is not important yet
-app_superman:
+superman:
     path: /superman
-    controller: App\Controller\LuckyController::superman
+    controller: App\Controller\SupermanController::superman
 
