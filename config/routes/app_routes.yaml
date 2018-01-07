@@ -1,0 +1,8 @@
+superman:
+    path: /superman
+    controller: App\Controller\SupermanController::superman
+
+login:
+    path: /login
+    controller: App\Controller\LoginController::login
+

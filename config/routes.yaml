@@ -1,15 +1,16 @@
 homepage:
-    path: /
+    path: /{_locale}
     controller: App\Controller\HomepageController::homepage
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
 
-
-# config/routes.yaml
-# the "app_lucky_number" route name is not important yet
-app_login:
-    path: /login
-    controller: App\Controller\LoginController::login
-
-app_superman:
-    path: /superman
-    controller: App\Controller\SupermanController::superman
+app:
+    resource: routes/app_routes.yaml
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
 
