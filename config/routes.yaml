@@ -4,8 +4,12 @@ homepage:
 
 
 # config/routes.yaml
+# the "app_lucky_number" route name is not important yet
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::login
 
-superman:
+app_superman:
     path: /superman
     controller: App\Controller\SupermanController::superman
 
