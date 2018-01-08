@@ -1,0 +1,156 @@
+{% block title %}{% endblock %}
+<center>
+    {% block head %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+              crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+
+    {% endblock %}
+    {% block body %}
+
+    <div class="container">
+            <h1>
+                SIGN UP
+            </h1>
+            <form action="{{ path('registerPage') }}" id="register">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="first_name" placeholder="Nume">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="last_name" placeholder="Prenume">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="pass" placeholder="Parola">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="conf_pass" placeholder="Confirma parola">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox">Sunt de acord cu <a href="http://www.samoyed.ch/images/neuehomepage/beryll_mops/mops11.jpg">
+                            Termenii si Conditiile</a></label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox">Doresc sa fiu tinut la curent cu noutatile</label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+                <button type="button" class="btn btn-primary">Buton de fb</button>
+
+                <button type="button" class="btn btn-danger">Buton de goagal</button>
+
+    </div>
+        {% endblock %}
+</center>
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        $('#register').bootstrapValidator({
+            // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                first_name: {
+                    validators: {
+                        stringLength: {
+                            min: 2,
+                            max: 50,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your first name'
+                        }
+                    }
+                },
+                last_name: {
+                    validators: {
+                        stringLength: {
+                            min: 2,
+                            max: 50,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your last name'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        stringLength: {
+                            max: 50,
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+                pass: {
+                    validators: {
+                        format: {
+                            pattern: "[a-zA-Z0-9]{8,}",
+                            message: 'Please enter a stronger password'
+                            // pattern: "[a-z0-9]+",
+                            // flags: "i"
+                            // message: "can only contain a-z and 0-9"
+                        },
+                        notEmpty: {
+                            message: 'Please enter your password'
+                        },
+                        stringLength: {
+                            min: 8,
+                            max: 100
+                        }
+                    }
+                },
+                conf_pass: {
+                    validators: {
+                        confirmPassword: {
+                            equality: "pass",
+                            message: "Passwords do not match"
+                        },
+                        notEmpty: {
+                            message: 'Please confirm your password'
+                        }
+                    }
+                },
+            }
+        })
+            .on('success.form.bv', function (e) {
+                $('#success_message').slideDown({opacity: "show"}, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+
+                // Prevent form submission
+                e.preventDefault();
+
+                // Get the form instance
+                var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function (result) {
+                    console.log(result);
+                }, 'json');
+            });
+    });
+
+
+</script>
+
+{% endblock %}
+

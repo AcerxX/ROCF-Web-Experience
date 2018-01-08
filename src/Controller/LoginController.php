@@ -17,4 +17,9 @@ class LoginController extends Controller
     {
         return $this->render('login.html.twig', []);
     }
+
+    public function register ()
+    {
+        return $this->render('register.html.twig', []);
+    }
 }

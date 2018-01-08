@@ -6,3 +6,6 @@ login:
     path: /login
     controller: App\Controller\LoginController::login
 
+registerPage:
+    path: /register
+    controller: App\Controller\LoginController::register
