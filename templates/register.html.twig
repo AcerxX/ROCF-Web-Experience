@@ -1,5 +1,5 @@
 {% block title %}{% endblock %}
-<center>
+
     {% block head %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
               integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
@@ -15,27 +15,38 @@
     {% endblock %}
     {% block body %}
 
-    <div class="container">
+        <br>
+    <div class="container text-center">
             <h1>
                 SIGN UP
             </h1>
             <form action="{{ path('registerPage') }}" id="register">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="first_name" placeholder="Nume">
+                <div class="form-group row">
+                    <div class="col-sm-4 mx-auto">
+                        <input type="text" class="form-control" name="first_name" placeholder="Nume">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="last_name" placeholder="Prenume">
+                <div class="form-group row">
+                    <div class="col-sm-4 mx-auto">
+                        <input type="text" class="form-control" name="last_name" placeholder="Prenume">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email">
+                <div class="form-group row">
+                    <div class="col-sm-4 mx-auto">
+                        <input type="email" class="form-control" name="email" placeholder="Email">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="pass" placeholder="Parola">
+                <div class="form-group row">
+                    <div class="col-sm-4 mx-auto">
+                        <input type="password" class="form-control" name="pass" placeholder="Parola">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="conf_pass" placeholder="Confirma parola">
+                <div class="form-group row">
+                    <div class="col-sm-4 mx-auto">
+                        <input type="password" class="form-control" name="conf_pass" placeholder="Confirma parola">
+                    </div>
                 </div>
-                <div class="checkbox">
+                <div class="checkbox row">
                     <label><input type="checkbox">Sunt de acord cu <a href="http://www.samoyed.ch/images/neuehomepage/beryll_mops/mops11.jpg">
                             Termenii si Conditiile</a></label>
                 </div>
@@ -46,12 +57,13 @@
             </form>
 
                 <button type="button" class="btn btn-primary">Buton de fb</button>
-
                 <button type="button" class="btn btn-danger">Buton de goagal</button>
+        <br>
+        <br>
 
     </div>
         {% endblock %}
-</center>
+
 {% block javascripts %}
 <script>
     $(document).ready(function () {
@@ -100,12 +112,9 @@
                 },
                 pass: {
                     validators: {
-                        format: {
-                            pattern: "[a-zA-Z0-9]{8,}",
-                            message: 'Please enter a stronger password'
-                            // pattern: "[a-z0-9]+",
-                            // flags: "i"
-                            // message: "can only contain a-z and 0-9"
+                        regexp: {
+                            regexp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$§/,
+                            message: 'The full name can consist of alphabetical characters and spaces only'
                         },
                         notEmpty: {
                             message: 'Please enter your password'
@@ -122,6 +131,10 @@
                             equality: "pass",
                             message: "Passwords do not match"
                         },
+                        identical: {
+                            field: 'pass',
+                            message: 'The password and its confirm are not the same'
+                        },
                         notEmpty: {
                             message: 'Please confirm your password'
                         }
@@ -129,24 +142,6 @@
                 },
             }
         })
-            .on('success.form.bv', function (e) {
-                $('#success_message').slideDown({opacity: "show"}, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
-
-                // Prevent form submission
-                e.preventDefault();
-
-                // Get the form instance
-                var $form = $(e.target);
-
-                // Get the BootstrapValidator instance
-                var bv = $form.data('bootstrapValidator');
-
-                // Use Ajax to submit form data
-                $.post($form.attr('action'), $form.serialize(), function (result) {
-                    console.log(result);
-                }, 'json');
-            });
     });
 
 
