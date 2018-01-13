@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+
     {% endblock %}
     {% block body %}
 
@@ -18,18 +21,25 @@
             <h1>
                 Bun venit!
             </h1>
-            <form action="{{ path('loginAction') }}">
-                User:<br>
-                <input type="text" name="user" placeholder="User">
+            <form id="login" action="{{ path('login',{"_locale":"ro"}) }}">
+
+                <input type="checkbox" name="submitAction" hidden checked>
+                <div class="form-group">
+                <input value='{{lastEmail}}' type="text" class="form-control" name="email" placeholder="Email" required>
+                </div>
                 <br>
-                Parola:<br>
-                <input type="password" name="password" placeholder="Parola">
+                <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Parola" required>
                 <br><br>
-
-                <button type="submit" class="btn btn-link">Ti-ai uitat parola?</button>
-
+                </div>
                 <button type="submit" class="btn btn-success">Intra in cont</button>
+
             </form>
+            <br>
+            {{ errorMessage }}
+
+                <button type="button" class="btn btn-link">Ti-ai uitat parola?</button>
+
                 <button type="button" class="btn btn-primary">Buton de fb</button>
 
                 <button type="button" class="btn btn-danger">Buton de goagal</button>
@@ -39,5 +49,44 @@
     </div>
         {% endblock %}
 </center>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#login').bootstrapValidator({
+                // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Va rog introduceti adresa de e-mail.'
+                            },
+                            stringLength: {
+                                max: 50
+                            },
+                            emailAddress: {
+                                message: 'Va rog introduceti o adresa de e-mail valida.'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Va rog introduceti parola.'
+                            }
+                        }
+                    }
+                }
+            })
+        });
+
+
+    </script>
+
+{% endblock %}
+
 
