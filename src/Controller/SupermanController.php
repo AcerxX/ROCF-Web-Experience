@@ -21,7 +21,7 @@ class SupermanController extends Controller
 
         // Presupunand ca avem deja format un request cu datele introduse in formular de user de forma de mai jos
         $request = [
-            'email' => 'al3x1394@gmail.com',
+            'email' => 'dwadwad@gmail.com',
             'password' => '#Adgjmptx1313',
             'firstName' => 'Alexandru',
             'lastName' => 'Mihai',
