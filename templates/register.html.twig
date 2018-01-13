@@ -27,7 +27,16 @@
             <h1>
                 SIGN UP
             </h1>
-            <form action="{{ path('registerPage') }}" id="register">
+
+            {% if error %}
+                <div id="errorMessages" class="row">
+                    <div class="alert alert-danger col-sm-4 mx-auto">
+                        <strong>Error!</strong> {{ error }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <form action="{{ path('registerPage') }}" id="register" method="POST">
                 <div class="form-group row">
                     <div class="col-sm-4 mx-auto">
                         <div class="right-inner-addon">
