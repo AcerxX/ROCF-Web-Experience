@@ -25,6 +25,7 @@ class LoginController extends Controller
                 'email' => $email,
                 'password' => $password,
                 'ipAddress' => $ipAddress,
+                'locale' => $request->getLocale()
             ];
             try {
                 $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_LOGIN, $requestbag);
