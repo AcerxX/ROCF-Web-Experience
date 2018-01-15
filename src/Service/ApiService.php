@@ -3,6 +3,8 @@
 namespace App\Service;
 
 
+use function var_dump;
+
 class ApiService
 {
     public const METHOD_GET = 'GET';

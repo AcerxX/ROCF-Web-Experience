@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="general.email">
+                <source>general.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="general.password">
+                <source>general.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="general.first_name">
+                <source>general.first_name</source>
+                <target>First Name</target>
+            </trans-unit>
+            <trans-unit id="general.last_name">
+                <source>general.last_name</source>
+                <target>Last Name</target>
+            </trans-unit>
+            <trans-unit id="register.confirm_password">
+                <source>register.confirm_password</source>
+                <target>Confirm Password</target>
+            </trans-unit>
+            <trans-unit id="register.i_agree">
+                <source>register.i_agree</source>
+                <target>I agree with </target>
+            </trans-unit>
+            <trans-unit id="register.terms_conditions">
+                <source>register.terms_conditions</source>
+                <target>Terms and Conditions</target>
+            </trans-unit>
+            <trans-unit id="register.keep_informed">
+                <source>register.keep_informed</source>
+                <target>I want to subscribe to the newsletter</target>
+            </trans-unit>
+            <trans-unit id="register.submit">
+                <source>register.submit</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="register.sign_up">
+                <source>register.sign_up</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="general.error">
+                <source>general.error</source>
+                <target>Error!</target>
+            </trans-unit>
+            <trans-unit id="general.info">
+                <source>general.info</source>
+                <target>Info!</target>
+            </trans-unit>
+            <trans-unit id="register.password_info">
+                <source>register.password_info</source>
+                <target>Password should contain at least 8 characters, one small letter, one capital letter and one digit</target>
+            </trans-unit>
+            <trans-unit id="register.empty_field">
+                <source>register.empty_field</source>
+                <target>Field cannot be empty!</target>
+            </trans-unit>
+            <trans-unit id="register.valid_email">
+                <source>register.valid_email</source>
+                <target>Please enter a valid email!</target>
+            </trans-unit>
+            <trans-unit id="register.valid_password">
+                <source>register.valid_password</source>
+                <target>Please enter a valid password!</target>
+            </trans-unit>
+            <trans-unit id="register.passwords_not_match">
+                <source>register.password_not_match</source>
+                <target>Passwords do not match!</target>
+            </trans-unit>
+            <trans-unit id="register.terms_conditions_not_checked">
+                <source>register.terms_conditions_not_checked</source>
+                <target>To continue you must accept Terms and Conditions</target>
+            </trans-unit>
+            <trans-unit id="register.first_name_length">
+                <source>register.first_name_length</source>
+                <target>First name should be at least 2 characters long!</target>
+            </trans-unit>
+            <trans-unit id="register.last_name_length">
+                <source>register.last_name_length</source>
+                <target>Last name should be at least 2 characters long!</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
