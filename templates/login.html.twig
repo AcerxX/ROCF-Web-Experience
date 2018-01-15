@@ -1,5 +1,5 @@
 {% block title %}{% endblock %}
-<center>
+
     {% block head %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
               integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
@@ -13,52 +13,61 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 
     {% endblock %}
-    {% block body %}
 
-    <div class="container">
-        <div class="jumbotron">
+<style>
+    .right-inner-addon {
+        position: relative;
+    }
+</style>
 
-            <h1>
-                Bun venit!
-            </h1>
-            <form id="login" action="{{ path('login',{"_locale":"ro"}) }}">
+{% block body %}
+    <br>
+    <div class="container text-center">
 
-                <input type="checkbox" name="submitAction" hidden checked>
-                <div class="form-group">
-                <input value='{{lastEmail}}' type="text" class="form-control" name="email" placeholder="Email" required>
+
+        <h1>
+            LOGIN!
+        </h1>
+        <form id="login" action="{{ path('login',{"_locale":"ro"}) }}">
+
+            <input type="checkbox" name="submitAction" hidden checked>
+
+            <div class="form-group row">
+                <div class="col-sm-4 mx-auto">
+                    <div class="right-inner-addon">
+                        <input value='{{ lastEmail }}' type="text" class="form-control" name="email" placeholder="Email"
+                               required>
+                    </div>
                 </div>
-                <br>
-                <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Parola" required>
-                <br><br>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4 mx-auto">
+                    <div class="right-inner-addon">
+                        <input type="password" class="form-control" name="password" placeholder="Parola" required>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-success">Intra in cont</button>
+            </div>
+            <button type="submit" class="btn btn-default">Intra in cont</button>
 
-            </form>
-            <br>
-            {{ errorMessage }}
+        </form>
+        {{ errorMessage }}
 
-                <button type="button" class="btn btn-link">Ti-ai uitat parola?</button>
-
-                <button type="button" class="btn btn-primary">Buton de fb</button>
-
-                <button type="button" class="btn btn-danger">Buton de goagal</button>
+        <button type="button" class="btn btn-link">Ti-ai uitat parola?</button>
+        <br>
+        <button type="button" class="btn btn-primary">Buton de fb</button>
+        <button type="button" class="btn btn-danger">Buton de goagal</button>
 
 
-        </div>
     </div>
-        {% endblock %}
-</center>
+{% endblock %}
+
 {% block javascripts %}
     <script>
         $(document).ready(function () {
             $('#login').bootstrapValidator({
                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
+
                 fields: {
                     email: {
                         validators: {
