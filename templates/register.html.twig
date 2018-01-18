@@ -1,108 +1,115 @@
-{% block title %}{% endblock %}
+{% include 'base.html.twig' %}
 
-    {% block head %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-              crossorigin="anonymous">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+{% block head %}
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css">
+{% endblock %}
 
-    {% endblock %}
-
+{% block stylesheets %}
     <style>
         .right-inner-addon {
             position: relative;
         }
     </style>
+{% endblock %}
 
-    {% block body %}
+{% block body %}
+    {% include 'topmenu.html.twig' %}
 
-        <br>
-        <div class="container text-center">
-            <h1>
-                {{ 'register.sign_up'|trans }}
-            </h1>
-
-            {% if error %}
-                <div id="errorMessages" class="row">
-                    <div class="alert alert-danger col-sm-4 mx-auto">
-                        <strong>{{ 'general.error'|trans }}</strong> {{ error }}
-                    </div>
-                </div>
-            {% endif %}
-
-            <form action="{{ path('registerPage') }}" id="register" method="POST">
-                <div class="form-group row">
-                    <div class="col-sm-4 mx-auto">
-                        <div class="right-inner-addon">
-                            <input type="text" class="form-control" name="first_name" placeholder="{{ 'general.first_name'|trans }}" >
-                            <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+    <div class="container text-center">
+        <div class="card">
+            <div class="card-block">
+                <br>
+                <h1>
+                    {{ 'register.sign_up'|trans }}
+                </h1>
+                <br>
+                {% if error %}
+                    <div id="errorMessages" class="row">
+                        <div class="alert alert-danger col-sm-4 mx-auto">
+                            <strong>{{ 'general.error'|trans }}</strong> {{ error }}
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4 mx-auto">
-                        <div class="right-inner-addon">
-                            <input type="text" class="form-control" name="last_name" placeholder="{{ 'general.last_name'|trans }}">
-                            <span class='glyphicon form-control-feedback' area-hidden='true'></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4 mx-auto">
-                        <div class="right-inner-addon">
-                            <input type="text" class="form-control" name="email" placeholder="{{ 'general.email'|trans }}">
-                            <span class='glyphicon form-control-feedback' area-hidden='true'></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4 mx-auto">
-                        <div class="right-inner-addon">
-                            <input type="password" id="password" class="form-control" name="pass" placeholder="{{ 'general.password'|trans }}">
-                            <span class='glyphicon form-control-feedback' area-hidden='true'></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4 mx-auto">
-                        <div class="right-inner-addon">
-                            <input type="password" class="form-control" name="conf_pass" placeholder="{{ 'register.confirm_password'|trans }}">
-                            <span class='glyphicon form-control-feedback' area-hidden='true'></span>
-                        </div>
-                    </div>
-                </div>
-                <div id="passwordInfo" class="row">
-                    <div class="alert alert-info col-sm-4 mx-auto">
-                        <strong>{{ 'general.info'|trans }}</strong> {{ 'register.password_info'|trans }}
-                    </div>
-                </div>
-                <div class="checkbox form-group row">
-                    <label><input type="checkbox" class="control" name="terms_conditions">{{ 'register.i_agree'|trans }}<a
-                                href="http://www.samoyed.ch/images/neuehomepage/beryll_mops/mops11.jpg">
-                            {{ 'register.terms_conditions'|trans }}</a></label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox">{{ 'register.keep_informed'|trans }}</label>
-                </div>
-                <button type="submit" class="btn btn-default">{{ 'register.submit'|trans }}</button>
-            </form>
-            {#{{ register.user_already_exists|trans }}#}
+                {% endif %}
 
-            <button type="button" class="btn btn-primary">Buton de fb</button>
-            <button type="button" class="btn btn-danger">Buton de goagal</button>
-            <br>
-            <br>
-
+                <form action="{{ path('registerPage') }}" id="register" method="POST">
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <div class="right-inner-addon">
+                                <input type="text" class="form-control" name="first_name"
+                                       placeholder="{{ 'general.first_name'|trans }}">
+                                <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <div class="right-inner-addon">
+                                <input type="text" class="form-control" name="last_name"
+                                       placeholder="{{ 'general.last_name'|trans }}">
+                                <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <div class="right-inner-addon">
+                                <input type="text" class="form-control" name="email" placeholder="{{ 'general.email'|trans }}">
+                                <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <div class="right-inner-addon">
+                                <input type="password" id="password" class="form-control" name="pass"
+                                       placeholder="{{ 'general.password'|trans }}">
+                                <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <div class="right-inner-addon">
+                                <input type="password" class="form-control" name="conf_pass"
+                                       placeholder="{{ 'register.confirm_password'|trans }}">
+                                <span class='glyphicon form-control-feedback' area-hidden='true'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="passwordInfo" class="row">
+                        <div class="alert alert-info col-sm-4 mx-auto">
+                            <strong>{{ 'general.info'|trans }}</strong> {{ 'register.password_info'|trans }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <input type="checkbox" class="control" name="terms_conditions"> {{ 'register.i_agree'|trans }}<a
+                                    href="http://www.samoyed.ch/images/neuehomepage/beryll_mops/mops11.jpg">
+                                {{ 'register.terms_conditions'|trans }}</a>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4 mx-auto">
+                            <input type="checkbox"> {{ 'register.keep_informed'|trans }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">{{ 'register.submit'|trans }}</button>
+                </form>
+                <br>
+                <button type="button" class="btn btn-primary">Buton de fb</button>
+                <button type="button" class="btn btn-danger">Buton de goagal</button>
+                <br>
+                <br>
+            </div>
         </div>
-    {% endblock %}
+    </div>
+{% endblock %}
 
 {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/language/ro_RO.min.js"></script>
+
     <script>
         $('#passwordInfo').hide();
         $(document).ready(function () {
@@ -166,6 +173,10 @@
                                 regexp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d#?!@$%^&*-]{8,100}$/,
                                 message: "{{ 'register.valid_password'|trans }}"
                             },
+                            identical: {
+                                field: 'conf_pass',
+                                message: "{{ 'register.password_not_match'|trans }}"
+                            },
                             notEmpty: {
                                 message: "{{ 'register.empty_field'|trans }}"
                             }
@@ -173,10 +184,6 @@
                     },
                     conf_pass: {
                         validators: {
-                            // confirmPassword: {
-                            //     equality: "pass",
-                            //     message: "Passwords do not match"
-                            // },
                             identical: {
                                 field: 'pass',
                                 message: "{{ 'register.password_not_match'|trans }}"
@@ -196,8 +203,6 @@
                 }
             })
         });
-
-
     </script>
 
 {% endblock %}

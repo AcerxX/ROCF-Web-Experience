@@ -93,7 +93,10 @@
         }
     },
     "symfony/stopwatch": {
-        "version": "v4.0.2"
+        "version": "v4.0.3"
+    },
+    "symfony/thanks": {
+        "version": "v1.0.1"
     },
     "symfony/translation": {
         "version": "3.3",
@@ -117,7 +120,7 @@
         }
     },
     "symfony/var-dumper": {
-        "version": "v4.0.2"
+        "version": "v4.0.3"
     },
     "symfony/web-profiler-bundle": {
         "version": "3.3",

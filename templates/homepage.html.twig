@@ -1,8 +1,9 @@
 {% include "base.html.twig" %}
-{% include "topmenu.html.twig" %}
+
 
 {% block body %}
-    <div class="row">
+    {% include "topmenu.html.twig" %}
+    <div class="container-fluid">
         Lorem Ipsum
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
         "Nimeni nu iubeşte durerea, nimeni nu o caută sau vrea să o aibă, din simpla cauză că e durere..."
@@ -962,9 +963,6 @@
         et
         cursus eu, vestibulum vitae leo. Ut pulvinar ultrices sem, in pellentesque metus lobortis vitae. Ut tempor
         tempor velit ut interdum.
-
-
     </div>
-
 {% endblock %}
 
