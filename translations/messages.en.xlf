@@ -90,6 +90,14 @@
                 <source>forgot_password.submit</source>
                 <target>Forgot your password?</target>
             </trans-unit>
+            <trans-unit id="login.valid_email">
+                <source>login.valid_email</source>
+                <target>The email address is invalid!</target>
+            </trans-unit>
+            <trans-unit id="signup.submit">
+                <source>signup.submit</source>
+                <target>Sign up</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

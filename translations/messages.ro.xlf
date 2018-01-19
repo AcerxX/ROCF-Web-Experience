@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="general.email">
                 <source>general.email</source>
-                <target>Email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="general.password">
                 <source>general.password</source>
@@ -89,6 +89,14 @@
             <trans-unit id="forgot_password.submit">
                 <source>forgot_password.submit</source>
                 <target>Ti-ai uitat parola?</target>
+            </trans-unit>
+            <trans-unit id="login.valid_email">
+                <source>login.valid_email</source>
+                <target>Adresa de e-mail nu este valida!</target>
+            </trans-unit>
+            <trans-unit id="signup.submit">
+                <source>signup.submit</source>
+                <target>Inregistrare</target>
             </trans-unit>
         </body>
     </file>
