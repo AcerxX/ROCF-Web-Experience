@@ -82,6 +82,14 @@
                 <source>register.last_name_length</source>
                 <target>Last name should be at least 2 characters long!</target>
             </trans-unit>
+             <trans-unit id="login.submit">
+                <source>login.submit</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.submit">
+                <source>forgot_password.submit</source>
+                <target>Forgot your password?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

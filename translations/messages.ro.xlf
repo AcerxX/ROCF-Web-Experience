@@ -82,6 +82,14 @@
                 <source>register.last_name_length</source>
                 <target>Prenumele ar trebui sa aiba minim 2 caractere!</target>
             </trans-unit>
+            <trans-unit id="login.submit">
+                <source>login.submit</source>
+                <target>Autentificare</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.submit">
+                <source>forgot_password.submit</source>
+                <target>Ti-ai uitat parola?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -16,8 +16,9 @@
     <br>
     <div class="container text-center">
         <h1>
-            LOGIN!
+            {{ 'login.submit'|trans }}
         </h1>
+        <br>
         <form id="login" action="{{ path('login',{"_locale":"ro"}) }}">
 
             <input type="checkbox" name="submitAction" hidden checked>
@@ -25,7 +26,7 @@
             <div class="form-group row">
                 <div class="col-sm-4 mx-auto">
                     <div class="right-inner-addon">
-                        <input value='{{ lastEmail }}' type="text" class="form-control" name="email" placeholder="Email"
+                        <input value='{{ lastEmail }}' type="text" class="form-control" name="email" placeholder="{{ 'general.email'|trans }}"
                                required>
                     </div>
                 </div>
@@ -34,18 +35,18 @@
             <div class="form-group row">
                 <div class="col-sm-4 mx-auto">
                     <div class="right-inner-addon">
-                        <input type="password" class="form-control" name="password" placeholder="Parola" required>
+                        <input type="password" class="form-control" name="password" placeholder="{{ 'general.password'|trans }}" required>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-default">Intra in cont</button>
+            <button type="submit" class="btn btn-default"> {{ 'login.submit'|trans }} </button>
 
         </form>
         {{ errorMessage }}
 
-        <button type="button" class="btn btn-link">Ti-ai uitat parola?</button> |
+        <button type="button" class="btn btn-link"> {{ 'forgot_password.submit'|trans }}</button>
         <a href="{{ path('registerPage') }}">
-            <button type="button" class="btn btn-link">Creeaza-ti cont</button>
+            <button type="button" class="btn btn-link"> {{ 'register.submit'|trans }} </button>
         </a>
         <br>
         <button type="button" class="btn btn-primary">Buton de fb</button>
