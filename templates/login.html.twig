@@ -1,22 +1,36 @@
-{% include "base.html.twig" %}
+{% block head %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
-    {% block head %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
-    {% endblock %}
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css">
+{% endblock %}
 
-<style>
-    .right-inner-addon {
-        position: relative;
-    }
-</style>
+{% block stylesheets %}
+    <style>
+        .right-inner-addon {
+            position: relative;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    {% include 'topmenu.html.twig' %}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('homepage') }}">WebSiteName</a>
+            </div>
+        </div>
+    </nav>
+
     <br>
     <div class="container text-center">
-        <div class="card">
-            <div class="card-block">
+        <div class="panel col-sm-6 col-sm-offset-3 panel-default">
+            <div class="panel-body">
                 <h1>
                     {{ 'login.submit'|trans }}
                 </h1>
@@ -26,7 +40,7 @@
                     <input type="checkbox" name="submitAction" hidden checked>
 
                     <div class="form-group row">
-                        <div class="col-sm-4 mx-auto">
+                        <div class="col-sm-10 col-sm-offset-1">
                             <div class="right-inner-addon">
                                 <input value='{{ lastEmail }}' type="text" class="form-control" name="email"
                                        placeholder="{{ 'general.email'|trans }}"
@@ -36,7 +50,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-4 mx-auto">
+                        <div class="col-sm-10 col-sm-offset-1">
                             <div class="right-inner-addon">
                                 <input type="password" class="form-control" name="password"
                                        placeholder="{{ 'general.password'|trans }}" required>
@@ -51,12 +65,11 @@
 
                 {% if errorMessage %}
                     <div id="errorMessages" class="row">
-                        <div class="alert alert-danger col-sm-4 mx-auto">
+                        <div class="alert alert-danger col-sm-10 col-sm-offset-1">
                             <strong>{{ 'general.error'|trans }}</strong> {{ errorMessage }}
                         </div>
                     </div>
                 {% endif %}
-
 
 
                 <button type="button" class="btn btn-link"> {{ 'forgot_password.submit'|trans }}</button>
@@ -74,6 +87,9 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#login').bootstrapValidator({
