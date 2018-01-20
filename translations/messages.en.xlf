@@ -98,6 +98,18 @@
                 <source>signup.submit</source>
                 <target>Sign up</target>
             </trans-unit>
+            <trans-unit id="forgot_password.header">
+                <source>forgot_password.header</source>
+                <target>Password reset</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.text">
+                <source>forgot_password.text</source>
+                <target>If you have forgotten your password, fill in the form below and you will receive reset instructions via email.</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.send">
+                <source>forgot_password.send</source>
+                <target>Send</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

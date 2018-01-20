@@ -93,5 +93,22 @@ class LoginController extends Controller
             ]
         );
     }
+
+    public function forgot_password (Request $request, ApiService $apiService)
+    {
+        $error = '';
+
+        if ($request->getMethod() === Request::METHOD_POST) {
+            $recovery_email = $request->get('recovery_email');
+        }
+
+        #try {
+         #   $response = $apiService->callUsersEngineApi
+        #}
+
+
+        return $this->render('forgot_password.html.twig');
+
+    }
 }
 

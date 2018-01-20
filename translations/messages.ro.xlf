@@ -98,6 +98,18 @@
                 <source>signup.submit</source>
                 <target>Inregistrare</target>
             </trans-unit>
+            <trans-unit id="forgot_password.header">
+                <source>forgot_password.header</source>
+                <target>Resetare parola</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.text">
+                <source>forgot_password.text</source>
+                <target>Daca v-ati uitat parola, completati campul de mai jos si veti primi pe e-mail instructiuni pentru a va reseta parola.</target>
+            </trans-unit>
+            <trans-unit id="forgot_password.send">
+                <source>forgot_password.send</source>
+                <target>Trimite</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
