@@ -14,35 +14,31 @@ class LoginController extends Controller
     {
         $error = '';
         $submitAction = $request->get('submitAction');
+
         if (!empty($submitAction)) {
             $email = trim($request->get('email'));
             $password = $request->get('password');
             $ipAddress = $request->getClientIp();
-            //verificat ca email si pass nu sunt empty. empty($var)
 
-
-            $requestbag = [
+            $requestBag = [
                 'email' => $email,
                 'password' => $password,
                 'ipAddress' => $ipAddress,
                 'locale' => $request->getLocale()
             ];
+
             try {
-                $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_LOGIN, $requestbag);
+                $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_LOGIN, $requestBag);
                 if ($response['isError'] === false) {
                     setcookie('thorocea', $response['userInformation']['userId'] . '_' . $ipAddress);
                     return $this->redirectToRoute('homepage');
                 }
 
                 $error .= $response['errorMessage'];
-
-
             } catch (\InvalidArgumentException $e) {
                 $this->get('logger')->critical($e->getMessage());
                 $error .= 'A aparut o eroare. Va rugam reincercati!';
             }
-
-
         }
 
         return $this->render(
@@ -52,7 +48,6 @@ class LoginController extends Controller
                 'lastEmail' => $email ?? ''
             ]
         );
-
     }
 
     public function register (Request $request, ApiService $apiService)
