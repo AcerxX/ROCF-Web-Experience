@@ -50,7 +50,7 @@ class LoginController extends Controller
         );
     }
 
-    public function register (Request $request, ApiService $apiService)
+    public function register(Request $request, ApiService $apiService)
     {
         $error = '';
         $requestBag = [];
@@ -94,18 +94,38 @@ class LoginController extends Controller
         );
     }
 
-    public function forgot_password (Request $request, ApiService $apiService)
+    public function forgot_password(Request $request, ApiService $apiService)
     {
         $error = '';
 
-        if ($request->getMethod() === Request::METHOD_POST) {
+        /*if ($request->getMethod() === Request::METHOD_POST) {
             $recovery_email = $request->get('recovery_email');
         }
 
-        #try {
-         #   $response = $apiService->callUsersEngineApi
-        #}
+        try {
+           $response = $apiService->callUsersEngineApi
 
+
+        if ($response['isError'] === false) {
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom('send@example.com')
+                ->setTo($recovery_email)
+                ->setBody(
+                    $this->renderView(
+                    // templates/emails/registration.html.twig
+                        'emails/registration.html.twig',
+                        array('name' => $name)
+                    ),
+                    'text/html'
+                )
+
+            ;
+
+            $mailer->send($message);
+
+            return $this->render(...);
+        }
+*/
 
         return $this->render('forgot_password.html.twig');
 

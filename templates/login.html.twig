@@ -71,8 +71,9 @@
                     </div>
                 {% endif %}
 
-
-                <button type="button" class="btn btn-link"> {{ 'forgot_password.submit'|trans }}</button>
+                <a href="{{ path('forgot_password') }}">
+                    <button type="button" class="btn btn-link"> {{ 'forgot_password.submit'|trans }}</button>
+                </a>
                 <a href="{{ path('registerPage') }}">
                     <button type="button" class="btn btn-link"> {{ 'signup.submit'|trans }} </button>
                 </a>
