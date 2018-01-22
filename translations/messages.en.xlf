@@ -98,6 +98,18 @@
                 <source>signup.submit</source>
                 <target>Sign up</target>
             </trans-unit>
+            <trans-unit id="topmenu.login">
+                <source>topmenu.login</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="topmenu.sign_up">
+                <source>topmenu.sign_up</source>
+                <target>Sign Up</target>
+            </trans-unit>
+            <trans-unit id="topmenu.search">
+               <source>topmenu.search</source>
+               <target>Search</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

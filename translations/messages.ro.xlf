@@ -98,6 +98,18 @@
                 <source>signup.submit</source>
                 <target>Inregistrare</target>
             </trans-unit>
+            <trans-unit id="topmenu.login">
+                <source>topmenu.login</source>
+                <target>Intra in cont</target>
+            </trans-unit>
+            <trans-unit id="topmenu.sign_up">
+                  <source>topmenu.sign_up</source>
+                  <target>Creeaza cont</target>
+            </trans-unit>
+            <trans-unit id="topmenu.search">
+                   <source>topmenu.search</source>
+                   <target>Cautare</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
