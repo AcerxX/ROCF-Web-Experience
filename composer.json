@@ -16,6 +16,8 @@
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2",
+        "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
@@ -45,6 +47,14 @@
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
+        "pre-update-cmd": [
+            "App\\ComposerScript\\Hooks::checkHooks",
+            "App\\ComposerScript\\Hooks::configurePHPCS"
+        ],
+        "pre-install-cmd": [
+            "App\\ComposerScript\\Hooks::checkHooks",
+            "App\\ComposerScript\\Hooks::configurePHPCS"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],

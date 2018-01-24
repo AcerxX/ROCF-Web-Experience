@@ -1,0 +1,125 @@
+#!/usr/bin/php
+
+<?php
+
+// Hook configuration
+$project = 'RoProjects User Engine';
+
+
+/**
+ * PHP Lint checks
+ */
+echo '+ Starting PHP Lint tests' . PHP_EOL;
+
+// Get committed files form git
+$files = [];
+exec('git rev-parse --verify HEAD 2> /dev/null', $output, $rc);
+
+$against = '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
+if ($rc === 0) {
+    $against = 'HEAD';
+}
+exec("git diff-index --cached --name-status $against | egrep '^(A|M)' | awk '{print $2;}'", $files);
+
+// Check PHPLint
+$needle = '/(\.php)|(\.inc)$/';
+$succeed = true;
+
+foreach ($files as $file) {
+    if (!preg_match($needle, $file)) {
+        // don't check files that aren't PHP
+        continue;
+    }
+
+    if (!file_exists($file)) {
+        // if the file has been moved or deleted,
+        // the old filename should be skipped
+        continue;
+    }
+
+    $lint_output = [];
+    exec('php -l ' . escapeshellarg($file), $lint_output, $return);
+
+    if ($return === 0) {
+        continue;
+    }
+
+    echo implode("\n", $lint_output), "\n";
+    $succeed = false;
+}
+
+if (!$succeed) {
+    // output the status and abort the commit
+    echo '+ PHP Lint checks for project ' . $project . ' failed:' . PHP_EOL;
+    exit(1);
+}
+echo '+ PHPLint checks for ' . $project . ' passed.' . PHP_EOL . PHP_EOL;
+
+
+/**
+ * PHP Code Sniffer
+ */
+echo '+ Starting PHP Code Sniffer tests' . PHP_EOL;
+
+$succeed = true;
+
+foreach ($files as $file) {
+    $phpcs_output = [];
+
+    exec('./vendor/bin/phpcs ' . escapeshellarg($file), $phpcs_output, $return);
+
+    if ($return === 0) {
+        continue;
+    }
+
+    echo implode("\n", $phpcs_output), "\n";
+    $succeed = false;
+}
+
+if (!$succeed) {
+    // output the status and abort the commit
+    echo '+ PHP Code Sniffer checks for project ' . $project . ' failed:' . PHP_EOL;
+    exit(1);
+}
+echo '+ PHP Code Sniffer checks for ' . $project . ' passed.' . PHP_EOL;
+
+
+/**
+ * PHP Unit checks
+ */
+// Tell the commiter what the hook is doing
+echo PHP_EOL;
+echo '+ Starting unit tests' . PHP_EOL;
+
+// Execute project unit tests
+exec('bin/phpunit', $output, $returnCode);
+
+// if the build failed, output a summary and fail
+if ($returnCode !== 0) {
+    // find the line with the summary; this might not be the last
+    while (($minimalTestSummary = array_pop($output)) !== null) {
+        if (strpos($minimalTestSummary, 'Tests:') !== false) {
+            break;
+        }
+    }
+
+    // output the status and abort the commit
+    echo '+ Test suite for ' . $project . ' failed:' . PHP_EOL;
+    echo $minimalTestSummary . PHP_EOL . PHP_EOL;
+    echo 'Run bin/phpunit for more information!' . PHP_EOL;
+    echo chr(27) . '[0m' . PHP_EOL; // disable colors and add a line break
+    echo PHP_EOL;
+    exit(1);
+}
+while (($minimalTestSummary = array_pop($output)) !== null) {
+    echo $minimalTestSummary . PHP_EOL;
+
+    if (strpos($minimalTestSummary, 'Tests:') !== false) {
+        break;
+    }
+}
+echo '+ All tests for ' . $project . ' passed.' . PHP_EOL;
+
+
+echo PHP_EOL;
+exit(0);

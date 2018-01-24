@@ -17,3 +17,8 @@
 ._.DS_Store
 assets/.DS_Store
 assets/._.DS_Store
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
