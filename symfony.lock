@@ -17,8 +17,13 @@
     "psr/simple-cache": {
         "version": "1.0.0"
     },
+
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
+
+    "squizlabs/php_codesniffer": {
+        "version": "3.2.2"
+
     },
     "symfony/asset": {
         "version": "v4.0.2"
@@ -83,6 +88,15 @@
     "symfony/lts": {
         "version": "4-dev"
     },
+    "symfony/phpunit-bridge": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
+        }
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
     },
@@ -104,6 +118,7 @@
     "symfony/stopwatch": {
         "version": "v4.0.3"
     },
+<<<<<<< HEAD
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
@@ -116,6 +131,8 @@
     "symfony/thanks": {
         "version": "v1.0.1"
     },
+=======
+>>>>>>> 1ca4ee65436dc14a3305c4b41606117bd0ac1a50
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
