@@ -3,7 +3,7 @@
 <?php
 
 // Hook configuration
-$project = 'RoProjects User Engine';
+$project = 'RoProjects Web Experience';
 
 
 /**
