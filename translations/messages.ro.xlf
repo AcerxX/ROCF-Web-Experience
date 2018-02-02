@@ -110,6 +110,10 @@
                 <source>forgot_password.send</source>
                 <target>Trimite</target>
             </trans-unit>
+            <trans-unit id="reset_password.success">
+                <source>reset_password.success</source>
+                <target>Parola a fost resetata cu succes.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

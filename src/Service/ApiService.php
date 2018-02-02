@@ -75,7 +75,6 @@ class ApiService
         $response = curl_exec($curl);
         // Close request to clear up some resources
         curl_close($curl);
-
         return json_decode($response, true);
     }
 

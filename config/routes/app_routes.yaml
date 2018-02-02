@@ -10,9 +10,9 @@ registerPage:
     path: /register
     controller: App\Controller\LoginController::register
 
-forgot_password:
-    path: /forgot_password
-    controller: App\Controller\LoginController::forgot_password
+forgotPassword:
+    path: /forgot-password
+    controller: App\Controller\LoginController::forgotPassword
 
 
 

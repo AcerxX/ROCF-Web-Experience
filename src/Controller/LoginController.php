@@ -65,15 +65,32 @@ class LoginController extends Controller
 
     public function forgotPassword(Request $request, ApiService $apiService)
     {
+        $successMessage = '';
+        $errorMessage = '';
         #    $error = '';
         #    $requestBag = ["secret" => "6Lf88kIUAAAAALNYkGr1L4t_N594TyZdrYGDLQUz", "response" => "respodwadawdw"];
         #    $route = 'https://www.google.com/recaptcha/api/siteverify';
         #    $method = 'POST';
-        callApi($route, $requestBag, $method);
-        if ($response['success'] !== false) {
-        } else {
-            return $this->render('forgot_password.html.twig');
+        if ($request->getMethod() === Request::METHOD_POST) {
+            $requestBag = ['email' => $request->request->get('recovery_email')];
+            try {
+                $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_RESET_PASSWORD, $requestBag);
+                if ($response['isError'] === false) {
+                    $successMessage = 'reset_password.success';
+                } else {
+                    $errorMessage = 'Resetarea a esuat!';
+                }
+            } catch (\InvalidArgumentException $e) {
+                $this->get('logger')->critical($e->getMessage());
+                $errorMessage = 'A aparut o eroare, va rugam reincercati!';
+            }
         }
-        return $this->render('forgot_password.html.twig');
+        return $this->render(
+            'forgot_password.html.twig',
+            [
+                'errorMessage' => $errorMessage,
+                'successMessage' => $successMessage
+            ]
+        );
     }
 }
