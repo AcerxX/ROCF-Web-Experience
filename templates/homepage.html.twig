@@ -4,23 +4,11 @@
 {% block body %}
     {% include "topmenu.html.twig" %}
     <div class="container-fluid">
-        {{ username }}
-        <br>
-        {{ username }}
-        <br>
-        {{ username }}
-        <br>
-        {{ username }}
-        <br>{{ username }}
-        <br>
-        {{ username }}
-        <br>{{ username }}
-        <br>
-        {{ username }}
-        <br>
-        {{ username }}
-        <br>{{ username }}
-        <br>{{ username }}
-        <br>
+        {% if user %}
+            {{ user.firstName }} {{ user.lastName }} <br>
+            {% for role in user.roles %}
+                {{ role }} <br>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

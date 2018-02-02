@@ -14,13 +14,13 @@ class HomepageController extends Controller
 
         $username = 'NOT LOGGED IN';
         if ($user !== null) {
-            $username = $user->getUsername();
+            $username = $user->getFirstName() . ' ' . $user->getLastName();
         }
 
         return $this->render(
             'homepage.html.twig',
             [
-                'username' => $username
+                'user' => $user
             ]
         );
     }
