@@ -10,3 +10,7 @@ registerPage:
     path: /register
     controller: App\Controller\LoginController::register
 
+resetPassword:
+    path: /reset-password
+    controller: App\Controller\LoginController::resetPassword
+

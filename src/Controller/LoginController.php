@@ -62,4 +62,55 @@ class LoginController extends Controller
             ]
         );
     }
+
+    public function resetPassword(Request $request, ApiService $apiService)
+    {
+        $errorMessage = '';
+        $token = $request->get('token');
+
+        if ($token === null) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        if ($request->getMethod() === Request::METHOD_POST) {
+            try {
+                $userInformation = $apiService->callUsersEngineApi(
+                    ApiService::ROUTE_UE_CHECK_TOKEN,
+                    [
+                        'token' => $token
+                    ]
+                );
+
+                if ($userInformation['isError']) {
+                    $errorMessage .= 'Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.';
+                } else {
+                    $resetPasswordResponse = $apiService->callUsersEngineApi(
+                        ApiService::ROUTE_UE_EDIT_PROFILE,
+                        [
+                            'email' => $userInformation['email'],
+                            'changes' => [
+                                'password' => $request->request->get('pass')
+                            ]
+                        ]
+                    );
+
+                    if ($resetPasswordResponse['isError']) {
+                        $errorMessage .= 'A aparut o eroare la schimbarea datelor. Va rugam sa reincercati!';
+                    } else {
+                        $this->redirectToRoute('login');
+                    }
+                }
+            } catch (\Exception $e) {
+                $errorMessage .= $e->getMessage();
+            }
+        }
+
+        return $this->render(
+            'resetPassword.html.twig',
+            [
+                'token' => $token,
+                'errorMessage' => $errorMessage
+            ]
+        );
+    }
 }
