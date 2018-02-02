@@ -1,0 +1,32 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        webservice:
+            id: App\Security\WebserviceUserProvider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 31536000 # 1 year in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form, uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
+
+            logout:
+                path:   /logout
+                target: /
+
+    encoders:
+        App\Security\WebserviceUser: plaintext

@@ -2,50 +2,25 @@
 
 namespace App\Controller;
 
-
 use App\Service\ApiService;
-use function setcookie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends Controller
 {
-    public function login(Request $request, ApiService $apiService)
+    public function login(AuthenticationUtils $authUtils)
     {
-        $error = '';
-        $submitAction = $request->get('submitAction');
-
-        if (!empty($submitAction)) {
-            $email = trim($request->get('email'));
-            $password = $request->get('password');
-            $ipAddress = $request->getClientIp();
-
-            $requestBag = [
-                'email' => $email,
-                'password' => $password,
-                'ipAddress' => $ipAddress,
-                'locale' => $request->getLocale()
-            ];
-
-            try {
-                $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_LOGIN, $requestBag);
-                if ($response['isError'] === false) {
-                    setcookie('thorocea', $response['userInformation']['userId'] . '_' . $ipAddress);
-                    return $this->redirectToRoute('homepage');
-                }
-
-                $error .= $response['errorMessage'];
-            } catch (\InvalidArgumentException $e) {
-                $this->get('logger')->critical($e->getMessage());
-                $error .= 'A aparut o eroare. Va rugam reincercati!';
-            }
-        }
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastEmail = $authUtils->getLastUsername();
 
         return $this->render(
             'login.html.twig',
             [
                 'errorMessage' => $error,
-                'lastEmail' => $email ?? ''
+                'lastEmail' => $lastEmail
             ]
         );
     }
@@ -69,13 +44,7 @@ class LoginController extends Controller
                 $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_REGISTER, $requestBag);
 
                 if ($response['isError'] === false) {
-                    setcookie(
-                        'thorocea',
-                        $response['userInformation']['userId'] . '_' . $request->getClientIp(),
-                        3600 * 24
-                    // TO DO secure true
-                    );
-                    return $this->redirectToRoute('homepage');
+                    return $this->redirectToRoute('login');
                 }
 
                 $error = $response['errorMessage'];
@@ -94,7 +63,7 @@ class LoginController extends Controller
         );
     }
 
-    public function forgot_password(Request $request, ApiService $apiService)
+    public function forgotPassword(Request $request, ApiService $apiService)
     {
         $error = '';
 
@@ -128,7 +97,5 @@ class LoginController extends Controller
 */
 
         return $this->render('forgot_password.html.twig');
-
     }
 }
-
