@@ -65,37 +65,15 @@ class LoginController extends Controller
 
     public function forgotPassword(Request $request, ApiService $apiService)
     {
-        $error = '';
-
-        /*if ($request->getMethod() === Request::METHOD_POST) {
-            $recovery_email = $request->get('recovery_email');
+        #    $error = '';
+        #    $requestBag = ["secret" => "6Lf88kIUAAAAALNYkGr1L4t_N594TyZdrYGDLQUz", "response" => "respodwadawdw"];
+        #    $route = 'https://www.google.com/recaptcha/api/siteverify';
+        #    $method = 'POST';
+        callApi($route, $requestBag, $method);
+        if ($response['success'] !== false) {
+        } else {
+            return $this->render('forgot_password.html.twig');
         }
-
-        try {
-           $response = $apiService->callUsersEngineApi
-
-
-        if ($response['isError'] === false) {
-            $message = (new \Swift_Message('Hello Email'))
-                ->setFrom('send@example.com')
-                ->setTo($recovery_email)
-                ->setBody(
-                    $this->renderView(
-                    // templates/emails/registration.html.twig
-                        'emails/registration.html.twig',
-                        array('name' => $name)
-                    ),
-                    'text/html'
-                )
-
-            ;
-
-            $mailer->send($message);
-
-            return $this->render(...);
-        }
-*/
-
         return $this->render('forgot_password.html.twig');
     }
 }

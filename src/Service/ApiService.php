@@ -40,7 +40,7 @@ class ApiService
      * @return array
      * @throws \InvalidArgumentException
      */
-    private function callApi(string $route, array $requestBag = [], string $method = 'POST'): array
+    public function callApi(string $route, array $requestBag = [], string $method = 'POST'): array
     {
         $this->validateInput($route, $requestBag, $method);
 
