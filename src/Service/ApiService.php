@@ -9,6 +9,8 @@ class ApiService
 
     public const ROUTE_UE_LOGIN = '/login';
     public const ROUTE_UE_REGISTER = '/register';
+    public const ROUTE_UE_RESET_PASSWORD = '/reset-password';
+    public const ROUTE_UE_EDIT_PROFILE = '/edit-profile';
 
     /**
      * @var string
