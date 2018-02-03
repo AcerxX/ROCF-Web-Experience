@@ -126,6 +126,14 @@
                 <source>reset_password.token_expired</source>
                 <target>This token has expired. Please use the reset password feature again!</target>
             </trans-unit>
+            <trans-unit id="topmenu.myprofile">
+                 <source>topmenu.myprofile</source>
+                 <target>Profile page</target>
+            </trans-unit>
+             <trans-unit id="topmenu.logout">
+                  <source>topmenu.logout</source>
+                 <target>Logout</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -126,6 +126,14 @@
                 <source>reset_password.token_expired</source>
                 <target>Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.</target>
             </trans-unit>
+            <trans-unit id="topmenu.myprofile">
+                <source>topmenu.myprofile</source>
+                <target>Profilul meu</target>
+            </trans-unit>
+            <trans-unit id="topmenu.logout">
+                 <source>topmenu.logout</source>
+                 <target>Deconectare</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
