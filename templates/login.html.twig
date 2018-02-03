@@ -35,14 +35,18 @@
                     {{ 'login.submit'|trans }}
                 </h1>
                 <br>
-                <form id="login" action="{{ path('login') }}">
+                <form id="login" action="{{ path('login') }}" method="post">
+                    <input type="hidden" name="_target_path" value="/"/>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
 
                     <input type="checkbox" name="submitAction" hidden checked>
 
                     <div class="form-group row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="right-inner-addon">
-                                <input value='{{ lastEmail }}' type="text" class="form-control" name="email"
+                                <input value='{{ lastEmail }}' type="text" class="form-control" name="_username"
                                        placeholder="{{ 'general.email'|trans }}"
                                        required>
                             </div>
@@ -52,11 +56,22 @@
                     <div class="form-group row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="right-inner-addon">
-                                <input type="password" class="form-control" name="password"
+                                <input type="password" class="form-control" name="_password"
                                        placeholder="{{ 'general.password'|trans }}" required>
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="right-inner-addon">
+                                <input type="checkbox" id="remember_me" name="_remember_me" />
+                                <label for="remember_me">Keep me logged in</label>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <button type="submit" class="btn btn-default"> {{ 'login.submit'|trans }} </button>
 
                 </form>
@@ -66,7 +81,7 @@
                 {% if errorMessage %}
                     <div id="errorMessages" class="row">
                         <div class="alert alert-danger col-sm-10 col-sm-offset-1">
-                            <strong>{{ 'general.error'|trans }}</strong> {{ errorMessage }}
+                            <strong>{{ 'general.error'|trans }}</strong> {{ errorMessage.messageKey|trans(errorMessage.messageData, 'security') }}
                         </div>
                     </div>
                 {% endif %}
@@ -96,7 +111,7 @@
                 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 
                 fields: {
-                    email: {
+                    _username: {
                         validators: {
                             notEmpty: {
                                 message: "{{ 'register.empty_field'|trans }}"
@@ -110,7 +125,7 @@
 
                         }
                     },
-                    password: {
+                    _password: {
                         validators: {
                             notEmpty: {
                                 message: "{{ 'register.empty_field'|trans }}"
