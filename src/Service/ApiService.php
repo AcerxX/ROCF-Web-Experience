@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class ApiService
 {
     public const METHOD_GET = 'GET';
@@ -11,6 +13,7 @@ class ApiService
     public const ROUTE_UE_REGISTER = '/register';
     public const ROUTE_UE_RESET_PASSWORD = '/reset-password';
     public const ROUTE_UE_EDIT_PROFILE = '/edit-profile';
+    public const ROUTE_UE_CHECK_TOKEN = '/check-token';
 
     /**
      * @var string
@@ -51,21 +54,23 @@ class ApiService
 
         // Set some options - we are passing in an userAgent too here
         $options = [
-            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $route,
-            CURLOPT_USERAGENT => 'Web Experience'
+            CURLOPT_USERAGENT => 'Web Experience',
+            CURLOPT_VERBOSE => true
         ];
 
         if ($method === self::METHOD_POST) {
-            $options[CURLOPT_POST] = 1;
-            $options[CURLOPT_POSTFIELDS] = $requestBag;
+            $message = json_encode($requestBag);
+            $options[CURLOPT_POST] = true;
+            $options[CURLOPT_POSTFIELDS] = $message;
 
             curl_setopt(
                 $curl,
                 CURLOPT_HTTPHEADER,
                 [
-                    'X-Accept-Token' => 'RANDOMSTUFF!!!!',
-                    'Content-Type' => 'application/json'
+                    'Content-Type: application/json',
+                    'Content-Length: ' . \strlen($message)
                 ]
             );
         }

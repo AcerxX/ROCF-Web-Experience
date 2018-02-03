@@ -98,6 +98,22 @@
                 <source>signup.submit</source>
                 <target>Inregistrare</target>
             </trans-unit>
+            <trans-unit id="reset_password.title">
+                <source>reset_password.title</source>
+                <target>Schimbare parola</target>
+            </trans-unit>
+            <trans-unit id="reset_password.submit">
+                <source>reset_password.submit</source>
+                <target>Schimba parola</target>
+            </trans-unit>
+            <trans-unit id="reset_password.general_error">
+                <source>reset_password.general_error</source>
+                <target>A aparut o eroare la schimbarea datelor. Va rugam sa reincercati!</target>
+            </trans-unit>
+            <trans-unit id="reset_password.token_expired">
+                <source>reset_password.token_expired</source>
+                <target>Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
