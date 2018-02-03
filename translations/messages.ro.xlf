@@ -98,6 +98,18 @@
                 <source>signup.submit</source>
                 <target>Inregistrare</target>
             </trans-unit>
+            <trans-unit id="topmenu.login">
+                <source>topmenu.login</source>
+                <target>Intra in cont</target>
+            </trans-unit>
+            <trans-unit id="topmenu.sign_up">
+                  <source>topmenu.sign_up</source>
+                  <target>Creeaza cont</target>
+            </trans-unit>
+            <trans-unit id="topmenu.search">
+                   <source>topmenu.search</source>
+                   <target>Cautare</target>
+             </trans-unit>
             <trans-unit id="reset_password.title">
                 <source>reset_password.title</source>
                 <target>Schimbare parola</target>
@@ -114,6 +126,14 @@
                 <source>reset_password.token_expired</source>
                 <target>Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.</target>
             </trans-unit>
+            <trans-unit id="topmenu.myprofile">
+                <source>topmenu.myprofile</source>
+                <target>Profilul meu</target>
+            </trans-unit>
+            <trans-unit id="topmenu.logout">
+                 <source>topmenu.logout</source>
+                 <target>Deconectare</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
