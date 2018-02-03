@@ -6,6 +6,7 @@ use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class LoginController extends Controller
 {
@@ -63,6 +64,11 @@ class LoginController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function resetPassword(Request $request, ApiService $apiService)
     {
         $errorMessage = '';
@@ -81,24 +87,24 @@ class LoginController extends Controller
                     ]
                 );
 
-                if ($userInformation['isError']) {
-                    $errorMessage .= 'Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.';
-                } else {
+                if ($userInformation['isError'] === false) {
                     $resetPasswordResponse = $apiService->callUsersEngineApi(
                         ApiService::ROUTE_UE_EDIT_PROFILE,
                         [
-                            'email' => $userInformation['email'],
+                            'email' => $userInformation['userInformation']['email'],
                             'changes' => [
                                 'password' => $request->request->get('pass')
                             ]
                         ]
                     );
 
-                    if ($resetPasswordResponse['isError']) {
-                        $errorMessage .= 'A aparut o eroare la schimbarea datelor. Va rugam sa reincercati!';
-                    } else {
-                        $this->redirectToRoute('login');
+                    if ($resetPasswordResponse['isError'] === false) {
+                        return $this->redirectToRoute('login');
                     }
+
+                    $errorMessage .= 'reset_password.general_error';
+                } else {
+                    $errorMessage .= 'reset_password.token_expired';
                 }
             } catch (\Exception $e) {
                 $errorMessage .= $e->getMessage();

@@ -98,6 +98,22 @@
                 <source>signup.submit</source>
                 <target>Sign up</target>
             </trans-unit>
+            <trans-unit id="reset_password.title">
+                <source>reset_password.title</source>
+                <target>Change password</target>
+            </trans-unit>
+            <trans-unit id="reset_password.submit">
+                <source>reset_password.submit</source>
+                <target>Change</target>
+            </trans-unit>
+            <trans-unit id="reset_password.general_error">
+                <source>reset_password.general_error</source>
+                <target>An error occurred while changing password. Please ty again in a few moments!</target>
+            </trans-unit>
+            <trans-unit id="reset_password.token_expired">
+                <source>reset_password.token_expired</source>
+                <target>This token has expired. Please use the reset password feature again!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
