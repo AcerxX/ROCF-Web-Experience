@@ -114,6 +114,14 @@
                 <source>reset_password.success</source>
                 <target>The password has been reset.</target>
             </trans-unit>
+            <trans-unit id="reset_password.error">
+                <source>reset_password.error</source>
+                <target>Error! No account has been found matching your email address.</target>
+            </trans-unit>
+            <trans-unit id="captcha.error">
+                <source>captcha.error</source>
+                <target>Captcha error. Please try again!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

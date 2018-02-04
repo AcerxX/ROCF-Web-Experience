@@ -114,6 +114,14 @@
                 <source>reset_password.success</source>
                 <target>Parola a fost resetata cu succes.</target>
             </trans-unit>
+            <trans-unit id="reset_password.error">
+                <source>reset_password.error</source>
+                <target>Eroare! Nu a fost gasit cont asociat adresei de e-mail introduse.</target>
+            </trans-unit>
+            <trans-unit id="captcha.error">
+                <source>captcha.error</source>
+                <target>Eroare captcha. Va rugam reincercati!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

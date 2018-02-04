@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exception\RecaptchaException;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,24 +68,30 @@ class LoginController extends Controller
     {
         $successMessage = '';
         $errorMessage = '';
-        #    $error = '';
-        #    $requestBag = ["secret" => "6Lf88kIUAAAAALNYkGr1L4t_N594TyZdrYGDLQUz", "response" => "respodwadawdw"];
-        #    $route = 'https://www.google.com/recaptcha/api/siteverify';
-        #    $method = 'POST';
+
         if ($request->getMethod() === Request::METHOD_POST) {
-            $requestBag = ['email' => $request->request->get('recovery_email')];
             try {
+                $apiService->checkRecaptcha(
+                    $request->request->get('g-recaptcha-response'),
+                    $request->server->get('SERVER_ADDR')
+                );
+
+                $requestBag = ['email' => $request->request->get('recovery_email')];
                 $response = $apiService->callUsersEngineApi(ApiService::ROUTE_UE_RESET_PASSWORD, $requestBag);
+
                 if ($response['isError'] === false) {
                     $successMessage = 'reset_password.success';
                 } else {
-                    $errorMessage = 'Resetarea a esuat!';
+                    $errorMessage = 'reset_password.error';
                 }
             } catch (\InvalidArgumentException $e) {
                 $this->get('logger')->critical($e->getMessage());
                 $errorMessage = 'A aparut o eroare, va rugam reincercati!';
+            } catch (RecaptchaException $e) {
+                $errorMessage = $e->getMessage();
             }
         }
+
         return $this->render(
             'forgot_password.html.twig',
             [

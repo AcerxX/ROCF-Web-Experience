@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Exception\RecaptchaException;
+
 class ApiService
 {
     public const METHOD_GET = 'GET';
@@ -92,6 +94,31 @@ class ApiService
 
         if ($method === self::METHOD_POST && \count($requestBag) === 0) {
             throw new \InvalidArgumentException('The request bag should not be empty in an POST request!');
+        }
+    }
+
+    /**
+     * @param string $response
+     * @param string $serverAddress
+     * @throws RecaptchaException
+     */
+    public function checkRecaptcha(string $response, string $serverAddress): void
+    {
+        $secretKey = '6Lf88kIUAAAAALNYkGr1L4t_N594TyZdrYGDLQUz';
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $return = file_get_contents(
+            $url
+            . '?secret='
+            . $secretKey
+            . '&response='
+            . $response
+            . '&remoteip='
+            . $serverAddress
+        );
+        $data = json_decode($return);
+
+        if (!isset($data->success) || $data->success === false) {
+            throw new RecaptchaException('captcha.error');
         }
     }
 }
