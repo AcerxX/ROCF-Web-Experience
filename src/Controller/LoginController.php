@@ -7,6 +7,7 @@ use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class LoginController extends Controller
 {
@@ -64,6 +65,11 @@ class LoginController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function forgotPassword(Request $request, ApiService $apiService)
     {
         $successMessage = '';
@@ -93,10 +99,66 @@ class LoginController extends Controller
         }
 
         return $this->render(
-            'forgot_password.html.twig',
+            'forgotPassword.html.twig',
             [
                 'errorMessage' => $errorMessage,
                 'successMessage' => $successMessage
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function resetPassword(Request $request, ApiService $apiService)
+    {
+        $errorMessage = '';
+        $token = $request->get('token');
+
+        if ($token === null) {
+            return $this->redirectToRoute('homepage');
+        }
+
+        if ($request->getMethod() === Request::METHOD_POST) {
+            try {
+                $userInformation = $apiService->callUsersEngineApi(
+                    ApiService::ROUTE_UE_CHECK_TOKEN,
+                    [
+                        'token' => $token
+                    ]
+                );
+
+                if ($userInformation['isError'] === false) {
+                    $resetPasswordResponse = $apiService->callUsersEngineApi(
+                        ApiService::ROUTE_UE_EDIT_PROFILE,
+                        [
+                            'email' => $userInformation['userInformation']['email'],
+                            'changes' => [
+                                'password' => $request->request->get('pass')
+                            ]
+                        ]
+                    );
+
+                    if ($resetPasswordResponse['isError'] === false) {
+                        return $this->redirectToRoute('login');
+                    }
+
+                    $errorMessage .= 'reset_password.general_error';
+                } else {
+                    $errorMessage .= 'reset_password.token_expired';
+                }
+            } catch (\Exception $e) {
+                $errorMessage .= $e->getMessage();
+            }
+        }
+
+        return $this->render(
+            'resetPassword.html.twig',
+            [
+                'token' => $token,
+                'errorMessage' => $errorMessage
             ]
         );
     }

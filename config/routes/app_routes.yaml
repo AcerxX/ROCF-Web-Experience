@@ -14,5 +14,7 @@ forgotPassword:
     path: /forgot-password
     controller: App\Controller\LoginController::forgotPassword
 
-
+resetPassword:
+    path: /reset-password
+    controller: App\Controller\LoginController::resetPassword
 
