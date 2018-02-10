@@ -24,4 +24,9 @@ class HomepageController extends Controller
             ]
         );
     }
+
+    public function perks()
+    {
+        return $this->render('perks.html.twig');
+    }
 }

@@ -18,3 +18,7 @@ resetPassword:
     path: /reset-password
     controller: App\Controller\LoginController::resetPassword
 
+perks:
+    path: /perks
+    controller: App\Controller\HomepageController::perks
+
