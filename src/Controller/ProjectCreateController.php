@@ -91,6 +91,8 @@ class ProjectCreateController extends Controller
         ApiService $apiService
     ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        /** @var WebserviceUser $loggedUser */
+        $loggedUser = $this->getUser();
 
         $projectInfo = $apiService->callProjectsEngineApi(
             ApiService::ROUTE_PE_GET_PROJECT_INFO,
@@ -99,7 +101,8 @@ class ProjectCreateController extends Controller
             ]
         );
 
-        if ($projectInfo['isError']) {
+
+        if ($projectInfo['isError'] || $projectInfo['data']['userId'] !== $loggedUser->getId()) {
             /**
              * TODO: redirect to 404 page
              */
@@ -108,11 +111,10 @@ class ProjectCreateController extends Controller
         }
 
 
-
         return $this->render(
             'Project/Create/editProject.html.twig',
             [
-                'user' => $this->getUser(),
+                'user' => $loggedUser,
                 'projectInfo' => $projectInfo['data'],
                 'completedPercentage' =>
                     $projectInfo['data']['pledgedAmount'] * 100 / $projectInfo['data']['totalAmount']
