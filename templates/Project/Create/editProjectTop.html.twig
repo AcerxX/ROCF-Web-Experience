@@ -12,8 +12,8 @@
         <br>
         <br>
         <br>
-        <h5 style="display:inline;">
-            Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / </h5><h5 id="totalAmount" contenteditable="true" style="display:inline;">{{ projectInfo['totalAmount'] }}</h5> <h5 style="display:inline;">RON</h5>
+        <h5>
+            Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
         <br>
     </div>
     <div class="col-sm-4">
@@ -57,6 +57,5 @@
     CKEDITOR.disableAutoInline = true;
     CKEDITOR.inline('title');
     CKEDITOR.inline('shortDescription');
-    CKEDITOR.inline('totalAmount');
 </script>
 

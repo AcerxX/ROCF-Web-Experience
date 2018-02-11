@@ -55,12 +55,22 @@ class ProjectCreateController extends Controller
             return $this->redirectToRoute('chooseProjectType');
         }
 
-        // TODO: create the form in twig
-        return $this->render(
-            'Project/Create/editBasic.html.twig',
+        /**
+         * TODO: uncomment this and remove redirect
+         *
+         * return $this->render(
+         * 'Project/Create/editBasic.html.twig',
+         * [
+         * 'user' => $user,
+         * 'projectId' => $response['data']['id']
+         * ]
+         * );
+         * */
+        return $this->redirectToRoute(
+            'editProject',
             [
-                'user' => $user,
-                'projectId' => $response['data']['id']
+                'projectId' => $response['data']['id'],
+                'projectLink' => $response['data']['link']
             ]
         );
     }
@@ -110,14 +120,17 @@ class ProjectCreateController extends Controller
             die();
         }
 
+        $completedPercentage = 0;
+        if (isset($projectInfo['data']['totalAmount'])) {
+            $completedPercentage = $projectInfo['data']['pledgedAmount'] * 100 / $projectInfo['data']['totalAmount'];
+        }
 
         return $this->render(
             'Project/Create/editProject.html.twig',
             [
                 'user' => $loggedUser,
                 'projectInfo' => $projectInfo['data'],
-                'completedPercentage' =>
-                    $projectInfo['data']['pledgedAmount'] * 100 / $projectInfo['data']['totalAmount']
+                'completedPercentage' => $completedPercentage
             ]
         );
     }
