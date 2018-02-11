@@ -8,6 +8,11 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 class WebserviceUser implements UserInterface, EquatableInterface
 {
     /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $username;
@@ -43,7 +48,8 @@ class WebserviceUser implements UserInterface, EquatableInterface
         $salt,
         array $roles,
         string $firstName,
-        string $lastName
+        string $lastName,
+        int $id
     ) {
         $this->username = $username;
         $this->password = $password;
@@ -51,6 +57,7 @@ class WebserviceUser implements UserInterface, EquatableInterface
         $this->lastName = $lastName;
         $this->salt = $salt;
         $this->roles = $roles;
+        $this->id = $id;
     }
 
     /**
@@ -158,6 +165,24 @@ class WebserviceUser implements UserInterface, EquatableInterface
     public function setLastName(string $lastName): WebserviceUser
     {
         $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return WebserviceUser
+     */
+    public function setId(int $id): WebserviceUser
+    {
+        $this->id = $id;
         return $this;
     }
 

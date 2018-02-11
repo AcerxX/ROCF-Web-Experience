@@ -2,6 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="ro" datatype="plaintext" original="file.ext">
         <body>
+            <!--General-->
             <trans-unit id="general.email">
                 <source>general.email</source>
                 <target>E-mail</target>
@@ -18,6 +19,17 @@
                 <source>general.last_name</source>
                 <target>Prenume</target>
             </trans-unit>
+            <trans-unit id="general.error">
+                <source>general.error</source>
+                <target>Eroare!</target>
+            </trans-unit>
+            <trans-unit id="general.info">
+                <source>general.info</source>
+                <target>Info!</target>
+            </trans-unit>
+
+
+            <!--Register-->
             <trans-unit id="register.confirm_password">
                 <source>register.confirm_password</source>
                 <target>Confirma parola</target>
@@ -41,14 +53,6 @@
             <trans-unit id="register.sign_up">
                 <source>register.sign_up</source>
                 <target>Inregistrare</target>
-            </trans-unit>
-            <trans-unit id="general.error">
-                <source>general.error</source>
-                <target>Eroare!</target>
-            </trans-unit>
-            <trans-unit id="general.info">
-                <source>general.info</source>
-                <target>Info!</target>
             </trans-unit>
             <trans-unit id="register.password_info">
                 <source>register.password_info</source>
@@ -82,13 +86,16 @@
                 <source>register.last_name_length</source>
                 <target>Prenumele ar trebui sa aiba minim 2 caractere!</target>
             </trans-unit>
-            <trans-unit id="login.submit">
-                <source>login.submit</source>
-                <target>Autentificare</target>
-            </trans-unit>
             <trans-unit id="forgot_password.submit">
                 <source>forgot_password.submit</source>
                 <target>Ti-ai uitat parola?</target>
+            </trans-unit>
+
+
+            <!--Login-->
+            <trans-unit id="login.submit">
+                <source>login.submit</source>
+                <target>Autentificare</target>
             </trans-unit>
             <trans-unit id="login.valid_email">
                 <source>login.valid_email</source>
@@ -98,6 +105,9 @@
                 <source>signup.submit</source>
                 <target>Inregistrare</target>
             </trans-unit>
+
+
+            <!--Forgot password-->
             <trans-unit id="forgot_password.header">
                 <source>forgot_password.header</source>
                 <target>Resetare parola</target>
@@ -122,6 +132,9 @@
                 <source>captcha.error</source>
                 <target>Eroare captcha. Va rugam reincercati!</target>
             </trans-unit>
+
+
+            <!--Topmenu-->
             <trans-unit id="topmenu.login">
                 <source>topmenu.login</source>
                 <target>Intra in cont</target>
@@ -134,6 +147,25 @@
                    <source>topmenu.search</source>
                    <target>Cautare</target>
              </trans-unit>
+            <trans-unit id="topmenu.myprofile">
+                <source>topmenu.myprofile</source>
+                <target>Profilul meu</target>
+            </trans-unit>
+            <trans-unit id="topmenu.logout">
+                <source>topmenu.logout</source>
+                <target>Deconectare</target>
+            </trans-unit>
+            <trans-unit id="topmenu.create_a_project">
+                <source>topmenu.create_a_project</source>
+                <target>Creaza un proiect</target>
+            </trans-unit>
+            <trans-unit id="topmenu.explore_projects">
+                <source>topmenu.explore_projects</source>
+                <target>Exploreaza proiectele</target>
+            </trans-unit>
+
+
+            <!--Reset Password-->
             <trans-unit id="reset_password.title">
                 <source>reset_password.title</source>
                 <target>Schimbare parola</target>
@@ -150,14 +182,25 @@
                 <source>reset_password.token_expired</source>
                 <target>Tokenul a expirat. Va rugam sa folositi din nou optiunea de resetare parola.</target>
             </trans-unit>
-            <trans-unit id="topmenu.myprofile">
-                <source>topmenu.myprofile</source>
-                <target>Profilul meu</target>
+
+
+            <!--Create project - choose project type-->
+            <trans-unit id="choose_project_type.choose_project">
+                <source>choose_project_type.choose_project</source>
+                <target>Creaza un proiect</target>
             </trans-unit>
-            <trans-unit id="topmenu.logout">
-                 <source>topmenu.logout</source>
-                 <target>Deconectare</target>
-             </trans-unit>
+            <trans-unit id="choose_project_type.sentence_1">
+                <source>choose_project_type.sentence_1</source>
+                <target>AICI este locul unde IDEEA TA devine REALITATE.</target>
+            </trans-unit>
+            <trans-unit id="choose_project_type.sentence_2">
+                <source>choose_project_type.sentence_2</source>
+                <target>ROMANIA de maine este cea pe care ACUM o inovezi.</target>
+            </trans-unit>
+            <trans-unit id="choose_project_type.fee">
+                <source>choose_project_type.fee</source>
+                <target>Comision 5% (+3% comision de plata)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

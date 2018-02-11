@@ -1,0 +1,22 @@
+chooseProjectType:
+    path: /create-project-type
+    controller: App\Controller\ProjectCreateController::chooseProjectType
+    methods: [GET]
+
+editProjectBasic:
+    path: /create-project-basic
+    controller: App\Controller\ProjectCreateController::editProjectBasic
+    methods: [GET]
+
+saveProjectBasicInfo:
+    path: /save-project-basic
+    controller: App\Controller\ProjectCreateController::saveProjectBasic
+    methods: [POST]
+
+editProject:
+    path: /edit-project/{projectLink}/{projectId}
+    controller: App\Controller\ProjectCreateController::editProject
+    methods: [GET]
+    requirements:
+        projectId: '\d+'
+        projectLink: '[a-z-0-9]+'

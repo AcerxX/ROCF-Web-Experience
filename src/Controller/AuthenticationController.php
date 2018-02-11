@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class LoginController extends Controller
+class AuthenticationController extends Controller
 {
     public function login(AuthenticationUtils $authUtils)
     {
@@ -19,7 +19,7 @@ class LoginController extends Controller
         $lastEmail = $authUtils->getLastUsername();
 
         return $this->render(
-            'login.html.twig',
+            'Authentication\login.html.twig',
             [
                 'errorMessage' => $error,
                 'lastEmail' => $lastEmail
@@ -57,7 +57,7 @@ class LoginController extends Controller
         }
 
         return $this->render(
-            'register.html.twig',
+            'Authentication\register.html.twig',
             [
                 'error' => $error,
                 'predefinedValues' => $requestBag
@@ -99,7 +99,7 @@ class LoginController extends Controller
         }
 
         return $this->render(
-            'forgotPassword.html.twig',
+            'Authentication\forgotPassword.html.twig',
             [
                 'errorMessage' => $errorMessage,
                 'successMessage' => $successMessage
@@ -155,7 +155,7 @@ class LoginController extends Controller
         }
 
         return $this->render(
-            'resetPassword.html.twig',
+            'Authentication\resetPassword.html.twig',
             [
                 'token' => $token,
                 'errorMessage' => $errorMessage

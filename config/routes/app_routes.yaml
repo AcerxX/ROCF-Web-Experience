@@ -4,17 +4,20 @@ superman:
 
 login:
     path: /login
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\AuthenticationController::login
 
 registerPage:
     path: /register
-    controller: App\Controller\LoginController::register
+    controller: App\Controller\AuthenticationController::register
 
 forgotPassword:
     path: /forgot-password
-    controller: App\Controller\LoginController::forgotPassword
+    controller: App\Controller\AuthenticationController::forgotPassword
 
 resetPassword:
     path: /reset-password
-    controller: App\Controller\LoginController::resetPassword
+    controller: App\Controller\AuthenticationController::resetPassword
 
+projects:
+    resource: projects_routes.yaml
+    prefix: /projects

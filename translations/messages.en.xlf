@@ -2,6 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <!--General-->
             <trans-unit id="general.email">
                 <source>general.email</source>
                 <target>Email</target>
@@ -18,6 +19,17 @@
                 <source>general.last_name</source>
                 <target>Last Name</target>
             </trans-unit>
+            <trans-unit id="general.error">
+                <source>general.error</source>
+                <target>Error!</target>
+            </trans-unit>
+            <trans-unit id="general.info">
+                <source>general.info</source>
+                <target>Info!</target>
+            </trans-unit>
+
+
+            <!--Register-->
             <trans-unit id="register.confirm_password">
                 <source>register.confirm_password</source>
                 <target>Confirm Password</target>
@@ -41,14 +53,6 @@
             <trans-unit id="register.sign_up">
                 <source>register.sign_up</source>
                 <target>Register</target>
-            </trans-unit>
-            <trans-unit id="general.error">
-                <source>general.error</source>
-                <target>Error!</target>
-            </trans-unit>
-            <trans-unit id="general.info">
-                <source>general.info</source>
-                <target>Info!</target>
             </trans-unit>
             <trans-unit id="register.password_info">
                 <source>register.password_info</source>
@@ -98,6 +102,9 @@
                 <source>signup.submit</source>
                 <target>Sign up</target>
             </trans-unit>
+
+
+            <!--Forgot password-->
             <trans-unit id="forgot_password.header">
                 <source>forgot_password.header</source>
                 <target>Password reset</target>
@@ -122,6 +129,9 @@
                 <source>captcha.error</source>
                 <target>Captcha error. Please try again!</target>
             </trans-unit>
+
+
+            <!--Top Menu-->
             <trans-unit id="topmenu.login">
                 <source>topmenu.login</source>
                 <target>Login</target>
@@ -133,7 +143,26 @@
             <trans-unit id="topmenu.search">
                <source>topmenu.search</source>
                <target>Search</target>
-             </trans-unit>
+            </trans-unit>
+            <trans-unit id="topmenu.myprofile">
+                <source>topmenu.myprofile</source>
+                <target>Profile page</target>
+            </trans-unit>
+            <trans-unit id="topmenu.logout">
+                <source>topmenu.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="topmenu.create_a_project">
+                <source>topmenu.create_a_project</source>
+                <target>Create a project</target>
+            </trans-unit>
+            <trans-unit id="topmenu.explore_projects">
+                <source>topmenu.explore_projects</source>
+                <target>Explore projects</target>
+            </trans-unit>
+
+
+            <!--Reset Password-->
             <trans-unit id="reset_password.title">
                 <source>reset_password.title</source>
                 <target>Change password</target>
@@ -150,13 +179,24 @@
                 <source>reset_password.token_expired</source>
                 <target>This token has expired. Please use the reset password feature again!</target>
             </trans-unit>
-            <trans-unit id="topmenu.myprofile">
-                 <source>topmenu.myprofile</source>
-                 <target>Profile page</target>
+
+
+            <!--Create project - choose project type-->
+            <trans-unit id="choose_project_type.choose_project">
+                <source>choose_project_type.choose_project</source>
+                <target>Create a project</target>
             </trans-unit>
-             <trans-unit id="topmenu.logout">
-                  <source>topmenu.logout</source>
-                 <target>Logout</target>
+            <trans-unit id="choose_project_type.sentence_1">
+                <source>choose_project_type.sentence_1</source>
+                <target>HERE is where YOUR IDEA becomes REALITY.</target>
+            </trans-unit>
+            <trans-unit id="choose_project_type.sentence_2">
+                <source>choose_project_type.sentence_2</source>
+                <target>ROMANIA of tomorrow is the one you are innovating NOW.</target>
+            </trans-unit>
+            <trans-unit id="choose_project_type.fee">
+                <source>choose_project_type.fee</source>
+                <target>5% platform fee (+3% payment fee)</target>
             </trans-unit>
         </body>
     </file>

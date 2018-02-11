@@ -1,0 +1,38 @@
+{% include "base.html.twig" %}
+
+
+{% block body %}
+    {% include "topmenu.html.twig" %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <a href="{{ path('editProjectBasic') }}" style="text-decoration: none; color: black;">
+                    <div class="jumbotron text-center">
+                        <h2>
+                            {{ 'choose_project_type.choose_project'|trans }}
+                        </h2>
+                        <br>
+                        <br>
+                            {{ 'choose_project_type.sentence_1'|trans }}
+                        <br>
+                            {{ 'choose_project_type.sentence_2'|trans }}
+                        <hr>
+                            {{ 'choose_project_type.fee'|trans }}
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-6">
+                <a href="#" style="text-decoration: none; color: black;">
+                    <div class="jumbotron text-center">
+                        <h2>
+                            Creaza o cauza?
+                        </h2>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
