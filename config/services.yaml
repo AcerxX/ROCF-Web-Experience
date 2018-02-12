@@ -3,7 +3,7 @@
 parameters:
     locale: 'ro'
     app_locales: ro|en
-    env(user_engine_host): ''
+    env(users_engine_host): ''
 
 services:
     # default configuration for services in *this* file
@@ -30,4 +30,5 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\ApiService:
         arguments:
-            $usersEngineHost: '%env(user_engine_host)%'
+            $usersEngineHost: '%env(users_engine_host)%'
+            $projectsEngineHost: '%env(projects_engine_host)%'

@@ -9,6 +9,9 @@ class ApiService
     public const METHOD_GET = 'GET';
     public const METHOD_POST = 'POST';
 
+    /**
+     * User Engine Routes
+     */
     public const ROUTE_UE_LOGIN = '/login';
     public const ROUTE_UE_REGISTER = '/register';
     public const ROUTE_UE_RESET_PASSWORD = '/reset-password';
@@ -16,13 +19,31 @@ class ApiService
     public const ROUTE_UE_CHECK_TOKEN = '/check-token';
 
     /**
+     * Projects Engine Routes
+     */
+    public const ROUTE_PE_CREATE_PROJECT = '/create-project';
+    public const ROUTE_PE_GET_PROJECT_INFO = '/get-project-info';
+    public const ROUTE_PE_UPDATE_PROJECT_INFO = '/update-project-info';
+    public const ROUTE_PE_REMOVE_PROJECT = '/remove-project';
+    public const ROUTE_PE_ADD_PERK = '/add-perk';
+    public const ROUTE_PE_UPDATE_PERK_INFO = '/update-perk-info';
+    public const ROUTE_PE_REMOVE_PERK = '/remove-perk';
+    public const ROUTE_PE_GET_CATEGORIES = '/get-categories';
+
+    /**
      * @var string
      */
     private $usersEngineHost;
 
-    public function __construct(string $usersEngineHost)
+    /**
+     * @var string
+     */
+    private $projectsEngineHost;
+
+    public function __construct(string $usersEngineHost, string $projectsEngineHost)
     {
         $this->usersEngineHost = $usersEngineHost;
+        $this->projectsEngineHost = $projectsEngineHost;
     }
 
 
@@ -37,6 +58,19 @@ class ApiService
     {
         return $this->callApi($this->usersEngineHost . $route, $requestBag, $method);
     }
+
+    /**
+     * @param string $route
+     * @param array $requestBag
+     * @param string $method
+     * @return array
+     * @throws \InvalidArgumentException
+     */
+    public function callProjectsEngineApi(string $route, array $requestBag = [], string $method = 'POST'): array
+    {
+        return $this->callApi($this->projectsEngineHost . $route, $requestBag, $method);
+    }
+
 
     /**
      * @param string $route

@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A Simple Page with CKEditor</title>
+    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
+    {#<script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>#}
+    </head>
+<body>
+<div id="editor1" contenteditable="true">
+    <h1>Inline Editing in Action!</h1>
+    <p>The "div" element that contains this text is now editable.</p>
+</div>
+<script>
+    // Turn off automatic editor creation first.
+    CKEDITOR.disableAutoInline = true;
+    CKEDITOR.inline('editor1');
+</script>
+</body>
+</html>

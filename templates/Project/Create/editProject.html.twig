@@ -1,0 +1,14 @@
+{% include "base.html.twig" %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include "topmenu.html.twig" %}
+    <div class="container">
+        {% include "Project/Create/editProjectTop.html.twig" %}
+        {% include "Project/Create/perks.html.twig" %}
+    </div>
+
+{% endblock %}

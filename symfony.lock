@@ -1,4 +1,10 @@
 {
+    "fsi/ckeditor-bundle": {
+        "version": "7.0.0"
+    },
+    "fsi/json-builder": {
+        "version": "3.1.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },

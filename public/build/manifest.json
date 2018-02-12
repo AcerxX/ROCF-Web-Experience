@@ -1,4 +1,5 @@
 {
   "build/app.js": "/build/app.js",
-  "build/images/poza.png": "/build/images/poza.5df4adf0.png"
+  "build/images/poza.png": "/build/images/poza.5df4adf0.png",
+  "build/ckeditor/ckeditor.js": "build/ckeditor/ckeditor.js"
 }
