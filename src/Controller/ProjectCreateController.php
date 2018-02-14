@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Security\WebserviceUser;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use function var_dump;
 
 class ProjectCreateController extends Controller
 {
@@ -119,7 +121,6 @@ class ProjectCreateController extends Controller
             print_r($projectInfo);
             die();
         }
-
         $completedPercentage = 0;
         if (isset($projectInfo['data']['totalAmount'])) {
             $completedPercentage = $projectInfo['data']['pledgedAmount'] * 100 / $projectInfo['data']['totalAmount'];
@@ -133,5 +134,51 @@ class ProjectCreateController extends Controller
                 'completedPercentage' => $completedPercentage
             ]
         );
+    }
+
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @throws \InvalidArgumentException
+     */
+    public function addPerk(Request $request, ApiService $apiService)
+    {
+        $projectId = $request->request->get('projectId');
+        $perkInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_ADD_PERK,
+            [
+                'project_id' => $projectId,
+                'title' => 'Click aici pentru a edita titlul...',
+                'amount' => '0',
+                'description' => 'Descrierea recompensei...'
+            ]
+        );
+
+        $response = '';
+        foreach ($perkInfo['data'] as $key => $perk) {
+            $response .= '<div class="carousel-item';
+
+            if (count($perkInfo['data']) >= 2 && $key === (count($perkInfo['data']) - 2)) {
+                $response .= ' active';
+            } else if ($key === 0 && count($perkInfo['data']) < 2) {
+                $response .= ' active';
+            }
+
+            $response .= '">
+                        <div class="card d-block col-4" style="height: 200px;">
+                            <div class="card-block  ">
+                                <h1>' . $perk['amount'] . ' RON</h1>
+                            </div>
+                            <div class="card-block  ">
+                                <h3>' . $perk['title'] . '</h3>
+                            </div>
+                            <div class="card-block  ">
+                                <h3>' . $perk['description'] . '</h3>
+                            </div>
+                        </div>
+                    </div>';
+        }
+
+        return new JsonResponse($response);
     }
 }

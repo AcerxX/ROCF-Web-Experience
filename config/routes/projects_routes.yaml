@@ -13,6 +13,11 @@ saveProjectBasicInfo:
     controller: App\Controller\ProjectCreateController::saveProjectBasic
     methods: [POST]
 
+addPerk:
+    path: /add-perk
+    controller: App\Controller\ProjectCreateController::addPerk
+    methods: [POST]
+
 editProject:
     path: /edit-project/{projectLink}/{projectId}
     controller: App\Controller\ProjectCreateController::editProject

@@ -33,7 +33,13 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? false) {
 }
 
 $kernel = new Kernel($env, $debug);
+
 $request = Request::createFromGlobals();
+if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+    $data = json_decode($request->getContent(), true);
+    $request->request->replace(is_array($data) ? $data : array());
+}
+
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
