@@ -1,20 +1,18 @@
 <div class="row border border-bottom-0 rounded-top">
     <div class="col-sm-8">
         <br>
-        <h3 id="title" contenteditable="true">
+        <h3 id="title" contenteditable="true" class="text-success">
             {{ projectInfo['title'] }}
         </h3>
         <br>
         <br>
         <h5 id="shortDescription" contenteditable="true">
-            {{ projectInfo['shortDescription'] }}
+            {{ projectInfo['shortDescription'] | raw }}
         </h5>
         <br>
         <br>
         <br>
-        <h5>
-            Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
-        <br>
+            <br>
     </div>
     <div class="col-sm-4">
         <br>
@@ -42,6 +40,10 @@
 </div>
 <div class="row border border-top-0 rounded-bottom">
     <div class="col-sm-12">
+        <h5>
+            Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
+        </h5>
+        <br>
         <div class="progress">
             <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
                  style="width: {{ completedPercentage }}%" aria-valuenow="{{ completedPercentage }}"
@@ -57,5 +59,32 @@
     CKEDITOR.disableAutoInline = true;
     CKEDITOR.inline('title');
     CKEDITOR.inline('shortDescription');
+
+    window.setInterval(function () {
+        saveData();
+    }, 20000);
+
+    function saveData() {
+        var obj = {};
+        for (var key in CKEDITOR.instances) {
+            if (CKEDITOR.instances.hasOwnProperty(key)) {
+                obj[key] = CKEDITOR.instances[key].getData();
+            }
+        }
+
+        var jsonString = JSON.stringify(obj);
+        $.ajax({
+            url: "{{ path('autosaveProject', {projectId: projectInfo['id']}) }}",
+            type: 'POST',
+            dataType: 'json',
+            data: jsonString,
+            success: function(result) {
+                console.log(result);
+            },
+            error: function(result) {
+                console.log(result);
+            }
+        });
+    }
 </script>
 
