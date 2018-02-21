@@ -25,3 +25,10 @@ editProject:
     requirements:
         projectId: '\d+'
         projectLink: '[a-z-0-9]+'
+
+autosaveProject:
+    path: /autosave/{projectId}
+    controller: App\Controller\ProjectCreateController::autosaveProject
+    methods: [POST]
+    requirements:
+        projectId: '\d+'

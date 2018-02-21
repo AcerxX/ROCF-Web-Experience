@@ -139,9 +139,10 @@ class ProjectCreateController extends Controller
     /**
      * @param Request $request
      * @param ApiService $apiService
+     * @return JsonResponse
      * @throws \InvalidArgumentException
      */
-    public function addPerk(Request $request, ApiService $apiService)
+    public function addPerk(Request $request, ApiService $apiService): JsonResponse
     {
         $projectId = $request->request->get('projectId');
         $perkInfo = $apiService->callProjectsEngineApi(
@@ -160,8 +161,10 @@ class ProjectCreateController extends Controller
 
             if (count($perkInfo['data']) >= 2 && $key === (count($perkInfo['data']) - 2)) {
                 $response .= ' active';
-            } else if ($key === 0 && count($perkInfo['data']) < 2) {
-                $response .= ' active';
+            } else {
+                if ($key === 0 && count($perkInfo['data']) < 2) {
+                    $response .= ' active';
+                }
             }
 
             $response .= '">
@@ -180,5 +183,33 @@ class ProjectCreateController extends Controller
         }
 
         return new JsonResponse($response);
+    }
+
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @return JsonResponse
+     * @throws \InvalidArgumentException
+     */
+    public function autosaveProject(Request $request, ApiService $apiService): JsonResponse
+    {
+        $content = json_decode($request->getContent(), true);
+        $projectId = $request->get('projectId');
+
+        $title = strip_tags($content['title']);
+        $shortDescription = $content['shortDescription'];
+
+        $requestBag = [
+            'project_id' => $projectId,
+            'title' => $title,
+            'short_description' => $shortDescription
+        ];
+
+        $projectInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_UPDATE_PROJECT_INFO,
+            $requestBag
+        );
+
+        return $this->json($projectInfo, $projectInfo['isError'] ? 400 : 200);
     }
 }
