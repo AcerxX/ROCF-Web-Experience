@@ -146,7 +146,50 @@ class ProjectCreateController extends Controller
     {
         $projectId = $request->request->get('projectId');
         $perkInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_ADD_PERK,
+            ApiService::ROUTE_PE_REMOVE_PERK,
+            [
+                'project_id' => $projectId
+            ]
+        );
+
+        $response = '';
+        foreach ($perkInfo['data'] as $key => $perk) {
+            $response .= '<div class="carousel-item';
+
+            if (count($perkInfo['data']) >= 2 && $key === (count($perkInfo['data']) - 2)) {
+                $response .= ' active';
+            } else if ($key === 0 && count($perkInfo['data']) < 2) {
+                $response .= ' active';
+            }
+
+            $response .= '">
+                        <div class="card d-block col-4" style="height: 200px;">
+                            <div class="card-block  ">
+                                <h1>' . $perk['amount'] . ' RON</h1>
+                            </div>
+                            <div class="card-block  ">
+                                <h3>' . $perk['title'] . '</h3>
+                            </div>
+                            <div class="card-block  ">
+                                <h3>' . $perk['description'] . '</h3>
+                            </div>
+                        </div>
+                    </div>';
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @throws \InvalidArgumentException
+     */
+    public function deletePerk(Request $request, ApiService $apiService)
+    {
+        $projectId = $request->request->get('projectId');
+        $perkInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_DELETE_PERK,
             [
                 'project_id' => $projectId,
                 'title' => 'Click aici pentru a edita titlul...',

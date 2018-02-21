@@ -63,19 +63,20 @@
                             </div>
                         </div>
                     </div>
-                    {#<div class="carousel-item">#}
-                        {#<div class="card d-block col-4" style="height: 200px;">#}
-                            {#<div class="card-block  ">#}
-                                {#<h1>2</h1>#}
-                            {#</div>#}
-                            {#<div class="card-block  ">#}
-                                {#<h1>3</h1>#}
-                            {#</div>#}
-                            {#<div class="card-block  ">#}
-                                {#<h1>4</h1>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
+                    <div class="carousel-item">
+                        <div class="card d-block col-4" style="height: 200px;">
+                            <div class="card-block  ">
+                                <button id="delete" class="btn btn-ligth" onclick="deletePerk()"> X </button>
+                                <h1>2</h1>
+                            </div>
+                            <div class="card-block  ">
+                                <h1>3</h1>
+                            </div>
+                            <div class="card-block  ">
+                                <h1>4</h1>
+                            </div>
+                        </div>
+                    </div>
                     {#<div class="carousel-item">#}
                         {#<div class="card d-block col-4" style="height: 200px;">#}
                             {#<div class="card-block  ">#}
@@ -148,6 +149,29 @@
         function addPerk() {
             $.post(
                 "{{ path('addPerk') }}",
+                {
+                    projectId: {{ projectInfo['id'] }}
+                },
+                function(result){
+                    var plus = '<div class="carousel-item">\n' +
+                        '                        <div class="card d-block col-4" style="height: 200px;">\n' +
+                        '                            <div class="card-block  ">\n' +
+                        '                                <br><br><br>\n' +
+                        '                                <button type="button" class="btn btn-ligth" onclick="addPerk()"><h1>[+]</h1></button>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                    </div>';
+
+                    document.getElementById('inner-carousel').innerHTML = result + plus;
+                    concatCarouselItems();
+                    console.log(document.getElementById('inner-carousel').innerHTML);
+                }
+            );
+        }
+
+        function deletePerk() {
+            $.post(
+                "{{ path('deletePerk') }}",
                 {
                     projectId: {{ projectInfo['id'] }}
                 },
