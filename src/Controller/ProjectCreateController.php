@@ -113,7 +113,7 @@ class ProjectCreateController extends Controller
         );
 
 
-        if ($projectInfo['isError'] || $projectInfo['data']['userId'] !== $loggedUser->getId()) {
+        if ($projectInfo['isError'] /*|| $projectInfo['data']['userId'] !== $loggedUser->getId()*/) {
             /**
              * TODO: redirect to 404 page
              */
