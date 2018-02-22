@@ -72,6 +72,8 @@
             }
         }
 
+        obj.content = $('#content-area').keditor('getContent');
+
         var jsonString = JSON.stringify(obj);
         $.ajax({
             url: "{{ path('autosaveProject', {projectId: projectInfo['id']}) }}",

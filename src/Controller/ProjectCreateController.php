@@ -150,11 +150,13 @@ class ProjectCreateController extends Controller
 
         $title = strip_tags($content['title']);
         $shortDescription = $content['shortDescription'];
+        $content = $content['content'];
 
         $requestBag = [
             'project_id' => $projectId,
             'title' => $title,
-            'short_description' => $shortDescription
+            'short_description' => $shortDescription,
+            'content' => $content
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
