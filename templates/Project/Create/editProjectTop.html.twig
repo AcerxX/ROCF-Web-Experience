@@ -1,5 +1,5 @@
 <div class="row border border-bottom-0 rounded-top">
-    <div class="col-sm-8">
+    <div class="col-lg-9">
         <br>
         <h3 id="title" contenteditable="true" class="text-success">
             {{ projectInfo['title'] }}
@@ -9,37 +9,27 @@
         <h5 id="shortDescription" contenteditable="true">
             {{ projectInfo['shortDescription'] | raw }}
         </h5>
-        <br>
-        <br>
-        <br>
-            <br>
     </div>
-    <div class="col-sm-4">
+    <div class="col-lg-3">
         <br>
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col-lg-12">
                 <button type="button" class="btn btn-dark btn-lg btn-block">Sustine</button>
             </div>
-        </div>
         <br>
         <br>
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col-lg-12">
                 <button type="button" class="btn btn-primary btn-lg btn-block">Distribuie</button>
             </div>
-        </div>
         <br>
         <br>
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col-lg-12">
                 <button type="button" class="btn btn-danger btn-lg btn-block">Adauga la favorite</button>
             </div>
-        </div>
         <br>
     </div>
 </div>
 <div class="row border border-top-0 rounded-bottom">
-    <div class="col-sm-12">
+    <div class="col-lg-12">
         <h5>
             Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
         </h5>

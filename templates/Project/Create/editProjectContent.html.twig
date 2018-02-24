@@ -3,7 +3,6 @@
           href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/examples.css') }}"/>
     <style>
         .content {
             margin-right: -15px;
@@ -18,6 +17,7 @@
         var bsButton = $.fn.button;
     </script>
     <script src="{{ asset('build/keditor/plugins/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('build/keditor/plugins/jquery.ui.touch-punch.min.js') }}"></script>
     <script type="text/javascript">
         $.widget.bridge('uibutton', $.ui.button);
         $.widget.bridge('uitooltip', $.ui.tooltip);
@@ -35,12 +35,16 @@
     <div id="content-area" class="content border rounded">
         {{ projectInfo['content'] | raw }}
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 {% endblock %}
 
 {% block javascripts %}
     <script type="text/javascript">
         $(function () {
-            $('#content-area').keditor({snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html'});
+            $('#content-area').keditor({snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html', nestedContainerEnabled: false});
         });
     </script>
 {% endblock %}
