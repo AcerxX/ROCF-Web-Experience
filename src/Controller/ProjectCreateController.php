@@ -175,7 +175,9 @@ class ProjectCreateController extends Controller
     /**
      * @param Request $request
      * @param ApiService $apiService
+     * @return JsonResponse
      * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function addPerk(Request $request, ApiService $apiService)
     {
@@ -185,7 +187,7 @@ class ProjectCreateController extends Controller
             [
                 'project_id' => $projectId,
                 'title' => 'Click aici pentru a edita titlul...',
-                'amount' => '0',
+                'amount' => random_int(0, 100),
                 'description' => 'Descrierea recompensei...'
             ]
         );

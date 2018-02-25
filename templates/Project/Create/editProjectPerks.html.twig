@@ -41,39 +41,30 @@
 
 {% block body %}
     <!-- Flickity HTML init -->
-    <div class="gallery js-flickity" data-flickity='{"cellAlign": "left", "contain": true, "autoPlay": true}' id="inner-perks">
-        <div class="gallery-cell">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top"
-                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="gallery js-flickity" data-flickity='{"cellAlign": "left", "contain": true, "autoPlay": true}'
+         id="inner-perks">
+        {% for perk in projectInfo['perks'] %}
+            <div class="gallery-cell">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top"
+                         src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ perk['title'] }}</h5>
+                        <p class="card-text">{{ perk['description'] }}</p>
+                        <a href="#" class="btn btn-primary">{{ perk['amount'] }} RON</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="gallery-cell is-selected">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top"
-                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+
         <div class="card" style="width: 18rem; height: 500px">
-            <div class="card-body">
-                <button class="btn" onclick="addPerk()">
-                    <i class="fas fa-plus-circle"
-                       style="height: 100px; width: 100px; color: grey"></i>
-                </button>
+            <div class="row align-items-center h-100">
+                <div class="col-6 mx-auto">
+                    {#<button class="btn btn-outline-light" onclick="addPerk()">#}
+                        <i onclick="addPerk()" class="fas fa-plus-circle" style="height: 100px; width: 100px; color: grey"></i>
+                    {#</button>#}
+                </div>
             </div>
         </div>
     </div>
@@ -91,7 +82,14 @@
                     projectId: {{ projectInfo['id'] }}
                 },
                 function (result) {
-                    $('#inner-perks').flickity('append', $(result));
+                    var data = $('#inner-perks').flickity().data('flickity');
+                    var position = data.cells.length - 1;
+                    if (position < 0) {
+                        position = 0;
+                    }
+
+                    $('#inner-perks').flickity('insert', $(result), position);
+                    $('#inner-perks').flickity('select', (data.cells.length - 1));
                 }
             );
         }
