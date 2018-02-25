@@ -43,6 +43,7 @@
     <!-- Flickity HTML init -->
     <div class="gallery js-flickity" data-flickity='{"cellAlign": "left", "contain": true, "autoPlay": true}'
          id="inner-perks">
+
         {% for perk in projectInfo['perks'] %}
             <div class="gallery-cell">
                 <div class="card" style="width: 18rem;">
@@ -61,9 +62,8 @@
         <div class="card" style="width: 18rem; height: 500px">
             <div class="row align-items-center h-100">
                 <div class="col-6 mx-auto">
-                    {#<button class="btn btn-outline-light" onclick="addPerk()">#}
-                        <i onclick="addPerk()" class="fas fa-plus-circle" style="height: 100px; width: 100px; color: grey"></i>
-                    {#</button>#}
+                    <i onclick="addPerk()" class="fas fa-plus-circle"
+                       style="height: 100px; width: 100px; color: grey"></i>
                 </div>
             </div>
         </div>
