@@ -1,0 +1,143 @@
+{% include "base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <style>
+        /* external css: flickity.css */
+
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .gallery {
+            background: white;
+        }
+
+        .gallery-cell {
+            margin-right: 5%;
+            /*counter-increment: gallery-cell;*/
+        }
+
+        /*.gallery-cell.is-selected {*/
+        /*background: #ED2;*/
+        /*}*/
+
+        /* cell number */
+        .gallery-cell:before {
+            display: block;
+            text-align: center;
+            line-height: 200px;
+            font-size: 80px;
+            color: white;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Flickity HTML init -->
+    <div class="gallery js-flickity" data-flickity='{"cellAlign": "left", "contain": true, "autoPlay": true}' id="inner-perks">
+        <div class="gallery-cell">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top"
+                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-cell is-selected">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top"
+                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem; height: 500px">
+            <div class="card-body">
+                <button class="btn" onclick="addPerk()">
+                    <i class="fas fa-plus-circle"
+                       style="height: 100px; width: 100px; color: grey"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <script>
+        function addPerk() {
+            $.post(
+                "{{ path('addPerk') }}",
+                {
+                    projectId: {{ projectInfo['id'] }}
+                },
+                function (result) {
+                    $('#inner-perks').flickity('append', $(result));
+                }
+            );
+        }
+
+        function deletePerk() {
+            $.post(
+                "{{ path('deletePerk') }}",
+                {
+                    projectId: {{ projectInfo['id'] }}
+                },
+                function (result) {
+                    var plus = '<div class="card" style="width: 18rem; height: 500px" onclick="addPerk()">\n' +
+                        '            <div class="card-body">\n' +
+                        '                <button>\n' +
+                        '                    <i class="fas fa-plus-circle"\n' +
+                        '                       style="height: 100px; width: 100px; color: grey"></i>\n' +
+                        '                </button>\n' +
+                        '            </div>\n' +
+                        '        </div>';
+
+                    document.getElementById('inner-perks').innerHTML = result + plus
+
+                }
+            );
+        }
+
+        $(document).ready(function () {
+
+            $('#confirmBox').hide();
+
+            $('#btnDelete').on('click', function (e) {
+                $('#confirmBox').show();
+            });
+
+            $('#btnYes').on('click', function (e) {
+                //Do Delete Action Here
+                alert("Item Deleted");
+                $('#confirmBox').hide();
+            });
+
+            $('#btnNo').on('click', function (e) {
+                //Cancel Action Here
+                alert("Action Cancelled");
+                $('#confirmBox').hide();
+            });
+
+        });
+    </script>
+{% endblock %}

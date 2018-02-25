@@ -18,6 +18,11 @@ addPerk:
     controller: App\Controller\ProjectCreateController::addPerk
     methods: [POST]
 
+deletePerk:
+    path: /delete-perk
+    controller: App\Controller\ProjectCreateController::deletePerk
+    methods: [POST]
+
 editProject:
     path: /edit-project/{projectLink}/{projectId}
     controller: App\Controller\ProjectCreateController::editProject

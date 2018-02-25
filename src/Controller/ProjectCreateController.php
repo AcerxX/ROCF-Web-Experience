@@ -101,7 +101,8 @@ class ProjectCreateController extends Controller
         string $projectLink,
         int $projectId,
         ApiService $apiService
-    ) {
+    )
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         /** @var WebserviceUser $loggedUser */
         $loggedUser = $this->getUser();
@@ -142,11 +143,11 @@ class ProjectCreateController extends Controller
      * @return JsonResponse
      * @throws \InvalidArgumentException
      */
-    public function addPerk(Request $request, ApiService $apiService): JsonResponse
+    public function deletePerk(Request $request, ApiService $apiService): JsonResponse
     {
         $projectId = $request->request->get('projectId');
         $perkInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_REMOVE_PERK,
+            ApiService::ROUTE_PE_ADD_PERK,
             [
                 'project_id' => $projectId
             ]
@@ -154,27 +155,18 @@ class ProjectCreateController extends Controller
 
         $response = '';
         foreach ($perkInfo['data'] as $key => $perk) {
-            $response .= '<div class="carousel-item';
-
-            if (count($perkInfo['data']) >= 2 && $key === (count($perkInfo['data']) - 2)) {
-                $response .= ' active';
-            } else if ($key === 0 && count($perkInfo['data']) < 2) {
-                $response .= ' active';
-            }
-
-            $response .= '">
-                        <div class="card d-block col-4" style="height: 200px;">
-                            <div class="card-block  ">
-                                <h1>' . $perk['amount'] . ' RON</h1>
+            $response .= '<div class="gallery-cell">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top"
+                                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $perk['title'] . '</h5>
+                                    <p class="card-text">' . $perk['description'] . '</p>
+                                    <a href="#" class="btn btn-primary">' . $perk['amount'] . '</a>
+                                </div>
                             </div>
-                            <div class="card-block  ">
-                                <h3>' . $perk['title'] . '</h3>
-                            </div>
-                            <div class="card-block  ">
-                                <h3>' . $perk['description'] . '</h3>
-                            </div>
-                        </div>
-                    </div>';
+                        </div>';
         }
 
         return new JsonResponse($response);
@@ -185,11 +177,11 @@ class ProjectCreateController extends Controller
      * @param ApiService $apiService
      * @throws \InvalidArgumentException
      */
-    public function deletePerk(Request $request, ApiService $apiService)
+    public function addPerk(Request $request, ApiService $apiService)
     {
         $projectId = $request->request->get('projectId');
         $perkInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_DELETE_PERK,
+            ApiService::ROUTE_PE_ADD_PERK,
             [
                 'project_id' => $projectId,
                 'title' => 'Click aici pentru a edita titlul...',
@@ -198,32 +190,18 @@ class ProjectCreateController extends Controller
             ]
         );
 
-        $response = '';
-        foreach ($perkInfo['data'] as $key => $perk) {
-            $response .= '<div class="carousel-item';
-
-            if (count($perkInfo['data']) >= 2 && $key === (count($perkInfo['data']) - 2)) {
-                $response .= ' active';
-            } else {
-                if ($key === 0 && count($perkInfo['data']) < 2) {
-                    $response .= ' active';
-                }
-            }
-
-            $response .= '">
-                        <div class="card d-block col-4" style="height: 200px;">
-                            <div class="card-block  ">
-                                <h1>' . $perk['amount'] . ' RON</h1>
+        $response = '<div class="gallery-cell">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top"
+                                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $perkInfo['data']['title'] . '</h5>
+                                    <p class="card-text">' . $perkInfo['data']['description'] . '</p>
+                                    <a href="#" class="btn btn-primary">' . $perkInfo['data']['amount'] . ' RON</a>
+                                </div>
                             </div>
-                            <div class="card-block  ">
-                                <h3>' . $perk['title'] . '</h3>
-                            </div>
-                            <div class="card-block  ">
-                                <h3>' . $perk['description'] . '</h3>
-                            </div>
-                        </div>
-                    </div>';
-        }
+                        </div>';
 
         return new JsonResponse($response);
     }
