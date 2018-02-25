@@ -16,5 +16,11 @@
   "build/keditor/plugins/ckeditor-4.5.6/adapters/jquery.js": "build/keditor/plugins/ckeditor-4.5.6/adapters/jquery.js",
   "build/keditor/plugins/jquery-1.11.3/jquery-1.11.3.min.jsbuild/keditor/plugins/jquery-1.11.3/jquery-1.11.3.min.js": "build/keditor/plugins/jquery-1.11.3/jquery-1.11.3.min.js",
   "snippets/default/snippets.html": "build/keditor/snippets/default/snippets.html",
-  "build/keditor/plugins/jquery.ui.touch-punch.min.js": "build/keditor/plugins/jquery.ui.touch-punch.min.js"
+  "build/keditor/plugins/jquery.ui.touch-punch.min.js": "build/keditor/plugins/jquery.ui.touch-punch.min.js",
+  "build/nowkit/assets/css/now-ui-kit.css": "build/nowkit/assets/css/now-ui-kit.css",
+  "build/nowkit/assets/css/demo.css": "build/nowkit/assets/css/demo.css",
+  "build/nowkit/assets/js/plugins/bootstrap-switch.js": "build/nowkit/assets/js/plugins/bootstrap-switch.js",
+  "build/nowkit/assets/js/plugins/nouislider.min.js": "build/nowkit/assets/js/plugins/nouislider.min.js",
+  "build/nowkit/assets/js/plugins/bootstrap-datepicker.js": "build/nowkit/assets/js/plugins/bootstrap-datepicker.js",
+  "build/nowkit/assets/js/now-ui-kit.js": "build/nowkit/assets/js/now-ui-kit.js"
 }

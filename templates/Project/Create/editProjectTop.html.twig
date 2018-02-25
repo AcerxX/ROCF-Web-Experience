@@ -1,7 +1,7 @@
 <div class="row border border-bottom-0 rounded-top">
     <div class="col-lg-9">
         <br>
-        <h3 id="title" contenteditable="true" class="text-success">
+        <h3 id="title" contenteditable="true" class="text-primary">
             {{ projectInfo['title'] }}
         </h3>
         <br>
@@ -12,32 +12,33 @@
     </div>
     <div class="col-lg-3">
         <br>
-            <div class="col-lg-12">
-                <button type="button" class="btn btn-dark btn-lg btn-block">Sustine</button>
-            </div>
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-dark btn-round btn-lg btn-block">Sustine</button>
+        </div>
         <br>
         <br>
-            <div class="col-lg-12">
-                <button type="button" class="btn btn-primary btn-lg btn-block">Distribuie</button>
-            </div>
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-primary btn-round btn-lg btn-block">Distribuie</button>
+        </div>
         <br>
         <br>
-            <div class="col-lg-12">
-                <button type="button" class="btn btn-danger btn-lg btn-block">Adauga la favorite</button>
-            </div>
+        <div class="col-lg-12">
+            <button type="button" class="btn btn-danger btn-round btn-lg btn-block">Adauga la favorite</button>
+        </div>
         <br>
     </div>
 </div>
 <div class="row border border-top-0 rounded-bottom">
     <div class="col-lg-12">
-        <h5>
+        <h6>
             Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
-        </h5>
-        <br>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                 style="width: {{ completedPercentage }}%" aria-valuenow="{{ completedPercentage }}"
-                 aria-valuemin="0" aria-valuemax="100">
+        </h6>
+        <div class="progress-container progress-success">
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning" role="progressbar"
+                     style="width: {{ completedPercentage }}%" aria-valuenow="{{ completedPercentage }}"
+                     aria-valuemin="0" aria-valuemax="100">
+                </div>
             </div>
         </div>
         <br>
@@ -70,10 +71,10 @@
             type: 'POST',
             dataType: 'json',
             data: jsonString,
-            success: function(result) {
+            success: function (result) {
                 console.log(result);
             },
-            error: function(result) {
+            error: function (result) {
                 console.log(result);
             }
         });
