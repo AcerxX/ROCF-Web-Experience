@@ -95,7 +95,7 @@
                         width: '',
                         height: ''
                     });
-                    img.load(function () {
+                    img.on('load', function () {
                         keditor.showSettingPanel(keditor.getSettingComponent(), options);
                     });
                 } else {
@@ -196,7 +196,7 @@
             inputWidth.val(img.width());
             inputHeight.val(img.height());
 
-            $('<img />').attr('src', img.attr('src')).load(function() {
+            $('<img />').attr('src', img.attr('src')).on('load', function() {
                 self.ratio = this.width / this.height;
                 self.width = this.width;
                 self.height = this.height;

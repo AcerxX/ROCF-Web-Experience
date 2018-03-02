@@ -82,7 +82,7 @@
             display: block;
             margin: 0;
             padding: 0 0 0 5px;
-            border: 1px solid #eee;
+            border: 1px;
         }
 
         .quantity input:focus {
@@ -98,10 +98,10 @@
         .quantity-button {
             position: relative;
             cursor: pointer;
-            border-left: 1px solid #eee;
             width: 20px;
             text-align: center;
-            color: #333;
+            color: #fff;
+            background: #fba98e;
             font-size: 13px;
             font-family: "Trebuchet MS", Helvetica, sans-serif !important;
             line-height: 1.7;
@@ -118,7 +118,6 @@
             position: absolute;
             height: 50%;
             top: 0;
-            border-bottom: 1px solid #eee;
         }
 
         .quantity-button.quantity-down {
@@ -188,7 +187,7 @@
                     <div class="card-footer">
                         <a class="btn-perk-amount btn-primary text-white offset-3 col-6 d-block mx-auto">
                             <div class="quantity">
-                                <input type="number" min="1" step="1" value="{{ perk['amount'] }}"> RON
+                                <input type="number" min="1" step="1" value="{{ perk['amount'] }}" class="btn-primary"> RON
                             </div>
                         </a>
                     </div>
@@ -197,10 +196,10 @@
         {% endfor %}
 
         <div class="card" style="width: 18rem; height: 500px; left: 10px">
-            <div class="row align-items-center h-100">
+            <div class="row align-items-center h-100">F
                 <div class="col-6 mx-auto">
                     <i onclick="addPerk()" class="fa fa-plus-circle"
-                       style="height: 100px; width: 100px; color: grey"></i>
+                       style="font-size: 100px; color: grey"></i>
                 </div>
             </div>
         </div>
@@ -241,7 +240,7 @@
                         '            <div class="card-body">\n' +
                         '                <button>\n' +
                         '                    <i class="fa fa-arrows"\n' +
-                        '                       style="height: 100px; width: 100px; color: grey"></i>\n' +
+                        '                       style="font-size: 100px; color: grey"></i>\n' +
                         '                </button>\n' +
                         '            </div>\n' +
                         '        </div>';

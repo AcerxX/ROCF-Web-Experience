@@ -80,7 +80,7 @@
                     
                     audio.attr('src', URL.createObjectURL(file));
                     
-                    audio.load(function () {
+                    audio.on('load', function () {
                         keditor.showSettingPanel(component, options);
                     });
                 } else {

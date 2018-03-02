@@ -47,7 +47,7 @@ body {
     $("#tab1").find('tr').eq(py).find('td').eq(px).addClass((ok)?'testok':'testko');
   };
   
-  $(window).load(function() {
+  $(window).on('load', function() {
     $("#div1").html($("#div1").html()+' '+nice.version);
 	$("#div2").html($("#div2").html()+' '+navigator.userAgent);
 

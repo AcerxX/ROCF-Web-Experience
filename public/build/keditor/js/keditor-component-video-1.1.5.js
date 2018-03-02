@@ -94,7 +94,7 @@
 
                     video.attr('src', URL.createObjectURL(file));
 
-                    video.load(function () {
+                    video.on('load', function () {
                         keditor.showSettingPanel(component, options);
                     });
                 } else {
