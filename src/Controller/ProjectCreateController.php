@@ -193,9 +193,9 @@ class ProjectCreateController extends Controller
         );
 
         $response = '<div class="gallery-cell">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card" style="width: 18rem; height: 500px; left: 10px">
                                 <img class="card-img-top"
-                                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
+                                     src="../../../../build/images/alta_poza.jpg"
                                      alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $perkInfo['data']['title'] . '</h5>

@@ -1,6 +1,7 @@
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css"
           href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}"/>
     <style>
@@ -16,6 +17,10 @@
         var bsTooltip = $.fn.tooltip;
         var bsButton = $.fn.button;
     </script>
+    {#<script#}
+            {#src="https://code.jquery.com/jquery-2.2.4.min.js"#}
+            {#integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="#}
+            {#crossorigin="anonymous"></script>#}
     <script src="{{ asset('build/keditor/plugins/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('build/keditor/plugins/jquery.ui.touch-punch.min.js') }}"></script>
     <script type="text/javascript">
@@ -42,9 +47,15 @@
 {% endblock %}
 
 {% block javascripts %}
+
     <script type="text/javascript">
-        $(function () {
-            $('#content-area').keditor({snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html', nestedContainerEnabled: false});
+        $(document).ready(function () {
+            $(function () {
+                $('#content-area').keditor({
+                    snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html',
+                    nestedContainerEnabled: false
+                });
+            });
         });
     </script>
 {% endblock %}

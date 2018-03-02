@@ -31,7 +31,10 @@
 <div class="row border border-top-0 rounded-bottom">
     <div class="col-lg-12">
         <h6>
-            Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / {{ projectInfo['totalAmount'] }} RON
+            <div style="display: inline-block;vertical-align: middle;"
+>           Fonduri stranse: {{ projectInfo['pledgedAmount'] }} RON / </div> <div class="quantity" style="display: inline-block;vertical-align: middle;">
+                <input type="number" min="1" step="1" value="{{ projectInfo['totalAmount'] }}">
+            </div> RON
         </h6>
         <div class="progress-container progress-success">
             <div class="progress">
@@ -53,7 +56,7 @@
 
     window.setInterval(function () {
         saveData();
-    }, 20000);
+    }, 5000);
 
     function saveData() {
         var obj = {};
