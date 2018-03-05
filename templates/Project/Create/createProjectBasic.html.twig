@@ -1,51 +1,110 @@
 {% include "base.html.twig" %}
-{% include "topmenu.html.twig" %}
+
 {% block body %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {% include "topmenu.html.twig" %}
+
     <div class="container">
-        <h2>Mesaj motivational :))</h2>
-        <form action="{{ path('saveProjectBasicInfo', {'projectId':projectData['id'],'link':projectData['link']}) }}" method="post">
-            <div class="form-group">
-                <label for="project-title">Titlu Proiect</label>
-                <input class="form-control" name="project-title" type="text" style="width: 70%" value="{{ projectData['title'] }}">
-            </div>
-            <div class="form-group">
-                <label for="comment">Descriere campanie</label>
-                <textarea class="form-control" rows="5" name="comment" style="width: 70%" value="{{ projectData['shortDescription'] }}"></textarea>
-            </div>
-            <div class="dropdown">
-                <label for="sel1">Alege o Categorie</label>
-                <select class="form-control" name="sel1" style="width: 70%">
-                    {% for category in category_data %}
-                        <option>{{ category['nameRo'] }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <br>
-            {#<label for="photo">Alege o poza, sau foloseste poza default</label>#}
-            {#<div class="btn btn-default form-control" style="height: 300px;width: 600px;background-color: greenyellow; display: block" id="photo">#}
-            {#<input type="file" style="height: 300px; width: 100%">#}
-            {#</div>#}
-            <div class="dropdown">
-                <label for="localitate">Alege o localitate</label>
-                <select class="form-control" style="width: 70%" name="localitate">
-                    {% for county in county_array %}
-                        <option>{{ county }}</option>
-                    {% endfor %}
-                </select>
+        <br>
+        <div class="row">
+            <h2>Pasul 1</h2>
+        </div>
+        <div class="row">
+            <h7 class="text-muted">
+                Te rog sa ne spui cateva lucruri de baza despre proiectul tau.
+                <br>
+                Nu iti face griji, in pasul urmator vei avea posibilitatea sa editezi MULT mai multe lucruri!
+            </h7>
+        </div>
+        <br>
+        <br>
+
+        <form action="{{ path('saveProjectBasicInfo', {'projectId':projectData['id'],'link':projectData['link']}) }}"
+              method="post">
+            <div class="form-group row">
+                <label for="project-title">Titlul proiectului</label>
+                <input id="project-title" class="form-control" name="project-title" type="text"
+                       value="{{ projectData['title'] }}">
+                <small id="project-title-help" class="form-text text-muted">Alege un titlu potrivit.</small>
             </div>
             <br>
-            <div class="form-group">
-                <label for="tags">Tags</label>
-                <p>Insereaza cu virgula, minim 5 taguri</p>
-                <input class="form-control" name="tags" type="text" style="width: 70%">
+            <br>
+            <div class="form-group row">
+                <label for="comment">Idea proiectului</label>
+                <textarea id="comment" class="form-control" rows="2"
+                          name="comment">{{ projectData['shortDescription'] }}</textarea>
+                <small id="comment-help" class="form-text text-muted">Alege cateva cuvinte (o propozitie) care descriu
+                    perfect proiectul tau.
+                </small>
             </div>
-            <p>Durata campanie: <input type="text" id="datepicker" name="exp_date"></p>
-            <input class="form-control" type="submit" value="Trimitere" style="width:20%;">
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="total-amount" class="col-3 col-form-label">Valoarea proiectului (in RON)</label>
+                <div class="col-9">
+                    <input id="total-amount" class="form-control" name="total-amount" type="number"
+                           value="{{ projectData['totalAmount'] }}">
+                    <small id="total-amount-help" class="form-text text-muted">Alege suma pe care doresti sa o strangi pentru proiectul tau. Daca doresti, in aceasta suma poti include si comisionul de 7% pe care noi il vom percepe.</small>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="category" class="col-3 col-form-label">Categoria</label>
+                <div class="col-9">
+                    <select id="category" class="form-control" name="category">
+                        {% for category in category_data %}
+                            <option>{{ category['nameRo'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <small id="category-help" class="form-text text-muted">Alege categoria potrivita pentru proiectul
+                        tau.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="city" class="col-3 col-form-label">Localitatea</label>
+                <div class="col-9">
+                    <select id="city" class="form-control" name="city">
+                        {% for county in county_array %}
+                            <option>{{ county }}</option>
+                        {% endfor %}
+                    </select>
+                    <small id="category-help" class="form-text text-muted">Alege zona impactata de proiectul tau.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="tags" class="col-3 col-form-label">Tags</label>
+                <div class="col-9">
+                    <input id="tags" class="form-control" name="tags" type="text">
+                    <small id="tags-help" class="form-text text-muted">Insereaza cu virgula minim 5 taguri (cuvinte)
+                        care definesc proiectul tau.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label for="expiration-date" class="col-3 col-form-label">Data limita</label>
+                <div class="col-9">
+                    <input class="form-control" name="expiration-date" type="date" value="{{ now }}" max="{{ maxDate }}"
+                           id="expiration-date">
+                    <small id="tags-help" class="form-text text-muted">Data limita pana la care se pot strange fonduri
+                        pentru proiectul tau.
+                    </small>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <input class="form-control btn btn-primary" type="submit" value="Pasul urmator">
+            </div>
         </form>
+        <br>
     </div>
     <script>
         $(function () {

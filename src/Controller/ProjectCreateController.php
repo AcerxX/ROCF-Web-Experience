@@ -35,6 +35,7 @@ class ProjectCreateController extends Controller
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \LogicException
      * @throws \InvalidArgumentException
+     * @throws \Exception
      */
     public function editProjectBasic(ApiService $apiService)
     {
@@ -59,47 +60,53 @@ class ProjectCreateController extends Controller
 
         //ROUTE_PE_GET_CATEGORIES
         $category_response = $apiService->callProjectsEngineApi(
-          ApiService::ROUTE_PE_GET_CATEGORIES,
-          [],
+            ApiService::ROUTE_PE_GET_CATEGORIES,
+            [],
             ApiService::METHOD_GET
         );
         $county_array = ['TOATA TARA', 'BUCURESTI', 'ALBA', 'ARAD', 'ARGES', 'BACAU', 'BIHOR', 'BISTRITA-NASAUD', 'BOTOSANI', 'BRAILA', 'BRASOV', 'BUZAU', 'CALARASI', 'CARAS-SEVERIN', 'CLUJ', 'CONSTANTA', 'COVASNA', 'DAMBOVITA', 'DOLJ', 'GALATI', 'GIURGIU', 'HARGHITA'
             , 'HUNEDOARA', 'IALOMITA', 'IASI', 'ILFOV', 'MARAMURES', 'MEHEDINTI', 'MURES', 'NEAMT', 'OLT', 'PRAHOVA', 'SALAJ', 'SATU-MARE', 'SIBIU', 'SUCEAVA', 'TELEORMAN', 'TIMIS', 'TULCEA', 'VALCEA', 'VASLUI', 'VRANCEA'
         ];
+
         return $this->render(
             'Project/Create/createProjectBasic.html.twig',
             [
                 'user' => $user,
                 'projectData' => $response['data'],
-                'category_data'=>$category_response,
-                'county_array' => $county_array
+                'category_data' => $category_response,
+                'county_array' => $county_array,
+                'now' => (new \DateTime())->format('Y-m-d'),
+                'maxDate' => (new \DateTime())->add(new \DateInterval('P3M'))->format('Y-m-d')
             ]
         );
 
     }
 
 
-    public function saveProjectBasic(Request $request, string $link,int $projectId, ApiService $apiService)
+    public function saveProjectBasic(Request $request, string $link, int $projectId, ApiService $apiService)
     {
-
-        $formData = $request->request->all();
         $arrayToSend = [
-            "link"=>$link,
-            "project_id"=>$projectId,
-            "short_description"=>$formData['comment'],
-            "title"=>$formData['project-title'],
-            "presentation_media"=>$formData['tags'],
-            "expiration_date"=>$formData['exp_date']
+            'link' => $link,
+            'project_id' => $projectId,
+            'short_description' => $request->request->get('comment'),
+            'title' => $request->request->get('project-title'),
+            'tags' => $request->request->get('tags'),
+            'expiration_date' => $request->request->get('expiration-date'),
+            'total_amount' => $request->request->get('total-amount')
         ];
+
         $response = $apiService->callProjectsEngineApi(
             ApiService::ROUTE_PE_UPDATE_PROJECT_INFO,
             $arrayToSend
         );
-        /**
-         * TODO API CALL UPDATE PROJECT API WITH INPUT DATA
-         */
-        //api call ROUTE_PE_UPDATE_PROJECT_INFO si in array trimit project_id
-        return;
+
+        return $this->redirectToRoute(
+            'editProject',
+            [
+                'projectLink' => $link,
+                'projectId' => $projectId
+            ]
+        );
     }
 
 
