@@ -146,30 +146,17 @@ class ProjectCreateController extends Controller
     public function deletePerk(Request $request, ApiService $apiService): JsonResponse
     {
         $projectId = $request->request->get('projectId');
+        $perkId = $request->request->get('perkId');
+
         $perkInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_ADD_PERK,
+            ApiService::ROUTE_PE_REMOVE_PERK,
             [
-                'project_id' => $projectId
+                'project_id' => $projectId,
+                'perk_id' => $perkId
             ]
         );
 
-        $response = '';
-        foreach ($perkInfo['data'] as $key => $perk) {
-            $response .= '<div class="gallery-cell">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top"
-                                     src="../../../../build/keditor/snippets/default/img/yenbai_vietnam_squared.jpg"
-                                     alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">' . $perk['title'] . '</h5>
-                                    <p class="card-text">' . $perk['description'] . '</p>
-                                    <a href="#" class="btn btn-primary">' . $perk['amount'] . '</a>
-                                </div>
-                            </div>
-                        </div>';
-        }
-
-        return new JsonResponse($response);
+        return new JsonResponse($perkInfo);
     }
 
     /**
@@ -192,18 +179,62 @@ class ProjectCreateController extends Controller
             ]
         );
 
-        $response = '<div class="gallery-cell">
-                            <div class="card" style="width: 18rem; height: 500px; left: 10px">
-                                <img class="card-img-top"
-                                     src="../../../../build/images/alta_poza.jpg"
-                                     alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">' . $perkInfo['data']['title'] . '</h5>
-                                    <p class="card-text">' . $perkInfo['data']['description'] . '</p>
-                                    <a href="#" class="btn btn-primary">' . $perkInfo['data']['amount'] . ' RON</a>
+        $response = '<div id="perk-' . $perkInfo['data']['id'] . '" class="gallery-cell">
+                <div class="card" style="width: 18rem; left: 10px;">
+                    <span id="remove-perk-{{ perk[\'id\'] }}" class="close sticky-top" data-effect="fadeOut" onclick="deletePerk({{ perk[\'id\'] }})" style="position: absolute; margin-left: 16.7rem"><i class="fa fa-times"></i></span>
+                    <div id="keditor-content-area-' . $perkInfo['data']['id'] . '" class="keditor-content-area ui-sortable">
+                        <section class="keditor-ui keditor-container keditor-initialized-container"
+                                 id="keditor-container-' . $perkInfo['data']['id'] . '">
+                            <section class="keditor-ui keditor-container-inner">
+                                <div class="row">
+                                    <div class="col-md-12 keditor-container-content ui-sortable"
+                                         data-type="container-content"
+                                         id="keditor-container-content-' . $perkInfo['data']['id'] . '">
+                                        <section class="keditor-ui keditor-component keditor-initialized-component"
+                                                 data-type="component-photo"
+                                                 id="keditor-component-' . $perkInfo['data']['id'] . '">
+                                            <section class="keditor-ui keditor-component-content"
+                                                     id="keditor-component-content-' . $perkInfo['data']['id'] . '">
+                                                <div class="photo-panel">
+                                                    <img class="card-img-top"
+                                                         src="../../../../build/keditor/snippets/default/img/somewhere_bangladesh.jpg"
+                                                         width="100%" height="" style="display: inline-block;">
+                                                </div>
+                                            </section>
+                                            <div class="keditor-toolbar keditor-toolbar-component"><a
+                                                        href="javascript:void(0);"
+                                                        class="keditor-ui btn-component-reposition"><i
+                                                            class="fa fa-arrows"></i></a><a
+                                                        href="javascript:void(0);"
+                                                        class="keditor-ui btn-component-setting"><i
+                                                            class="fa fa-cog"></i></a> <a href="javascript:void(0);"
+                                                                                          class="keditor-ui btn-component-duplicate"><i
+                                                            class="fa fa-files-o"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="keditor-ui btn-component-delete"><i
+                                                            class="fa fa-times"></i></a></div>
+                                        </section>
+                                    </div>
                                 </div>
+                            </section>
+                        </section>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title save-this" id="perk-title-{{ perk[\'id\'] }}"
+                            contenteditable="true">' . $perkInfo['data']['title'] . '</h5>
+                        <p class="card-text save-this" id="perk-description-{{ perk[\'id\'] }}"
+                           contenteditable="true">' . $perkInfo['data']['description'] . '</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
+                            <div class="quantity">
+                                <input type="number" min="1" step="1" value="' . $perkInfo['data']['amount'] . '" class="btn-primary">
+                                RON
                             </div>
-                        </div>';
+                        </a>
+                    </div>
+                </div>
+            </div>';
 
         return new JsonResponse($response);
     }

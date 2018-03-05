@@ -49,13 +49,14 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(function () {
-                $('#content-area').keditor({
-                    snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html',
-                    nestedContainerEnabled: false
-                });
-            });
+        var keditor = $('#content-area').keditor({
+            snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html',
+            nestedContainerEnabled: false
         });
+
+        setTimeout(function () {
+            keditor.toggleSidebar();
+        }, 2000);
+
     </script>
 {% endblock %}
