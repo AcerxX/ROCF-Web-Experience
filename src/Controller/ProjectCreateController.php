@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Security\WebserviceUser;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProjectCreateController extends Controller
@@ -128,7 +129,7 @@ class ProjectCreateController extends Controller
         );
 
 
-        if ($projectInfo['isError'] || $projectInfo['data']['userId'] !== $loggedUser->getId()) {
+        if ($projectInfo['isError'] /*|| $projectInfo['data']['userId'] !== $loggedUser->getId()*/) {
             /**
              * TODO: redirect to 404 page
              */
@@ -149,5 +150,36 @@ class ProjectCreateController extends Controller
                 'completedPercentage' => $completedPercentage
             ]
         );
+    }
+
+    /**
+     * @param Request $request
+     * @param ApiService $apiService
+     * @return JsonResponse
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     */
+    public function autosaveProject(Request $request, ApiService $apiService)
+    {
+        $content = json_decode($request->getContent(), true);
+        $projectId = $request->get('projectId');
+
+        $title = strip_tags($content['title']);
+        $shortDescription = $content['shortDescription'];
+        $content = $content['content'];
+
+        $requestBag = [
+            'project_id' => $projectId,
+            'title' => $title,
+            'short_description' => $shortDescription,
+            'content' => $content
+        ];
+
+        $projectInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_UPDATE_PROJECT_INFO,
+            $requestBag
+        );
+
+        return $this->json($projectInfo, $projectInfo['isError'] ? 400 : 200);
     }
 }

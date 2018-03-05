@@ -1,0 +1,50 @@
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}"/>
+    <style>
+        .content {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <script type="text/javascript">
+        var bsTooltip = $.fn.tooltip;
+        var bsButton = $.fn.button;
+    </script>
+    <script src="{{ asset('build/keditor/plugins/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('build/keditor/plugins/jquery.ui.touch-punch.min.js') }}"></script>
+    <script type="text/javascript">
+        $.widget.bridge('uibutton', $.ui.button);
+        $.widget.bridge('uitooltip', $.ui.tooltip);
+        $.fn.tooltip = bsTooltip;
+        $.fn.button = bsButton;
+    </script>
+    <script type="text/javascript"
+            src="{{ asset('build/keditor/plugins/jquery.nicescroll-3.6.6/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="../../../../build/ckeditor/adapters/jquery.js"></script>
+    <!-- Start of KEditor scripts -->
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor-components-1.1.5.min.js') }}"></script>
+    <br>
+    <div id="content-area" class="content border rounded">
+        {{ projectInfo['content'] | raw }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('#content-area').keditor({snippetsUrl: '../../../../build/keditor/snippets/default/snippets.html', nestedContainerEnabled: false});
+        });
+    </script>
+{% endblock %}

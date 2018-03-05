@@ -1,19 +1,56 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>A Simple Page with CKEditor</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <title>KEditor - Kademi Content Editor</title>
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/plugins/bootstrap-3.3.6/css/bootstrap.min.css') }}" />#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}" />
+    <!-- Start of KEditor styles -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}" />
+    <!-- End of KEditor styles -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/examples.css') }}" />
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var bsTooltip = $.fn.tooltip;
+        var bsButton = $.fn.button;
+    </script>
+    <script src="{{ asset('build/keditor/plugins/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript">
+        $.widget.bridge('uibutton', $.ui.button);
+        $.widget.bridge('uitooltip', $.ui.tooltip);
+        $.fn.tooltip = bsTooltip;
+        $.fn.button = bsButton;
+    </script>
+    <script type="text/javascript" src="{{ asset('build/keditor/plugins/jquery.nicescroll-3.6.6/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
-    {#<script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>#}
-    </head>
+    <script type="text/javascript" src="../build/ckeditor/adapters/jquery.js"></script>
+    <!-- Start of KEditor scripts -->
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor-components-1.1.5.min.js') }}"></script>
+    <!-- End of KEditor scripts -->
+</head>
+
 <body>
-<div id="editor1" contenteditable="true">
-    <h1>Inline Editing in Action!</h1>
-    <p>The "div" element that contains this text is now editable.</p>
-</div>
-<script>
-    // Turn off automatic editor creation first.
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline('editor1');
+<div id="content-area"></div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#content-area').keditor({snippetsUrl: '../build/keditor/snippets/default/snippets.html'});
+    });
 </script>
 </body>
 </html>
+
+
