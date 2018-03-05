@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexa
- * Date: 01.02.2018
- * Time: 21:09
- */
 
 namespace App\Security;
 
