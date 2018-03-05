@@ -57,33 +57,48 @@ class ProjectCreateController extends Controller
             return $this->redirectToRoute('chooseProjectType');
         }
 
-        /**
-         * TODO: uncomment this and remove redirect
-         *
-         * return $this->render(
-         * 'Project/Create/editBasic.html.twig',
-         * [
-         * 'user' => $user,
-         * 'projectId' => $response['data']['id']
-         * ]
-         * );
-         * */
-        return $this->redirectToRoute(
-            'editProject',
+        //ROUTE_PE_GET_CATEGORIES
+        $category_response = $apiService->callProjectsEngineApi(
+          ApiService::ROUTE_PE_GET_CATEGORIES,
+          [],
+            ApiService::METHOD_GET
+        );
+        $county_array = ['TOATA TARA', 'BUCURESTI', 'ALBA', 'ARAD', 'ARGES', 'BACAU', 'BIHOR', 'BISTRITA-NASAUD', 'BOTOSANI', 'BRAILA', 'BRASOV', 'BUZAU', 'CALARASI', 'CARAS-SEVERIN', 'CLUJ', 'CONSTANTA', 'COVASNA', 'DAMBOVITA', 'DOLJ', 'GALATI', 'GIURGIU', 'HARGHITA'
+            , 'HUNEDOARA', 'IALOMITA', 'IASI', 'ILFOV', 'MARAMURES', 'MEHEDINTI', 'MURES', 'NEAMT', 'OLT', 'PRAHOVA', 'SALAJ', 'SATU-MARE', 'SIBIU', 'SUCEAVA', 'TELEORMAN', 'TIMIS', 'TULCEA', 'VALCEA', 'VASLUI', 'VRANCEA'
+        ];
+        return $this->render(
+            'Project/Create/createProjectBasic.html.twig',
             [
-                'projectId' => $response['data']['id'],
-                'projectLink' => $response['data']['link']
+                'user' => $user,
+                'projectData' => $response['data'],
+                'category_data'=>$category_response,
+                'county_array' => $county_array
             ]
         );
+
     }
 
 
-    public function saveProjectBasic(Request $request)
+    public function saveProjectBasic(Request $request, string $link,int $projectId, ApiService $apiService)
     {
+
+        $formData = $request->request->all();
+        $arrayToSend = [
+            "link"=>$link,
+            "project_id"=>$projectId,
+            "short_description"=>$formData['comment'],
+            "title"=>$formData['project-title'],
+            "presentation_media"=>$formData['tags'],
+            "expiration_date"=>$formData['exp_date']
+        ];
+        $response = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_UPDATE_PROJECT_INFO,
+            $arrayToSend
+        );
         /**
          * TODO API CALL UPDATE PROJECT API WITH INPUT DATA
          */
-
+        //api call ROUTE_PE_UPDATE_PROJECT_INFO si in array trimit project_id
         return;
     }
 

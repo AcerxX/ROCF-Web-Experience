@@ -9,7 +9,7 @@ editProjectBasic:
     methods: [GET]
 
 saveProjectBasicInfo:
-    path: /save-project-basic
+    path: /save-project-basic/{link}/{projectId}
     controller: App\Controller\ProjectCreateController::saveProjectBasic
     methods: [POST]
 

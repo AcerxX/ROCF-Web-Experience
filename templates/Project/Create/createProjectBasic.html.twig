@@ -1,0 +1,55 @@
+{% include "base.html.twig" %}
+{% include "topmenu.html.twig" %}
+{% block body %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <div class="container">
+        <h2>Mesaj motivational :))</h2>
+        <form action="{{ path('saveProjectBasicInfo', {'projectId':projectData['id'],'link':projectData['link']}) }}" method="post">
+            <div class="form-group">
+                <label for="project-title">Titlu Proiect</label>
+                <input class="form-control" name="project-title" type="text" style="width: 70%" value="{{ projectData['title'] }}">
+            </div>
+            <div class="form-group">
+                <label for="comment">Descriere campanie</label>
+                <textarea class="form-control" rows="5" name="comment" style="width: 70%" value="{{ projectData['shortDescription'] }}"></textarea>
+            </div>
+            <div class="dropdown">
+                <label for="sel1">Alege o Categorie</label>
+                <select class="form-control" name="sel1" style="width: 70%">
+                    {% for category in category_data %}
+                        <option>{{ category['nameRo'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            {#<label for="photo">Alege o poza, sau foloseste poza default</label>#}
+            {#<div class="btn btn-default form-control" style="height: 300px;width: 600px;background-color: greenyellow; display: block" id="photo">#}
+            {#<input type="file" style="height: 300px; width: 100%">#}
+            {#</div>#}
+            <div class="dropdown">
+                <label for="localitate">Alege o localitate</label>
+                <select class="form-control" style="width: 70%" name="localitate">
+                    {% for county in county_array %}
+                        <option>{{ county }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <p>Insereaza cu virgula, minim 5 taguri</p>
+                <input class="form-control" name="tags" type="text" style="width: 70%">
+            </div>
+            <p>Durata campanie: <input type="text" id="datepicker" name="exp_date"></p>
+            <input class="form-control" type="submit" value="Trimitere" style="width:20%;">
+        </form>
+    </div>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+{% endblock %}
