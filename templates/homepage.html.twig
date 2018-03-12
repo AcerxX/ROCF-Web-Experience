@@ -2,133 +2,175 @@
 
 {% block body %}
     {% include "topmenu.html.twig" %}
-    <div class="wrapper">
-        <div class="page-header page-header-small">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('../build/nowkit/assets/img/bg6.jpg');">
-            </div>
-            <div class="container">
-                <div class="content-center">
-                    <h1 class="title">This is our great company.</h1>
-                    <div class="text-center">
-                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </div>
+<div class="wrapper" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header page-header-small">
+        <div class="page-header-image" data-parallax="true"
+             style="background-image: url('../build/nowkit/assets/img/bg6.jpg');">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <h1 class="title">Bun venit pe pagina noastra!</h1>
+                <div class="text-center">
                 </div>
             </div>
         </div>
-        <div class="section section-about-us">
-            <div class="container">
+    </div>
+    <div class="section section-about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Cine suntem?</h2>
+                    <h5 class="description">Project8 urmeaza sa fie cea mai mare platforma de crowdfunding lansata
+                        vreodata in Romania. Dorinta noastra este aceea de a oferi un sprijin celor ce doresc sa isi
+                        aduca la viata proiectele si astfel sa facem primii pasi impreuna spre un viitor mai bun.</h5>
+                </div>
+            </div>
+            <div class="separator separator-primary"></div>
+            <div class="section-story-overview">
                 <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Who we are?</h2>
-                        <h5 class="description">According to the National Oceanic and Atmospheric Administration, Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent tihs year down to low ice extent in the Pacific and a late drop in ice extent in the Barents Sea.</h5>
+                    <div class="col-md-6">
+                        <div class="image-container image-left"
+                             style="background-image: url('../build/nowkit/assets/img/jacket.png')">
+                            <!-- First image on the left side -->
+                            <p class="blockquote blockquote-primary">De la incarcatoare wireless pana la boardgames,
+                                platformele de crowdfunding au reusit sa finanteze o gama variata de proiecte.
+                            </p>
+                        </div>
+                        <!-- Second image on the left side of the article -->
+                        <div class="image-container"
+                             style="background-image: url('../build/nowkit/assets/img/charger.jpg')"></div>
                     </div>
-                </div>
-                <div class="separator separator-primary"></div>
-                <div class="section-story-overview">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="image-container image-left" style="background-image: url('../build/nowkit/assets/img/login.jpg')">
-                                <!-- First image on the left side -->
-                                <p class="blockquote blockquote-primary">"Over the span of the satellite record, Arctic sea ice has been declining significantly, while sea ice in the Antarctichas increased very slightly"
-                                    <br>
-                                    <br>
-                                    <small>-NOAA</small>
-                                </p>
-                            </div>
-                            <!-- Second image on the left side of the article -->
-                            <div class="image-container" style="background-image: url('../build/nowkit/assets/img/bg3.jpg')"></div>
-                        </div>
-                        <div class="col-md-5">
-                            <!-- First image on the right side, above the article -->
-                            <div class="image-container image-right" style="background-image: url('../build/nowkit/assets/img/bg1.jpg')"></div>
-                            <h3>So what does the new record for the lowest level of winter ice actually mean</h3>
-                            <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
-                            </p>
-                            <p>
-                                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise. But over the more than 30 years of satellite records, scientists have observed a clear pattern of decline, decade-by-decade.
-                            </p>
-                            <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
-                            </p>
-                        </div>
+                    <div class="col-md-5">
+                        <!-- First image on the right side, above the article -->
+                        <div class="image-container image-right"
+                             style="background-image: url('../build/nowkit/assets/img/cooler.jpg')"></div>
+                        <h3>Ce reprezinta crowdfundingul?</h3>
+                        <p>
+                            Crowdfunding este unul dintre cele mai interesante moduri prin care poţi atrage
+                            finanțare pentru o idee/proiect din partea comunității/pritenilor/necunoscuţilor, în
+                            general din partea celor care cred cu adevărat în ideea ta. Pe scurt, acestea sunt cele mai
+                            importante beneficii dacă apelezi la finanţarea afacerii prin crowdfunding:
+                        </p>
+                        <p>
+                            Primeşti finanţare fără să intri în datorii. Da, este o metodă prin care poţi primi bani
+                            pentru afacerea ta fără să-i restitui înapoi. La rândul tău, pentru fiecare bănuţ primit
+                            trebuie să oferi ceva în schimb. A oferi în schimb poate înseamnă să-i menţionezi pe toţi
+                            care te-au ajutat pe o pagină, să le mulţumeşti public sau chiar să le oferi lor prima oară
+                            serviciul sau produsul tău când va fi gata.
+                        </p>
+                        <p>
+                            Găseşti potenţiali clienţi. O dată cu o campanie de crowdfunding vei avea parte de
+                            notorietate. Cel mai probabil această notorietate se va transforma pe viitor în beneficii
+                            materiale. Poate reprezenta un fel de pre-promovare.
+                        </p>
+                        <p>
+                            Cercetare de piaţă de calitate. Da, o astfel de campanie se poate transforma foarte uşor
+                            într-o cercetare de piaţă. Dacă foloseşti o astfel de campanie de strângere de fonduri şi
+                            vezi că nu ai succes cu ea şi nimeni nu te ajută, poţi considera şi faptul că ideea ta nu
+                            este potrivită. Dacă observi că mulţi te vor ajuta cu bani pentru proiect, asta este încă
+                            un motiv pentru care ar trebui să-l pui în practică. Înseamnă că proiectul este căutat şi
+                            că merită să-l implementezi.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="section section-team text-center">
-            <div class="container">
-                <h2 class="title">Here is our team</h2>
-                <div class="team">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="team-player">
-                                <img src="../build/nowkit/assets/img/avatar.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                                <h4 class="title">Romina Hadid</h4>
-                                <p class="category text-primary">Model</p>
-                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-instagram"></i></a>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-facebook-square"></i></a>
-                            </div>
+    </div>
+    <div class="section section-team text-center">
+        <div class="container">
+            <h2 class="title">Aceasta este echipa noastra</h2>
+            <div class="team">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../build/nowkit/assets/img/contele.jpg" alt="Thumbnail Image"
+                                 class="rounded-circle img-fluid img-raised">
+                            <h4 class="title">Alexandru Mihai</h4>
+                            <p class="category text-primary">Chief Executive Officer</p>
+                            <a href="https://www.facebook.com/MacerX" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-facebook-square"></i></a>
+                            <a href="https://www.linkedin.com/in/alexandru-mihai-09ab6aab/" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-linkedin"></i></a>
                         </div>
-                        <div class="col-md-4">
-                            <div class="team-player">
-                                <img src="../build/nowkit/assets/img/ryan.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                                <h4 class="title">Ryan Tompson</h4>
-                                <p class="category text-primary">Designer</p>
-                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-linkedin"></i></a>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../build/nowkit/assets/img/contesa.jpg" alt="Thumbnail Image"
+                                 class="rounded-circle img-fluid img-raised">
+                            <h4 class="title">Andreea Ilies</h4>
+                            <p class="category text-primary">VP</p>
+                            <a href="https://www.facebook.com/andreea.lucia.3" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-facebook-square"></i></a>
+                            <a href="https://www.linkedin.com/in/andreea-lucia-ilies-474053b0/" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-linkedin"></i></a>
                         </div>
-                        <div class="col-md-4">
-                            <div class="team-player">
-                                <img src="../build/nowkit/assets/img/eva.jpg" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
-                                <h4 class="title">Eva Jenner</h4>
-                                <p class="category text-primary">Fashion</p>
-                                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-google-plus"></i></a>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fa fa-twitter"></i></a>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-player">
+                            <img src="../build/nowkit/assets/img/depp.jpg" alt="Thumbnail Image"
+                                 class="rounded-circle img-fluid img-raised">
+                            <h4 class="title">Florin Druta</h4>
+                            <p class="category text-primary">Software Engineer</p>
+                            <a href="https://www.facebook.com/florin.catalin.5" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-facebook-square"></i></a>
+                            <a href="https://www.linkedin.com/in/florin-druta-a74baa124/" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                        class="fa fa-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
+                <br>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <div class="team-player">
+                                <img src="../build/nowkit/assets/img/je.jpg" alt="Thumbnail Image"
+                                     class="rounded-circle img-fluid img-raised">
+                                <h4 class="title">Bogdan Grigore</h4>
+                                <p class="category text-primary">Software Developer</p>
+                                <a href="https://www.facebook.com/bogdan.grigore.10" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                            class="fa fa-facebook-square"></i></a>
+                                <a href="https://www.linkedin.com/in/bogdan-grigore-a313a9150/" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                            class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="team-player">
+                                <img src="../build/nowkit/assets/img/baloo.jpg" alt="Thumbnail Image"
+                                     class="rounded-circle img-fluid img-raised">
+                                <h4 class="title">Ionut Baluta</h4>
+                                <p class="category text-primary">VP</p>
+                                <p class="description">You can write here details about one of your team members. You
+                                    can
+                                    give more details about what they do. Feel free to add some
+                                    <a href="https://www.facebook.com/virgilioanstefan.baluta" class="btn btn-primary btn-icon btn-round" target="_blank"><i
+                                                class="fa fa-facebook-square"></i></a>
+                                    <a href="https://www.linkedin.com/in/virgil-ioan-stefan-baluta-99b77511b/" target="_blank" class="btn btn-primary btn-icon btn-round"><i
+                                                class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="section section-contact-us text-center">
             <div class="container">
-                <h2 class="title">Want to work with us?</h2>
-                <p class="description">Your project is very important to us.</p>
+                <h2 class="title">Sunteti interesat?</h2>
+                <p class="description">Lasati mai jos numele si adresa de e-mail.</p>
                 <div class="row">
                     <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
                         <div class="input-group input-lg">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons users_circle-08"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="First Name...">
+                            <input type="text" class="form-control" placeholder="Nume...">
                         </div>
                         <div class="input-group input-lg">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons ui-1_email-85"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Email...">
-                        </div>
-                        <div class="textarea-container">
-                            <textarea class="form-control" name="name" rows="4" cols="80" placeholder="Type a message..."></textarea>
+                            <input type="text" class="form-control" placeholder="E-mail...">
                         </div>
                         <div class="send-button">
-                            <a href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
+                            <a href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Trimite</a>
                         </div>
                     </div>
                 </div>
@@ -137,38 +179,17 @@
         <footer class="footer footer-default">
             <div class="container">
                 <nav>
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                                MIT License
-                            </a>
-                        </li>
-                    </ul>
                 </nav>
                 <div class="copyright">
                     &copy;
+                    Project8,
                     <script>
                         document.write(new Date().getFullYear())
-                    </script>, Designed by
-                    <a href="http://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                    </script>
+                     Designed by
+                    <a href="http://www.invisionapp.com" target="_blank">Invision</a>.
                 </div>
             </div>
         </footer>
     </div>
-{% endblock %}
+    {% endblock %}

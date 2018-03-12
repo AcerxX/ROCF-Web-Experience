@@ -21,3 +21,7 @@ resetPassword:
 projects:
     resource: projects_routes.yaml
     prefix: /projects
+
+profile:
+    path: /profile
+    controller: App\Controller\ProfileController::profile

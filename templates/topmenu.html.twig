@@ -30,7 +30,7 @@
                         {{ user.firstName }} {{ user.lastName }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">{{ 'topmenu.myprofile'|trans }}</a>
+                        <a class="dropdown-item" href="{{ path('profile') }}">{{ 'topmenu.myprofile'|trans }}</a>
                         <a class="dropdown-item" href="{{ path('logout') }}">{{ 'topmenu.logout'|trans }}</a>
                     </div>
                 </li>

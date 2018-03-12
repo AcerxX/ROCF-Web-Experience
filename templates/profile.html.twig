@@ -1,0 +1,46 @@
+{% include "base.html.twig" %}
+{% block body %}
+    {% include "topmenu.html.twig" %}
+
+
+    <div class="wrapper" style="float:left">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Profilul tau</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+
+                <li>
+                    <a href="#">Editare date personale</a>
+                </li>
+                <li>
+                    <a href="#">Setari de personalizare</a>
+                </li>
+                <li>
+                    <a href="#">Editare date card</a>
+                </li>
+                <li>
+                    <a href="#">Achievments</a>
+                </li>
+                <li>
+                    <a href="#">Istoric donatii</a>
+                </li>
+                <li>
+                    <a href="#">Prieteni</a>
+                </li>
+            </ul>
+
+
+
+        </nav>
+    </div>
+    <div style="background-color: #b35e14; margin-left:160px; padding: 3%">
+        {#<img src="img_avatar.png" alt="Avatar" style="width:200px">#}
+        Nume: {{ user.firstName }}
+        Prenume: {{ user.lastName }}
+        Suma in cont:
+        Suma bonus:
+    </div>
+{% endblock  %}
