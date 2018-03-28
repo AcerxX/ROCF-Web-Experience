@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="project-title">Titlul proiectului</label>
                 <input id="project-title" class="form-control" name="project-title" type="text"
-                       value="{{ projectData['title'] }}">
+                       value="{{ projectData['title'] }}" required>
                 <small id="project-title-help" class="form-text text-muted">Alege un titlu potrivit.</small>
             </div>
             <br>
@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label for="comment">Idea proiectului</label>
                 <textarea id="comment" class="form-control" rows="2"
-                          name="comment">{{ projectData['shortDescription'] }}</textarea>
+                          name="comment" required>{{ projectData['shortDescription'] }}</textarea>
                 <small id="comment-help" class="form-text text-muted">Alege cateva cuvinte (o propozitie) care descriu
                     perfect proiectul tau.
                 </small>
@@ -42,7 +42,7 @@
                 <label for="total-amount" class="col-3 col-form-label">Valoarea proiectului (in RON)</label>
                 <div class="col-9">
                     <input id="total-amount" class="form-control" name="total-amount" type="number"
-                           value="{{ projectData['totalAmount'] }}">
+                           value="{{ projectData['totalAmount'] }}" required>
                     <small id="total-amount-help" class="form-text text-muted">Alege suma pe care doresti sa o strangi pentru proiectul tau. Daca doresti, in aceasta suma poti include si comisionul de 7% pe care noi il vom percepe.</small>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="form-group row">
                 <label for="category" class="col-3 col-form-label">Categoria</label>
                 <div class="col-9">
-                    <select id="category" class="form-control" name="category">
+                    <select id="category" class="form-control" name="category" required>
                         {% for category in category_data %}
                             <option>{{ category['nameRo'] }}</option>
                         {% endfor %}
@@ -66,7 +66,7 @@
             <div class="form-group row">
                 <label for="city" class="col-3 col-form-label">Localitatea</label>
                 <div class="col-9">
-                    <select id="city" class="form-control" name="city">
+                    <select id="city" class="form-control" name="city" required>
                         {% for county in county_array %}
                             <option>{{ county }}</option>
                         {% endfor %}
@@ -80,7 +80,7 @@
             <div class="form-group row">
                 <label for="tags" class="col-3 col-form-label">Tags</label>
                 <div class="col-9">
-                    <input id="tags" class="form-control" name="tags" type="text">
+                    <input id="tags" class="form-control" name="tags" type="text" required>
                     <small id="tags-help" class="form-text text-muted">Insereaza cu virgula minim 5 taguri (cuvinte)
                         care definesc proiectul tau.
                     </small>
@@ -92,7 +92,7 @@
                 <label for="expiration-date" class="col-3 col-form-label">Data limita</label>
                 <div class="col-9">
                     <input class="form-control" name="expiration-date" type="date" value="{{ now }}" max="{{ maxDate }}"
-                           id="expiration-date">
+                           id="expiration-date" required>
                     <small id="tags-help" class="form-text text-muted">Data limita pana la care se pot strange fonduri
                         pentru proiectul tau.
                     </small>

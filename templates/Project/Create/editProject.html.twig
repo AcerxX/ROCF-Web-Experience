@@ -1,10 +1,7 @@
-{% include "base.html.twig" %}
-
-{% block javascripts %}
-    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
-{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block body %}
+    {{ parent() }}
     {% include "topmenu.html.twig" %}
     <div class="container">
         {% include "Project/Create/editProjectTop.html.twig" %}
@@ -15,7 +12,184 @@
         <br>
         {% include "Project/Create/editProjectContent.html.twig" %}
     </div>
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <script type="text/javascript">
+        var bsTooltip = $.fn.tooltip;
+        var bsButton = $.fn.button;
+    </script>
+    <script src="{{ asset('build/keditor/plugins/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('build/keditor/plugins/jquery.ui.touch-punch.min.js') }}"></script>
+    <script type="text/javascript">
+        $.widget.bridge('uibutton', $.ui.button);
+        $.widget.bridge('uitooltip', $.ui.tooltip);
+        $.fn.tooltip = bsTooltip;
+        $.fn.button = bsButton;
+    </script>
+    <script type="text/javascript"
+            src="{{ asset('build/keditor/plugins/jquery.nicescroll-3.6.6/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('build/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="../../../../build/ckeditor/adapters/jquery.js"></script>
+    <!-- Start of KEditor scripts -->
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/keditor/js/keditor-components-1.1.5.js') }}"></script>
+
+    <script src="{{ asset('build/js/') }}create_project.js"></script>
+
+    <script>
+        window.setInterval(function () {
+            saveData("{{ path('autosaveProject', {projectId: projectInfo['id']}) }}");
+        }, 5000);
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('build/keditor/plugins/font-awesome-4.5.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}"/>
+    <style>
+        /*.content {*/
+            /*margin-right: -15px;*/
+            /*margin-left: -15px;*/
+        /*}*/
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <style>
+        /* external css: flickity.css */
+
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .gallery {
+            background: white;
+        }
+
+        .gallery-cell {
+            margin-right: 5%;
+            /*counter-increment: gallery-cell;*/
+        }
+
+        /* cell number */
+        .gallery-cell:before {
+            display: block;
+            text-align: center;
+            line-height: 200px;
+            font-size: 80px;
+            color: white;
+        }
+
+    </style>
+    <style>
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card {
+            height: 500px;
+        }
+
+        .card-body {
+            /*height: 257px;*/
+            height: 258px;
+        }
+
+        .card-footer {
+            padding: 0px;
+            border-top: 0px;
+            height: 42px;
+        }
+    </style>
+
+    <style>
+        .quantity {
+            position: relative;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .quantity input {
+            width: 70px;
+            height: 42px;
+            line-height: 1.65;
+            float: left;
+            display: block;
+            margin: 0;
+            padding: 0 0 0 5px;
+            border: 1px;
+        }
+
+        .quantity input:focus {
+            outline: 0;
+        }
+
+        .quantity-nav {
+            float: left;
+            position: relative;
+            height: 42px;
+        }
+
+        .quantity-button {
+            position: relative;
+            cursor: pointer;
+            width: 20px;
+            text-align: center;
+            color: #fff;
+            background: #fba98e;
+            font-size: 13px;
+            font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+            line-height: 1.7;
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        .quantity-button.quantity-up {
+            position: absolute;
+            height: 50%;
+            top: 0;
+        }
+
+        .quantity-button.quantity-down {
+            position: absolute;
+            bottom: -1px;
+            height: 50%;
+        }
+
+        .btn-perk-amount {
+            height: 42px;
+        }
+    </style>
 {% endblock %}
 
 

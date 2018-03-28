@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Security\WebserviceUser;
 use App\Service\ApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use function var_dump;
@@ -223,18 +224,11 @@ class ProjectCreateController extends Controller
                                                          width="100%" height="" style="display: inline-block;">
                                                 </div>
                                             </section>
-                                            <div class="keditor-toolbar keditor-toolbar-component"><a
-                                                        href="javascript:void(0);"
-                                                        class="keditor-ui btn-component-reposition"><i
-                                                            class="fa fa-arrows"></i></a><a
-                                                        href="javascript:void(0);"
-                                                        class="keditor-ui btn-component-setting"><i
-                                                            class="fa fa-cog"></i></a> <a href="javascript:void(0);"
-                                                                                          class="keditor-ui btn-component-duplicate"><i
-                                                            class="fa fa-files-o"></i></a> <a
-                                                        href="javascript:void(0);"
-                                                        class="keditor-ui btn-component-delete"><i
-                                                            class="fa fa-times"></i></a></div>
+                                            <div class="keditor-toolbar keditor-toolbar-component">
+                                                <a href="javascript:void(0);" class="keditor-ui btn-component-setting">
+                                                    <i class="fa fa-cog"></i>
+                                                </a>
+                                            </div>
                                         </section>
                                     </div>
                                 </div>
@@ -269,18 +263,23 @@ class ProjectCreateController extends Controller
      */
     public function autosaveProject(Request $request, ApiService $apiService): JsonResponse
     {
-        $content = json_decode($request->getContent(), true);
+        $savedData = json_decode($request->getContent(), true);
         $projectId = $request->get('projectId');
 
-        $title = strip_tags($content['title']);
-        $shortDescription = $content['shortDescription'];
-        $content = $content['content'];
+        $title = strip_tags($savedData['title']);
+        $shortDescription = $savedData['shortDescription'];
+        $content = $savedData['content'];
+
+        $media = str_replace(array("\n", "\r"), '', $savedData['presentationMedia']);
+        preg_match('/(?<=src=")[1a-zA-Z:\/.0-9]+(?=">)/', $media, $matches);
+        $presentationMedia = $matches[0];
 
         $requestBag = [
             'project_id' => $projectId,
             'title' => $title,
             'short_description' => $shortDescription,
-            'content' => $content
+            'content' => $content,
+            'presentation_media' => $presentationMedia
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
@@ -289,5 +288,15 @@ class ProjectCreateController extends Controller
         );
 
         return $this->json($projectInfo, $projectInfo['isError'] ? 400 : 200);
+    }
+
+    public function saveImage(Request $request)
+    {
+        /** @var UploadedFile $file */
+        $file = $request->files->get('image');
+
+        $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $file->getClientOriginalName());
+
+        return new JsonResponse(['link' => 'http://images.roprojects.test/' . $file->getClientOriginalName()]);
     }
 }

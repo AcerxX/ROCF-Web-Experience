@@ -269,13 +269,26 @@
                 var file = this.files[0];
                 if (/image/.test(file.type)) {
                     var img = keditor.getSettingComponent().find('img');
-                    img.attr('src', URL.createObjectURL(file));
-                    img.css({
-                        width: '',
-                        height: ''
-                    });
-                    img.on('load', function () {
-                        keditor.showSettingPanel(keditor.getSettingComponent(), options);
+
+                    var formData = new FormData();
+                    formData.append("image", file);
+                    $.ajax({
+                        url: "/ro/projects/save-image",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function(data){
+                            img.attr('src', data.link);
+                            img.css({
+                                width: '',
+                                height: ''
+                            });
+                            img.on('load', function () {
+                                keditor.showSettingPanel(keditor.getSettingComponent(), options);
+                            });
+                        }
                     });
                 } else {
                     alert('Your selected file is not photo!');

@@ -44,7 +44,7 @@
                 <section class="keditor-ui keditor-container keditor-initialized-container"
                          id="keditor-container-1">
                     <section class="keditor-ui keditor-container-inner">
-                        <div class="col-lg-12 keditor-container-content ui-sortable" data-type="container-content"
+                        <div class="keditor-container-content ui-sortable" data-type="container-content"
                              id="keditor-container-content-1">
                             <section class="keditor-ui keditor-component keditor-initialized-component"
                                      data-type="component-youtube" id="keditor-component-1">
@@ -53,32 +53,22 @@
                                     <div class="youtube-wrapper">
                                         <div class="embed-responsive embed-responsive-16by9">
                                             <iframe class="embed-responsive-item"
-                                                    src="https://www.youtube.com/embed/P5yHEKqx86U"></iframe>
+                                                    src="{{ projectInfo['presentationMedia'] }}"></iframe>
                                         </div>
                                     </div>
                                 </section>
-                                <div class="keditor-toolbar keditor-toolbar-component"><a href="javascript:void(0);"
-                                                                                          class="keditor-ui btn-component-reposition"><i
-                                                class="fa fa-arrows"></i></a><a href="javascript:void(0);"
-                                                                                class="keditor-ui btn-component-setting"><i
-                                                class="fa fa-cog"></i></a> <a href="javascript:void(0);"
-                                                                              class="keditor-ui btn-component-duplicate"><i
-                                                class="fa fa-files-o"></i></a> <a href="javascript:void(0);"
-                                                                                  class="keditor-ui btn-component-delete"><i
-                                                class="fa fa-times"></i></a></div>
+                                <div class="keditor-toolbar keditor-toolbar-component">
+                                    <a href="javascript:void(0);" class="keditor-ui btn-component-setting">
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                </div>
                             </section>
                         </div>
                     </section>
-                    <div class="keditor-toolbar keditor-toolbar-container "><a href="javascript:void(0);"
-                                                                               class="keditor-ui btn-container-reposition"><i
-                                    class="fa fa-sort"></i></a> <a href="javascript:void(0);"
-                                                                   class="keditor-ui btn-container-duplicate"><i
-                                    class="fa fa-files-o"></i></a> <a href="javascript:void(0);"
-                                                                      class="keditor-ui btn-container-delete"><i
-                                    class="fa fa-times"></i></a></div>
                 </section>
             </div>
         </div>
     </div>
 </div>
+
 

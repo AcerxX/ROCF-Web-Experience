@@ -1,10 +1,13 @@
 {
   "build/app.js": "/build/app.js",
+  "build/js/": "/build/js/",
+  "build/css/": "/build/css/",
   "build/images/poza.png": "/build/images/poza.5df4adf0.png",
   "build/ckeditor/ckeditor.js": "build/ckeditor/ckeditor.js",
   "build/keditor/css/examples.css": "build/keditor/css/examples.css",
   "build/keditor/js/keditor.js": "build/keditor/js/keditor-1.1.5.min.js",
   "build/keditor/js/keditor-components-1.1.5.min.js": "build/keditor/js/keditor-components-1.1.5.min.js",
+  "build/keditor/js/keditor-components-1.1.5.js": "build/keditor/js/keditor-components-1.1.5.js",
   "build/keditor/css/keditor.css": "build/keditor/css/keditor-1.1.5.min.css",
   "build/keditor/css/keditor-components.min.css": "build/keditor/css/keditor-components-1.1.5.min.css",
   "build/keditor/plugins/bootstrap-3.3.6/css/bootstrap.min.css": "build/keditor/plugins/bootstrap-3.3.6/css/bootstrap.min.css",

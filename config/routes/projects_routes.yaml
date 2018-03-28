@@ -37,3 +37,8 @@ autosaveProject:
     methods: [POST]
     requirements:
         projectId: '\d+'
+
+saveImage:
+    path: /save-image
+    controller: App\Controller\ProjectCreateController::saveImage
+    methods: [POST]

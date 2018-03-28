@@ -49,38 +49,3 @@
     <br>
 </div>
 
-<script>
-    CKEDITOR.disableAutoInline = true;
-    CKEDITOR.inline('title');
-    CKEDITOR.inline('shortDescription');
-
-    window.setInterval(function () {
-        saveData();
-    }, 5000);
-
-    function saveData() {
-        var obj = {};
-        for (var key in CKEDITOR.instances) {
-            if (CKEDITOR.instances.hasOwnProperty(key)) {
-                obj[key] = CKEDITOR.instances[key].getData();
-            }
-        }
-
-        obj.content = $('#content-area').keditor('getContent');
-
-        var jsonString = JSON.stringify(obj);
-        $.ajax({
-            url: "{{ path('autosaveProject', {projectId: projectInfo['id']}) }}",
-            type: 'POST',
-            dataType: 'json',
-            data: jsonString,
-            success: function (result) {
-                console.log(result);
-            },
-            error: function (result) {
-                console.log(result);
-            }
-        });
-    }
-</script>
-

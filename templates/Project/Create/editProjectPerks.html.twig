@@ -1,133 +1,3 @@
-{% include "base.html.twig" %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <style>
-        /* external css: flickity.css */
-
-        * {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: sans-serif;
-        }
-
-        .gallery {
-            background: white;
-        }
-
-        .gallery-cell {
-            margin-right: 5%;
-            /*counter-increment: gallery-cell;*/
-        }
-
-        /* cell number */
-        .gallery-cell:before {
-            display: block;
-            text-align: center;
-            line-height: 200px;
-            font-size: 80px;
-            color: white;
-        }
-
-    </style>
-    <style>
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card {
-            height: 500px;
-        }
-
-        .card-body {
-            /*height: 257px;*/
-            height: 258px;
-        }
-
-        .card-footer {
-            padding: 0px;
-            border-top: 0px;
-            height: 42px;
-        }
-    </style>
-
-    <style>
-        .quantity {
-            position: relative;
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-
-        .quantity input {
-            width: 70px;
-            height: 42px;
-            line-height: 1.65;
-            float: left;
-            display: block;
-            margin: 0;
-            padding: 0 0 0 5px;
-            border: 1px;
-        }
-
-        .quantity input:focus {
-            outline: 0;
-        }
-
-        .quantity-nav {
-            float: left;
-            position: relative;
-            height: 42px;
-        }
-
-        .quantity-button {
-            position: relative;
-            cursor: pointer;
-            width: 20px;
-            text-align: center;
-            color: #fff;
-            background: #fba98e;
-            font-size: 13px;
-            font-family: "Trebuchet MS", Helvetica, sans-serif !important;
-            line-height: 1.7;
-            -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -o-user-select: none;
-            user-select: none;
-        }
-
-        .quantity-button.quantity-up {
-            position: absolute;
-            height: 50%;
-            top: 0;
-        }
-
-        .quantity-button.quantity-down {
-            position: absolute;
-            bottom: -1px;
-            height: 50%;
-        }
-
-        .btn-perk-amount {
-            height: 42px;
-        }
-    </style>
-{% endblock %}
-
 {% block body %}
     <!-- Flickity HTML init -->
     <div class="gallery js-flickity"
@@ -136,61 +6,59 @@
 
         {% for perk in projectInfo['perks'] %}
             <div id="perk-{{ perk['id'] }}" class="gallery-cell">
-            <div class="card" style="width: 18rem; left: 10px;">
-                <span id="remove-perk-{{ perk['id'] }}" class="close sticky-top" data-effect="fadeOut" onclick="deletePerk({{ perk['id'] }})" style="position: absolute; margin-left: 16.7rem"><i class="fa fa-times"></i></span>
-                <div id="keditor-content-area-{{ perk['id'] }}" class="keditor-content-area ui-sortable">
-                    <section class="keditor-ui keditor-container keditor-initialized-container"
-                             id="keditor-container-{{ perk['id'] }}">
-                        <section class="keditor-ui keditor-container-inner">
-                            <div class="row">
-                                <div class="col-md-12 keditor-container-content ui-sortable"
-                                     data-type="container-content"
-                                     id="keditor-container-content-{{ perk['id'] }}">
-                                    <section class="keditor-ui keditor-component keditor-initialized-component"
-                                             data-type="component-photo"
-                                             id="keditor-component-{{ perk['id'] }}">
-                                        <section class="keditor-ui keditor-component-content"
-                                                 id="keditor-component-content-{{ perk['id'] }}">
-                                            <div class="photo-panel">
-                                                <img class="card-img-top"
-                                                     src="../../../../build/keditor/snippets/default/img/somewhere_bangladesh.jpg"
-                                                     width="100%" height="" style="display: inline-block;">
-                                            </div>
-                                        </section>
-                                        <div class="keditor-toolbar keditor-toolbar-component"><a
-                                                    href="javascript:void(0);"
-                                                    class="keditor-ui btn-component-reposition"><i
-                                                        class="fa fa-arrows"></i></a><a
-                                                    href="javascript:void(0);"
-                                                    class="keditor-ui btn-component-setting"><i
-                                                        class="fa fa-cog"></i></a> <a href="javascript:void(0);"
-                                                                                      class="keditor-ui btn-component-duplicate"><i
-                                                        class="fa fa-files-o"></i></a> <a
-                                                    href="javascript:void(0);"
-                                                    class="keditor-ui btn-component-delete"><i
-                                                        class="fa fa-times"></i></a></div>
-                                    </section>
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title save-this" id="perk-title-{{ perk['id'] }}"
-                        contenteditable="true">{{ perk['title'] }}</h5>
-                    <p class="card-text save-this" id="perk-description-{{ perk['id'] }}"
-                       contenteditable="true">{{ perk['description'] }}</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
-                        <div class="quantity">
-                            <input type="number" min="1" step="1" value="{{ perk['amount'] }}" class="btn-primary">
-                            RON
+                <div class="card" style="width: 18rem; left: 10px;">
+                    <span id="remove-perk-{{ perk['id'] }}" class="close sticky-top" data-effect="fadeOut"
+                          onclick="deletePerk({{ perk['id'] }})" style="position: absolute; margin-left: 16.7rem"><i
+                                class="fa fa-times"></i></span>
+                    <div id="perk-image-{{ perk['id'] }}">
+                        <div id="keditor-content-area-{{ perk['id'] }}" class="keditor-content-area ui-sortable">
+                            <section class="keditor-ui keditor-container keditor-initialized-container"
+                                     id="keditor-container-{{ perk['id'] }}">
+                                <section class="keditor-ui keditor-container-inner">
+                                    <div class="row">
+                                        <div class="col-md-12 keditor-container-content ui-sortable"
+                                             data-type="container-content"
+                                             id="keditor-container-content-{{ perk['id'] }}">
+                                            <section class="keditor-ui keditor-component keditor-initialized-component"
+                                                     data-type="component-photo"
+                                                     id="keditor-component-{{ perk['id'] }}">
+                                                <section class="keditor-ui keditor-component-content"
+                                                         id="keditor-component-content-{{ perk['id'] }}">
+                                                    <div class="photo-panel">
+                                                        <img class="card-img-top"
+                                                             src="../../../../build/keditor/snippets/default/img/somewhere_bangladesh.jpg"
+                                                             width="100%" height="" style="display: inline-block;">
+                                                    </div>
+                                                </section>
+                                                <div class="keditor-toolbar keditor-toolbar-component">
+                                                    <a href="javascript:void(0);"
+                                                       class="keditor-ui btn-component-setting">
+                                                        <i class="fa fa-cog"></i>
+                                                    </a>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
                         </div>
-                    </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title save-this" id="perk-title-{{ perk['id'] }}"
+                            contenteditable="true">{{ perk['title'] }}</h5>
+                        <p class="card-text save-this" id="perk-description-{{ perk['id'] }}"
+                           contenteditable="true">{{ perk['description'] }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
+                            <div class="quantity">
+                                <input type="number" min="1" step="1" value="{{ perk['amount'] }}" class="btn-primary">
+                                RON
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
 
         <div class="card" style="width: 18rem; height: 500px; left: 10px">
@@ -205,8 +73,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
     <script>
         function addPerk() {
             $.post(
@@ -236,115 +102,9 @@
                 },
                 function (result) {
                     var elementId = '#perk-' + perkId;
-                    $('#inner-perks').flickity( 'remove', $(elementId) )
+                    $('#inner-perks').flickity('remove', $(elementId))
                 }
             );
         }
-
-        function fixNumerics() {
-            jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-            jQuery('.quantity').each(function () {
-                var spinner = jQuery(this),
-                    input = spinner.find('input[type="number"]'),
-                    btnUp = spinner.find('.quantity-up'),
-                    btnDown = spinner.find('.quantity-down'),
-                    min = input.attr('min'),
-                    max = input.attr('max');
-
-                btnUp.click(function () {
-                    var oldValue = parseFloat(input.val());
-                    if (oldValue >= max) {
-                        var newVal = oldValue;
-                    } else {
-                        var newVal = oldValue + 1;
-                    }
-                    spinner.find("input").val(newVal);
-                    spinner.find("input").trigger("change");
-                });
-
-                btnDown.click(function () {
-                    var oldValue = parseFloat(input.val());
-                    if (oldValue <= min) {
-                        var newVal = oldValue;
-                    } else {
-                        var newVal = oldValue - 1;
-                    }
-                    spinner.find("input").val(newVal);
-                    spinner.find("input").trigger("change");
-                });
-
-            });
-        }
-
-        fixNumerics();
-        var elem = document.querySelector('#inner-perks');
-        var flkty = new Flickity(elem, {
-            // options
-            cellAlign: 'left',
-            contain: true,
-            autoPlay: true,
-            draggable: false
-        });
-
-        $(document).ready(function () {
-            flkty.unbindDrag();
-            flkty.bindDrag();
-
-            $('.save-this').on('mouseenter', function () {
-                flkty.unbindDrag();
-            });
-            $('.save-this').on('mouseleave', function () {
-                flkty.bindDrag();
-            });
-            $('.save-this').on('focusout', function () {
-                flkty.bindDrag();
-            });
-
-            $('.btn-component-setting').on('mouseenter', function () {
-                flkty.unbindDrag();
-            });
-            $('.btn-component-setting').on('mouseleave', function () {
-                flkty.bindDrag();
-            });
-            $('.btn-component-setting').on('focusout', function () {
-                flkty.bindDrag();
-            });
-
-            $('.close').on('mouseenter', function () {
-                flkty.unbindDrag();
-            });
-            $('.close').on('mouseleave', function () {
-                flkty.bindDrag();
-            });
-            $('.close').on('focusout', function () {
-                flkty.bindDrag();
-            });
-
-            var elements = CKEDITOR.document.find('.save-this'),
-                i = 0,
-                element;
-
-            while ((element = elements.getItem(i++))) {
-                CKEDITOR.inline(element);
-            }
-
-            $('#confirmBox').hide();
-
-            $('#btnDelete').on('click', function (e) {
-                $('#confirmBox').show();
-            });
-
-            $('#btnYes').on('click', function (e) {
-                //Do Delete Action Here
-                alert("Item Deleted");
-                $('#confirmBox').hide();
-            });
-
-            $('#btnNo').on('click', function (e) {
-                //Cancel Action Here
-                alert("Action Cancelled");
-                $('#confirmBox').hide();
-            });
-        });
     </script>
 {% endblock %}
