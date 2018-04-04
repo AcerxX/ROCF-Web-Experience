@@ -236,9 +236,9 @@ class ProjectCreateController extends Controller
                         </section>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title save-this" id="perk-title-{{ perk[\'id\'] }}"
+                        <h5 class="card-title ckeditor-enabled" id="perk-title-{{ perk[\'id\'] }}"
                             contenteditable="true">' . $perkInfo['data']['title'] . '</h5>
-                        <p class="card-text save-this" id="perk-description-{{ perk[\'id\'] }}"
+                        <p class="card-text ckeditor-enabled" id="perk-description-{{ perk[\'id\'] }}"
                            contenteditable="true">' . $perkInfo['data']['description'] . '</p>
                     </div>
                     <div class="card-footer">
@@ -274,12 +274,21 @@ class ProjectCreateController extends Controller
         preg_match('/(?<=src=")[1a-zA-Z:\/.0-9]+(?=">)/', $media, $matches);
         $presentationMedia = $matches[0];
 
+        $perks = $savedData['perks'];
+
+        foreach ($perks as &$perk) {
+            $perkImage = $perk['image'];
+            preg_match('/(?<=src=")[1a-zA-Z:\/_.0-9]+/', $perkImage, $matches);
+            $perk['image'] = $matches[0];
+        }
+
         $requestBag = [
             'project_id' => $projectId,
             'title' => $title,
             'short_description' => $shortDescription,
             'content' => $content,
-            'presentation_media' => $presentationMedia
+            'presentation_media' => $presentationMedia,
+            'perks' => $perks
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
@@ -294,9 +303,10 @@ class ProjectCreateController extends Controller
     {
         /** @var UploadedFile $file */
         $file = $request->files->get('image');
+        $uniqueId = uniqid('image_', true);
 
-        $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $file->getClientOriginalName());
+        $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $uniqueId);
 
-        return new JsonResponse(['link' => 'http://images.roprojects.test/' . $file->getClientOriginalName()]);
+        return new JsonResponse(['link' => 'http://images.roprojects.test/' . $uniqueId]);
     }
 }

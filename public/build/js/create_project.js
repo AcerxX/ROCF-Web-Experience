@@ -1,13 +1,47 @@
 function saveData(url) {
     var obj = {};
-    for (var key in CKEDITOR.instances) {
-        if (CKEDITOR.instances.hasOwnProperty(key)) {
-            obj[key] = CKEDITOR.instances[key].getData();
-        }
-    }
+    obj.perks = {};
+    // for (var key in CKEDITOR.instances) {
+    //     if (CKEDITOR.instances.hasOwnProperty(key)) {
+    //         obj[key] = CKEDITOR.instances[key].getData();
+    //     }
+    // }
 
+    obj.title = CKEDITOR.instances['title'].getData();
+    obj.shortDescription = CKEDITOR.instances['shortDescription'].getData();
+    obj.totalAmount = $('#totalAmount').val();
     obj.content = $('#content-area').keditor('getContent');
     obj.presentationMedia = $('#youtube').keditor('getContent');
+
+    $('.perk-title').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id] = {};
+
+            obj.perks[perk_id].title = CKEDITOR.instances[$(this).attr('id')].getData();
+        }
+    );
+
+    $('.perk-description').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].description = CKEDITOR.instances[$(this).attr('id')].getData();
+        }
+    );
+
+    $('.perk-amount').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].amount = $(this).val();
+        }
+    );
+
+    $('.perk-image').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].image = $(this).keditor('getContent');
+        }
+    );
 
     var jsonString = JSON.stringify(obj);
     $.ajax({
@@ -66,18 +100,17 @@ var keditor = $('#content-area').keditor({
 
 setTimeout(function () {
     keditor.toggleSidebar();
-    // $('#youtube').keditor('setContent', $('#youtube').keditor('getContent'));
 }, 2000);
 
 
 /**
- * Enable ckeditor on all elements in page that have the save-this class
+ * Enable ckeditor on all elements in page that have the ckeditor-enabled class
  */
 CKEDITOR.disableAutoInline = true;
 CKEDITOR.inline('title');
 CKEDITOR.inline('shortDescription');
 
-var elements = CKEDITOR.document.find('.save-this'),
+var elements = CKEDITOR.document.find('.ckeditor-enabled'),
     i = 0,
     element;
 
@@ -103,13 +136,13 @@ $(document).ready(function () {
     flkty.unbindDrag();
     flkty.bindDrag();
 
-    $('.save-this').on('mouseenter', function () {
+    $('.ckeditor-enabled').on('mouseenter', function () {
         flkty.unbindDrag();
     });
-    $('.save-this').on('mouseleave', function () {
+    $('.ckeditor-enabled').on('mouseleave', function () {
         flkty.bindDrag();
     });
-    $('.save-this').on('focusout', function () {
+    $('.ckeditor-enabled').on('focusout', function () {
         flkty.bindDrag();
     });
 

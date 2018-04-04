@@ -10,7 +10,7 @@
                     <span id="remove-perk-{{ perk['id'] }}" class="close sticky-top" data-effect="fadeOut"
                           onclick="deletePerk({{ perk['id'] }})" style="position: absolute; margin-left: 16.7rem"><i
                                 class="fa fa-times"></i></span>
-                    <div id="perk-image-{{ perk['id'] }}">
+                    <div id="perk-image-{{ perk['id'] }}" class="perk-image" data-perk-id="{{ perk['id'] }}">
                         <div id="keditor-content-area-{{ perk['id'] }}" class="keditor-content-area ui-sortable">
                             <section class="keditor-ui keditor-container keditor-initialized-container"
                                      id="keditor-container-{{ perk['id'] }}">
@@ -44,15 +44,17 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title save-this" id="perk-title-{{ perk['id'] }}"
+                        <h5 class="card-title perk-title ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
+                            id="perk-title-{{ perk['id'] }}"
                             contenteditable="true">{{ perk['title'] }}</h5>
-                        <p class="card-text save-this" id="perk-description-{{ perk['id'] }}"
+                        <p class="card-text perk-description ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
+                           id="perk-description-{{ perk['id'] }}"
                            contenteditable="true">{{ perk['description'] }}</p>
                     </div>
                     <div class="card-footer">
                         <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
                             <div class="quantity">
-                                <input type="number" min="1" step="1" value="{{ perk['amount'] }}" class="btn-primary">
+                                <input type="number" min="1" step="1" data-perk-id="{{ perk['id'] }}" value="{{ perk['amount'] }}" class="btn-primary perk-amount">
                                 RON
                             </div>
                         </a>
