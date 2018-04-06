@@ -316,7 +316,8 @@ class ProjectCreateController extends Controller
         $uniqueId = uniqid('image_', true);
 
         $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $uniqueId);
+        $imagesHost = 'http://'. $this->getParameter('images_host') . '/';
 
-        return new JsonResponse(['link' => 'http://images.roprojects.test/' . $uniqueId]);
+        return new JsonResponse(['link' => $imagesHost . $uniqueId]);
     }
 }

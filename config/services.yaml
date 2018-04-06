@@ -4,6 +4,7 @@ parameters:
     locale: 'ro'
     app_locales: ro|en
     env(users_engine_host): ''
+    images_host: '%env(images_host)%'
 
 services:
     # default configuration for services in *this* file
