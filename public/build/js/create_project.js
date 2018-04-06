@@ -39,7 +39,7 @@ function saveData(url) {
     $('.perk-image').each(
         function() {
             var perk_id = $(this).attr('data-perk-id');
-            obj.perks[perk_id].image = $(this).keditor('getContent');
+            obj.perks[perk_id].image_path = $(this).keditor('getContent');
         }
     );
 

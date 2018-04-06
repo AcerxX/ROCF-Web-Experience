@@ -276,10 +276,11 @@ class ProjectCreateController extends Controller
 
         $perks = $savedData['perks'];
 
-        foreach ($perks as &$perk) {
-            $perkImage = $perk['image'];
+        foreach ($perks as $id => &$perk) {
+            $perkImage = $perk['image_path'];
             preg_match('/(?<=src=")[1a-zA-Z:\/_.0-9]+/', $perkImage, $matches);
-            $perk['image'] = $matches[0];
+            $perk['image_path'] = $matches[0];
+            $perk['perk_id'] = $id;
         }
 
         $requestBag = [
@@ -287,8 +288,7 @@ class ProjectCreateController extends Controller
             'title' => $title,
             'short_description' => $shortDescription,
             'content' => $content,
-            'presentation_media' => $presentationMedia,
-            'perks' => $perks
+            'presentation_media' => $presentationMedia
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
@@ -296,7 +296,17 @@ class ProjectCreateController extends Controller
             $requestBag
         );
 
-        return $this->json($projectInfo, $projectInfo['isError'] ? 400 : 200);
+
+        $requestBag = [
+            'data' => $perks
+        ];
+
+        $perksInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_UPDATE_PERK_INFO,
+            $requestBag
+        );
+
+        return $this->json($projectInfo, $projectInfo['isError'] || $perksInfo['isError'] ? 400 : 200);
     }
 
     public function saveImage(Request $request)

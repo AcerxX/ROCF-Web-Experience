@@ -26,7 +26,7 @@
                                                          id="keditor-component-content-{{ perk['id'] }}">
                                                     <div class="photo-panel">
                                                         <img class="card-img-top"
-                                                             src="../../../../build/keditor/snippets/default/img/somewhere_bangladesh.jpg"
+                                                             src="{{ perk['image_path'] }}"
                                                              width="100%" height="" style="display: inline-block;">
                                                     </div>
                                                 </section>
@@ -49,12 +49,13 @@
                             contenteditable="true">{{ perk['title'] }}</h5>
                         <p class="card-text perk-description ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
                            id="perk-description-{{ perk['id'] }}"
-                           contenteditable="true">{{ perk['description'] }}</p>
+                           contenteditable="true" style="height: 175px; overflow-x: auto">{{ perk['description'] }}</p>
                     </div>
                     <div class="card-footer">
                         <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
                             <div class="quantity">
-                                <input type="number" min="1" step="1" data-perk-id="{{ perk['id'] }}" value="{{ perk['amount'] }}" class="btn-primary perk-amount">
+                                <input type="number" min="1" step="1" data-perk-id="{{ perk['id'] }}"
+                                       value="{{ perk['amount'] }}" class="btn-primary perk-amount">
                                 RON
                             </div>
                         </a>
