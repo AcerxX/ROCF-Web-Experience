@@ -49,7 +49,7 @@
                             contenteditable="true">{{ perk['title'] }}</h5>
                         <p class="card-text perk-description ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
                            id="perk-description-{{ perk['id'] }}"
-                           contenteditable="true" style="height: 175px; overflow-x: auto">{{ perk['description'] }}</p>
+                           contenteditable="true" style="max-height: 160px; overflow-x: auto">{{ perk['description'] }}</p>
                     </div>
                     <div class="card-footer">
                         <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
@@ -92,6 +92,12 @@
 
                     $('#inner-perks').flickity('insert', $(result), position);
                     $('#inner-perks').flickity('select', (data.cells.length - 1));
+
+                    fixNumerics();
+                    var perkId = $(result).find('.perk-title').attr('data-perk-id');
+                    var className = '.ckeditor-enabled-' + perkId;
+                    enableCKEDITOR(className);
+                    fixFlyckity(className);
                 }
             );
         }
