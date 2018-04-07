@@ -3,6 +3,23 @@
 {% block body %}
     {{ parent() }}
     {% include "topmenu.html.twig" %}
+    <div class="container-fluid" id="edit_container" style="background-color: yellowgreen">
+        <div class="row">
+            <div class="col-6 text-right">
+                Proiectul este afisat in modul EDITARE
+            </div>
+            <div class="col-6 text-right">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                Ultima salvare acum
+                <span id="last_save">
+                    0
+                </span>
+                secunde
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
     <div class="container">
         {% include "Project/Create/editProjectTop.html.twig" %}
         <br>
@@ -46,6 +63,10 @@
         window.setInterval(function () {
             saveData("{{ path('autosaveProject', {projectId: projectInfo['id']}) }}");
         }, 5000);
+
+        window.setInterval(function () {
+            $('#last_save').text(timeSince(lastModified));
+        }, 1000);
     </script>
 {% endblock %}
 

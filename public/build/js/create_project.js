@@ -45,10 +45,13 @@ function saveData(url) {
         dataType: 'json',
         data: jsonString,
         success: function (result) {
-
+            $('#edit_container').css("background-color", "yellowgreen");
+            lastModified = new Date();
+            $('#last_save').text(timeSince(lastModified));
         },
         error: function (result) {
-            console.log(result)
+            $('#edit_container').css("background-color", "red");
+            console.log(result);
         }
     });
 }
@@ -149,6 +152,14 @@ function fixFlyckity(className)
     });
 }
 
+function timeSince(date) {
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    return Math.floor(seconds);
+}
+var lastModified = new Date();
+
+
 $(document).ready(function () {
     fixNumerics();
 
@@ -188,4 +199,6 @@ $(document).ready(function () {
     closeButtonDOMs.on('focusout', function () {
         flkty.bindDrag();
     });
+
+    console.log(timeSince(new Date(Date.now()-lastModified)));
 });

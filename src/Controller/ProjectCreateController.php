@@ -346,16 +346,19 @@ class ProjectCreateController extends Controller
         );
 
 
-        $requestBag = [
-            'data' => $perks
-        ];
+        $perksInfo = null;
+        if (count($perks) > 0) {
+            $requestBag = [
+                'data' => $perks
+            ];
 
-        $perksInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_UPDATE_PERK_INFO,
-            $requestBag
-        );
+            $perksInfo = $apiService->callProjectsEngineApi(
+                ApiService::ROUTE_PE_UPDATE_PERK_INFO,
+                $requestBag
+            );
+        }
 
-        return $this->json($projectInfo, $projectInfo['isError'] || $perksInfo['isError'] ? 400 : 200);
+        return $this->json($projectInfo, $projectInfo['isError'] || (null !== $perksInfo && $perksInfo['isError']) ? 400 : 200);
     }
 
     public function saveImage(Request $request)
