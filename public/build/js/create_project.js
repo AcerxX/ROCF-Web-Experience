@@ -1,13 +1,42 @@
 function saveData(url) {
     var obj = {};
-    for (var key in CKEDITOR.instances) {
-        if (CKEDITOR.instances.hasOwnProperty(key)) {
-            obj[key] = CKEDITOR.instances[key].getData();
-        }
-    }
+    obj.perks = {};
 
+    obj.title = CKEDITOR.instances['title'].getData();
+    obj.shortDescription = CKEDITOR.instances['shortDescription'].getData();
+    obj.totalAmount = $('#totalAmount').val();
     obj.content = $('#content-area').keditor('getContent');
     obj.presentationMedia = $('#youtube').keditor('getContent');
+
+    $('.perk-title').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id] = {};
+
+            obj.perks[perk_id].title = CKEDITOR.instances[$(this).attr('id')].getData();
+        }
+    );
+
+    $('.perk-description').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].description = CKEDITOR.instances[$(this).attr('id')].getData();
+        }
+    );
+
+    $('.perk-amount').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].amount = $(this).val();
+        }
+    );
+
+    $('.perk-image').each(
+        function() {
+            var perk_id = $(this).attr('data-perk-id');
+            obj.perks[perk_id].image_path = $(this).keditor('getContent');
+        }
+    );
 
     var jsonString = JSON.stringify(obj);
     $.ajax({
@@ -56,6 +85,8 @@ function fixNumerics() {
             spinner.find("input").trigger("change");
         });
 
+        $(this).removeClass('quantity');
+        $(this).addClass('quantity-enabled');
     });
 }
 
@@ -66,70 +97,95 @@ var keditor = $('#content-area').keditor({
 
 setTimeout(function () {
     keditor.toggleSidebar();
-    // $('#youtube').keditor('setContent', $('#youtube').keditor('getContent'));
 }, 2000);
 
 
 /**
- * Enable ckeditor on all elements in page that have the save-this class
+ * Enable ckeditor on all elements in page that have the ckeditor-enabled class
  */
 CKEDITOR.disableAutoInline = true;
 CKEDITOR.inline('title');
 CKEDITOR.inline('shortDescription');
+enableCKEDITOR('.ckeditor-enabled');
 
-var elements = CKEDITOR.document.find('.save-this'),
-    i = 0,
-    element;
 
-while ((element = elements.getItem(i++))) {
-    CKEDITOR.inline(element);
+function enableCKEDITOR(className) {
+    var elements = CKEDITOR.document.find(className),
+        i = 0,
+        element;
+
+    while ((element = elements.getItem(i++))) {
+        CKEDITOR.inline(element);
+    }
+}
+
+/**
+ * Enable flyckity slider
+ */
+var elem = document.querySelector('#inner-perks');
+var flkty = new Flickity(elem, {
+    // options
+    cellAlign: 'left',
+    contain: true,
+    autoPlay: true,
+    draggable: false
+});
+
+function fixFlyckity(className)
+{
+    flkty.unbindDrag();
+    flkty.bindDrag();
+
+    var DOMs = $(className);
+
+    DOMs.on('mouseenter', function () {
+        flkty.unbindDrag();
+    });
+    DOMs.on('mouseleave', function () {
+        flkty.bindDrag();
+    });
+    DOMs.on('focusout', function () {
+        flkty.bindDrag();
+    });
 }
 
 $(document).ready(function () {
     fixNumerics();
 
-    /**
-     * Enable flyckity slider
-     */
-    var elem = document.querySelector('#inner-perks');
-    var flkty = new Flickity(elem, {
-        // options
-        cellAlign: 'left',
-        contain: true,
-        autoPlay: true,
-        draggable: false
-    });
-
     flkty.unbindDrag();
     flkty.bindDrag();
 
-    $('.save-this').on('mouseenter', function () {
+    var ckeditorEnabledDOMs = $('.ckeditor-enabled');
+    var buttonComponentSettingDOMs = $('.btn-component-setting');
+    var closeButtonDOMs = $('.close');
+
+    ckeditorEnabledDOMs.on('mouseenter', function () {
         flkty.unbindDrag();
     });
-    $('.save-this').on('mouseleave', function () {
+    ckeditorEnabledDOMs.on('mouseleave', function () {
         flkty.bindDrag();
     });
-    $('.save-this').on('focusout', function () {
+    ckeditorEnabledDOMs.on('focusout', function () {
         flkty.bindDrag();
     });
 
-    $('.btn-component-setting').on('mouseenter', function () {
+    buttonComponentSettingDOMs.on('mouseenter', function () {
         flkty.unbindDrag();
     });
-    $('.btn-component-setting').on('mouseleave', function () {
+    buttonComponentSettingDOMs.on('mouseleave', function () {
         flkty.bindDrag();
     });
-    $('.btn-component-setting').on('focusout', function () {
+    buttonComponentSettingDOMs.on('focusout', function () {
         flkty.bindDrag();
     });
 
-    $('.close').on('mouseenter', function () {
+    closeButtonDOMs.on('mouseenter', function () {
         flkty.unbindDrag();
     });
-    $('.close').on('mouseleave', function () {
+    closeButtonDOMs.on('mouseleave', function () {
         flkty.bindDrag();
     });
-    $('.close').on('focusout', function () {
+    closeButtonDOMs.on('focusout', function () {
         flkty.bindDrag();
     });
 });

@@ -65,8 +65,50 @@ class ProjectCreateController extends Controller
             [],
             ApiService::METHOD_GET
         );
-        $county_array = ['TOATA TARA', 'BUCURESTI', 'ALBA', 'ARAD', 'ARGES', 'BACAU', 'BIHOR', 'BISTRITA-NASAUD', 'BOTOSANI', 'BRAILA', 'BRASOV', 'BUZAU', 'CALARASI', 'CARAS-SEVERIN', 'CLUJ', 'CONSTANTA', 'COVASNA', 'DAMBOVITA', 'DOLJ', 'GALATI', 'GIURGIU', 'HARGHITA'
-            , 'HUNEDOARA', 'IALOMITA', 'IASI', 'ILFOV', 'MARAMURES', 'MEHEDINTI', 'MURES', 'NEAMT', 'OLT', 'PRAHOVA', 'SALAJ', 'SATU-MARE', 'SIBIU', 'SUCEAVA', 'TELEORMAN', 'TIMIS', 'TULCEA', 'VALCEA', 'VASLUI', 'VRANCEA'
+        $county_array = [
+            'TOATA TARA',
+            'BUCURESTI',
+            'ALBA',
+            'ARAD',
+            'ARGES',
+            'BACAU',
+            'BIHOR',
+            'BISTRITA-NASAUD',
+            'BOTOSANI',
+            'BRAILA',
+            'BRASOV',
+            'BUZAU',
+            'CALARASI',
+            'CARAS-SEVERIN',
+            'CLUJ',
+            'CONSTANTA',
+            'COVASNA',
+            'DAMBOVITA',
+            'DOLJ',
+            'GALATI',
+            'GIURGIU',
+            'HARGHITA'
+            ,
+            'HUNEDOARA',
+            'IALOMITA',
+            'IASI',
+            'ILFOV',
+            'MARAMURES',
+            'MEHEDINTI',
+            'MURES',
+            'NEAMT',
+            'OLT',
+            'PRAHOVA',
+            'SALAJ',
+            'SATU-MARE',
+            'SIBIU',
+            'SUCEAVA',
+            'TELEORMAN',
+            'TIMIS',
+            'TULCEA',
+            'VALCEA',
+            'VASLUI',
+            'VRANCEA'
         ];
 
         return $this->render(
@@ -124,8 +166,7 @@ class ProjectCreateController extends Controller
         string $projectLink,
         int $projectId,
         ApiService $apiService
-    )
-    {
+    ) {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         /** @var WebserviceUser $loggedUser */
         $loggedUser = $this->getUser();
@@ -201,50 +242,58 @@ class ProjectCreateController extends Controller
                 'description' => 'Descrierea recompensei...'
             ]
         );
-
+        
         $response = '<div id="perk-' . $perkInfo['data']['id'] . '" class="gallery-cell">
                 <div class="card" style="width: 18rem; left: 10px;">
-                    <span id="remove-perk-{{ perk[\'id\'] }}" class="close sticky-top" data-effect="fadeOut" onclick="deletePerk({{ perk[\'id\'] }})" style="position: absolute; margin-left: 16.7rem"><i class="fa fa-times"></i></span>
-                    <div id="keditor-content-area-' . $perkInfo['data']['id'] . '" class="keditor-content-area ui-sortable">
-                        <section class="keditor-ui keditor-container keditor-initialized-container"
-                                 id="keditor-container-' . $perkInfo['data']['id'] . '">
-                            <section class="keditor-ui keditor-container-inner">
-                                <div class="row">
-                                    <div class="col-md-12 keditor-container-content ui-sortable"
-                                         data-type="container-content"
-                                         id="keditor-container-content-' . $perkInfo['data']['id'] . '">
-                                        <section class="keditor-ui keditor-component keditor-initialized-component"
-                                                 data-type="component-photo"
-                                                 id="keditor-component-' . $perkInfo['data']['id'] . '">
-                                            <section class="keditor-ui keditor-component-content"
-                                                     id="keditor-component-content-' . $perkInfo['data']['id'] . '">
-                                                <div class="photo-panel">
-                                                    <img class="card-img-top"
-                                                         src="../../../../build/keditor/snippets/default/img/somewhere_bangladesh.jpg"
-                                                         width="100%" height="" style="display: inline-block;">
+                    <span id="remove-perk-' . $perkInfo['data']['id'] . '" class="close sticky-top" data-effect="fadeOut"
+                          onclick="deletePerk(' . $perkInfo['data']['id'] . ')" style="position: absolute; margin-left: 16.7rem"><i
+                                class="fa fa-times"></i></span>
+                    <div id="perk-image-' . $perkInfo['data']['id'] . '" class="perk-image" data-perk-id="' . $perkInfo['data']['id'] . '">
+                        <div id="keditor-content-area-' . $perkInfo['data']['id'] . '" class="keditor-content-area ui-sortable">
+                            <section class="keditor-ui keditor-container keditor-initialized-container"
+                                     id="keditor-container-' . $perkInfo['data']['id'] . '">
+                                <section class="keditor-ui keditor-container-inner">
+                                    <div class="row">
+                                        <div class="col-md-12 keditor-container-content ui-sortable"
+                                             data-type="container-content"
+                                             id="keditor-container-content-' . $perkInfo['data']['id'] . '">
+                                            <section class="keditor-ui keditor-component keditor-initialized-component"
+                                                     data-type="component-photo"
+                                                     id="keditor-component-' . $perkInfo['data']['id'] . '">
+                                                <section class="keditor-ui keditor-component-content"
+                                                         id="keditor-component-content-' . $perkInfo['data']['id'] . '">
+                                                    <div class="photo-panel">
+                                                        <img class="card-img-top"
+                                                             src="' . $perkInfo['data']['image_path'] . '"
+                                                             width="100%" height="" style="display: inline-block;">
+                                                    </div>
+                                                </section>
+                                                <div class="keditor-toolbar keditor-toolbar-component">
+                                                    <a href="javascript:void(0);"
+                                                       class="keditor-ui btn-component-setting">
+                                                        <i class="fa fa-cog"></i>
+                                                    </a>
                                                 </div>
                                             </section>
-                                            <div class="keditor-toolbar keditor-toolbar-component">
-                                                <a href="javascript:void(0);" class="keditor-ui btn-component-setting">
-                                                    <i class="fa fa-cog"></i>
-                                                </a>
-                                            </div>
-                                        </section>
+                                        </div>
                                     </div>
-                                </div>
+                                </section>
                             </section>
-                        </section>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title save-this" id="perk-title-{{ perk[\'id\'] }}"
+                        <h5 class="card-title perk-title ckeditor-enabled-' . $perkInfo['data']['id'] . '" data-perk-id="' . $perkInfo['data']['id'] . '"
+                            id="perk-title-' . $perkInfo['data']['id'] . '"
                             contenteditable="true">' . $perkInfo['data']['title'] . '</h5>
-                        <p class="card-text save-this" id="perk-description-{{ perk[\'id\'] }}"
-                           contenteditable="true">' . $perkInfo['data']['description'] . '</p>
+                        <p class="card-text perk-description ckeditor-enabled-' . $perkInfo['data']['id'] . '" data-perk-id="' . $perkInfo['data']['id'] . '"
+                           id="perk-description-' . $perkInfo['data']['id'] . '"
+                           contenteditable="true" style="max-height: 160px; overflow-x: auto">' . $perkInfo['data']['description'] . '</p>
                     </div>
                     <div class="card-footer">
                         <a class="btn-perk-amount btn-primary rounded text-white offset-3 col-6 d-block mx-auto">
                             <div class="quantity">
-                                <input type="number" min="1" step="1" value="' . $perkInfo['data']['amount'] . '" class="btn-primary">
+                                <input type="number" min="1" step="1" data-perk-id="' . $perkInfo['data']['id'] . '"
+                                       value="' . $perkInfo['data']['amount'] . '" class="btn-primary perk-amount">
                                 RON
                             </div>
                         </a>
@@ -274,6 +323,15 @@ class ProjectCreateController extends Controller
         preg_match('/(?<=src=")[1a-zA-Z:\/.0-9]+(?=">)/', $media, $matches);
         $presentationMedia = $matches[0];
 
+        $perks = $savedData['perks'];
+
+        foreach ($perks as $id => &$perk) {
+            $perkImage = $perk['image_path'];
+            preg_match('/(?<=src=")[1a-zA-Z:\/_.0-9]+/', $perkImage, $matches);
+            $perk['image_path'] = $matches[0];
+            $perk['perk_id'] = $id;
+        }
+
         $requestBag = [
             'project_id' => $projectId,
             'title' => $title,
@@ -287,16 +345,28 @@ class ProjectCreateController extends Controller
             $requestBag
         );
 
-        return $this->json($projectInfo, $projectInfo['isError'] ? 400 : 200);
+
+        $requestBag = [
+            'data' => $perks
+        ];
+
+        $perksInfo = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_UPDATE_PERK_INFO,
+            $requestBag
+        );
+
+        return $this->json($projectInfo, $projectInfo['isError'] || $perksInfo['isError'] ? 400 : 200);
     }
 
     public function saveImage(Request $request)
     {
         /** @var UploadedFile $file */
         $file = $request->files->get('image');
+        $uniqueId = uniqid('image_', true);
 
-        $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $file->getClientOriginalName());
+        $finalImage = copy($file->getPathname(), '/var/www/static/images/' . $uniqueId);
+        $imagesHost = 'http://' . $this->getParameter('images_host') . '/';
 
-        return new JsonResponse(['link' => 'http://images.roprojects.test/' . $file->getClientOriginalName()]);
+        return new JsonResponse(['link' => $imagesHost . $uniqueId]);
     }
 }
