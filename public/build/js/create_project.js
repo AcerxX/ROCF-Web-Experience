@@ -169,6 +169,7 @@ $(document).ready(function () {
     var ckeditorEnabledDOMs = $('.ckeditor-enabled');
     var buttonComponentSettingDOMs = $('.btn-component-setting');
     var closeButtonDOMs = $('.close');
+    var addPerkIcon = $('#add-perk-icon');
 
     ckeditorEnabledDOMs.on('mouseenter', function () {
         flkty.unbindDrag();
@@ -197,6 +198,16 @@ $(document).ready(function () {
         flkty.bindDrag();
     });
     closeButtonDOMs.on('focusout', function () {
+        flkty.bindDrag();
+    });
+
+    addPerkIcon.on('mouseenter', function () {
+        flkty.unbindDrag();
+    });
+    addPerkIcon.on('mouseleave', function () {
+        flkty.bindDrag();
+    });
+    addPerkIcon.on('focusout', function () {
         flkty.bindDrag();
     });
 

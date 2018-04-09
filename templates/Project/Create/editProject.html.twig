@@ -27,7 +27,45 @@
         <br>
         {% include "Project/Create/editProjectPerks.html.twig" %}
         <br>
-        {% include "Project/Create/editProjectContent.html.twig" %}
+        <br>
+        <br>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-presentation" role="tab"
+                   aria-controls="nav-home" aria-selected="true">Prezentare</a>
+                <a class="nav-item nav-link disabled" id="nav-profile-tab" data-toggle="tab" href="#nav-updates" role="tab"
+                   aria-controls="nav-profile" aria-selected="false">Actualizari</a>
+                <a class="nav-item nav-link disabled" id="nav-contact-tab" data-toggle="tab" href="#nav-comments" role="tab"
+                   aria-controls="nav-contact" aria-selected="false">Comentarii</a>
+                <a class="nav-item nav-link disabled" id="nav-contact-tab" data-toggle="tab" href="#nav-faq" role="tab"
+                   aria-controls="nav-contact" aria-selected="false">Intrebari frecvente</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-community" role="tab"
+                   aria-controls="nav-contact" aria-selected="false">Comunitate</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-presentation" role="tabpanel" aria-labelledby="nav-home-tab">
+                {% include "Project/Create/editProjectContent.html.twig" %}
+            </div>
+            <div class="tab-pane fade" id="nav-updates" role="tabpanel" aria-labelledby="nav-profile-tab">
+                TODO UPDATES
+            </div>
+            <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-contact-tab">
+                TODO COMMENTS
+            </div>
+            <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-contact-tab">
+                TODO FAQ
+            </div>
+            <div class="tab-pane fade text-center" id="nav-community" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <br>
+                <h2>
+                    0 persoane au ajutat acest proiect.
+                </h2>
+            </div>
+        </div>
+
+        <br>
+        <br>
     </div>
 {% endblock %}
 
@@ -81,8 +119,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('build/keditor/css/keditor-components.min.css') }}"/>
     <style>
         /*.content {*/
-            /*margin-right: -15px;*/
-            /*margin-left: -15px;*/
+        /*margin-right: -15px;*/
+        /*margin-left: -15px;*/
         /*}*/
     </style>
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">

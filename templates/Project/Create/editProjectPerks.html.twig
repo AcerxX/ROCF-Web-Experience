@@ -47,7 +47,7 @@
                         <h5 class="card-title perk-title ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
                             id="perk-title-{{ perk['id'] }}"
                             contenteditable="true">{{ perk['title'] }}</h5>
-                        <p class="card-text perk-description ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
+                        <p class="card-text card-description perk-description ckeditor-enabled" data-perk-id="{{ perk['id'] }}"
                            id="perk-description-{{ perk['id'] }}"
                            contenteditable="true" style="max-height: 160px; overflow-x: auto">{{ perk['description'] }}</p>
                     </div>
@@ -65,10 +65,10 @@
         {% endfor %}
 
         <div class="card" style="width: 18rem; height: 500px; left: 10px">
-            <div class="row align-items-center h-100">F
+            <div class="row align-items-center h-100">
                 <div class="col-6 mx-auto">
-                    <i onclick="addPerk()" class="fa fa-plus-circle"
-                       style="font-size: 100px; color: grey"></i>
+                    <i onclick="addPerk()" id="add-perk-icon" class="fa fa-plus-circle"
+                       style="font-size: 100px; color: grey; cursor: pointer"></i>
                 </div>
             </div>
         </div>

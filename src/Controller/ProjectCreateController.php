@@ -56,6 +56,7 @@ class ProjectCreateController extends Controller
         );
 
         if ($response['isError'] === true) {
+            var_dump($response); die();
             return $this->redirectToRoute('chooseProjectType');
         }
 
@@ -318,6 +319,7 @@ class ProjectCreateController extends Controller
         $title = strip_tags($savedData['title']);
         $shortDescription = $savedData['shortDescription'];
         $content = $savedData['content'];
+        $totalAmount = $savedData['totalAmount'];
 
         $media = str_replace(array("\n", "\r"), '', $savedData['presentationMedia']);
         preg_match('/(?<=src=")[1a-zA-Z:\/.0-9]+(?=">)/', $media, $matches);
@@ -337,7 +339,8 @@ class ProjectCreateController extends Controller
             'title' => $title,
             'short_description' => $shortDescription,
             'content' => $content,
-            'presentation_media' => $presentationMedia
+            'presentation_media' => $presentationMedia,
+            'total_amount' => $totalAmount
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
