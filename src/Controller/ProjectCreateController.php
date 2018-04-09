@@ -56,6 +56,7 @@ class ProjectCreateController extends Controller
         );
 
         if ($response['isError'] === true) {
+            var_dump($response); die();
             return $this->redirectToRoute('chooseProjectType');
         }
 
@@ -318,6 +319,7 @@ class ProjectCreateController extends Controller
         $title = strip_tags($savedData['title']);
         $shortDescription = $savedData['shortDescription'];
         $content = $savedData['content'];
+        $totalAmount = $savedData['totalAmount'];
 
         $media = str_replace(array("\n", "\r"), '', $savedData['presentationMedia']);
         preg_match('/(?<=src=")[1a-zA-Z:\/.0-9]+(?=">)/', $media, $matches);
@@ -337,7 +339,8 @@ class ProjectCreateController extends Controller
             'title' => $title,
             'short_description' => $shortDescription,
             'content' => $content,
-            'presentation_media' => $presentationMedia
+            'presentation_media' => $presentationMedia,
+            'total_amount' => $totalAmount
         ];
 
         $projectInfo = $apiService->callProjectsEngineApi(
@@ -346,16 +349,19 @@ class ProjectCreateController extends Controller
         );
 
 
-        $requestBag = [
-            'data' => $perks
-        ];
+        $perksInfo = null;
+        if (count($perks) > 0) {
+            $requestBag = [
+                'data' => $perks
+            ];
 
-        $perksInfo = $apiService->callProjectsEngineApi(
-            ApiService::ROUTE_PE_UPDATE_PERK_INFO,
-            $requestBag
-        );
+            $perksInfo = $apiService->callProjectsEngineApi(
+                ApiService::ROUTE_PE_UPDATE_PERK_INFO,
+                $requestBag
+            );
+        }
 
-        return $this->json($projectInfo, $projectInfo['isError'] || $perksInfo['isError'] ? 400 : 200);
+        return $this->json($projectInfo, $projectInfo['isError'] || (null !== $perksInfo && $perksInfo['isError']) ? 400 : 200);
     }
 
     public function saveImage(Request $request)
