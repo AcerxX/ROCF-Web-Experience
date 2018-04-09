@@ -3,7 +3,7 @@
 {% block body %}
     {{ parent() }}
     {% include "topmenu.html.twig" %}
-    <div class="container-fluid" id="edit_container" style="background-color: yellowgreen">
+    <div class="container-fluid fixed-top" id="edit_container" style="background-color: yellowgreen; margin-top: 62px">
         <div class="row">
             <div class="col-6 text-right">
                 Proiectul este afisat in modul EDITARE
@@ -18,9 +18,7 @@
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
         {% include "Project/Create/editProjectTop.html.twig" %}
         <br>
         {% include "Project/Create/editProjectUserInfo.html.twig" %}
