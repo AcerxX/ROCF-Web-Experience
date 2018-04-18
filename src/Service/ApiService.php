@@ -29,6 +29,7 @@ class ApiService
     public const ROUTE_PE_UPDATE_PERK_INFO = '/update-perk-info';
     public const ROUTE_PE_REMOVE_PERK = '/remove-perk';
     public const ROUTE_PE_GET_CATEGORIES = '/get-categories';
+    public const ROUTE_PE_GET_PROJECTS_LISTING = '/get-projects-listing';
 
     /**
      * @var string
@@ -128,10 +129,6 @@ class ApiService
     {
         if (empty($route)) {
             throw new \InvalidArgumentException('Route called should not be empty!');
-        }
-
-        if ($method === self::METHOD_POST && \count($requestBag) === 0) {
-            throw new \InvalidArgumentException('The request bag should not be empty in an POST request!');
         }
     }
 

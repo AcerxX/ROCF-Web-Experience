@@ -3,24 +3,31 @@
 namespace App\Controller;
 
 
+use App\Security\WebserviceUser;
+use App\Service\ApiService;
+use function print_r;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ExploreProjectsController extends Controller
 {
-    public function explore()
+    public function explore(ApiService $apiService)
     {
         /** @var WebserviceUser $user */
         $user = $this->getUser();
 
-        $username = 'NOT LOGGED IN';
-        if ($user !== null) {
-            $username = $user->getFirstName() . ' ' . $user->getLastName();
+        $parameterBag = [];
+
+        if ($user instanceof WebserviceUser) {
+            $parameterBag['user_id'] = $user->getId();
         }
 
+        $projects = $apiService->callProjectsEngineApi(ApiService::ROUTE_PE_GET_PROJECTS_LISTING, $parameterBag);
+
         return $this->render(
-            'explore.html.twig',
+            'Explore/explore.html.twig',
             [
-                'user' => $user
+                'user' => $user,
+                'projects' => $projects['data']
             ]
         );
     }
