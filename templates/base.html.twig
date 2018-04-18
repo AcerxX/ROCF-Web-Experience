@@ -5,18 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="{{ asset('build/css/') }}bootstrap.css" rel="stylesheet" />
-    <link href="{{ asset('build/css/') }}fontawesome-all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link href="{{ asset('build/css/') }}bootstrap.css" rel="stylesheet"/>
+    <link href="{{ asset('build/css/') }}fontawesome-all.min.css" rel="stylesheet"/>
 
-    <link href="{{ asset('build/nowkit/assets/css/now-ui-kit.css') }}?v=1.1.0" rel="stylesheet" />
+    <link href="{{ asset('build/nowkit/assets/css/now-ui-kit.css') }}?v=1.1.0" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('build/nowkit/assets/css/demo.css') }}" rel="stylesheet" />
+    <link href="{{ asset('build/nowkit/assets/css/demo.css') }}" rel="stylesheet"/>
+    <style>
+        body i {
+            font-family:'FontAwesome'!important;
+        }
+    </style>
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+<div class="wrapper">
+    {% block body %}{% endblock %}
+</div>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -25,6 +32,7 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="{{ asset('build/js/') }}bootstrap.min.js"></script>
+<script src="{{ asset('build/js/') }}fontawesome-all.min.js"></script>
 
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="{{ asset('build/nowkit/assets/js/plugins/bootstrap-switch.js') }}"></script>
