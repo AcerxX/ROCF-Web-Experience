@@ -56,7 +56,7 @@ class ProjectCreateController extends Controller
         );
 
         if ($response['isError'] === true) {
-            var_dump($response); die();
+            print_r($response); die();
             return $this->redirectToRoute('chooseProjectType');
         }
 
