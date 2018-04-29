@@ -22,7 +22,14 @@ projects:
     resource: projects_routes.yaml
     prefix: /projects
 
+
+
+
 explore:
     path: /explore
     controller: App\Controller\ExploreProjectsController::explore
+
+search:
+    path: /search
+    controller: App\Controller\ExploreProjectsController::search
 
