@@ -58,8 +58,7 @@ class ProjectCreateController extends Controller
         );
 
         if ($response['isError'] === true) {
-            print_r($response); die();
-            return $this->redirectToRoute('chooseProjectType');
+            throw new \Exception($response);
         }
 
         //ROUTE_PE_GET_CATEGORIES
@@ -138,7 +137,8 @@ class ProjectCreateController extends Controller
             'title' => $request->request->get('project-title'),
             'tags' => $request->request->get('tags'),
             'expiration_date' => $request->request->get('expiration-date'),
-            'total_amount' => $request->request->get('total-amount')
+            'total_amount' => $request->request->get('total-amount'),
+            'category_id' => $request->request->get('category')
         ];
 
         $response = $apiService->callProjectsEngineApi(
@@ -186,8 +186,7 @@ class ProjectCreateController extends Controller
             /**
              * TODO: redirect to 404 page
              */
-            print_r($projectInfo);
-            die();
+            throw new \Exception($projectInfo);
         }
 
         $completedPercentage = 0;

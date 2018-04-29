@@ -4,7 +4,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" media="screen">
     <style>
-        .carousel-cell {
+        .card {
             width: 18rem;
             height: 500px;
             margin-right: 25px;
@@ -14,44 +14,16 @@
 
 {% block body %}
     {% include "topmenu.html.twig" %}
-
-    <div class="page-header page-header-image mt-5">
-        <div class="page-header-image" data-parallax="true"
-             style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Brasov%2C_Piata_Sfatului.jpg/1280px-Brasov%2C_Piata_Sfatului.jpg');">
-        </div>
-        <div class="container">
-            <div class="content-center">
-                <h1 class="title">Ia o ceasca de ceai sau cafea si cauta un proiect pe placul tau...</h1>
-                <br>
-                <div class="text-center">
-                    <div class="input-group input-lg">
-                        <input type="text" class="form-control" placeholder="Cauta proiecte...">
-                    </div>
-                    {% for category in categories %}
-                        <button class="btn btn-neutral btn-round btn-simple" data-category-id="{{ category.id }}">{{ category.nameRo }}</button>
-                    {% endfor %}
-                    <div class="font-weight-bold" style="margin-top: 20%">
-                        ...sau pur si simplu verifica mai jos <i class="far fa-smile"></i>
-                        <h1>
-                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="section" style="background-color: #f5f5f5">
-        <div class="container-fluid">
+        <div class="container">
             {% for projectTitle,projectsInfo in projects %}
-            <div class="row mt-5">
-                <div class="offset-1 col-auto">
-                    <h2 class="title">
-                        {{ projectTitle }}
-                    </h2>
+                <div class="row mt-5">
+                    <div class="offset-1 col-auto">
+                        <h2 class="title">
+                            {{ projectTitle }}
+                        </h2>
+                    </div>
                 </div>
-            </div>
-            <div class="main-carousel" id="inner-projects">
                 {% for project in projectsInfo %}
                     <div class="card carousel-cell" style="position:relative;">
                         <div class="card-body">
@@ -78,7 +50,6 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
             {% endfor %}
         </div>
     </div>

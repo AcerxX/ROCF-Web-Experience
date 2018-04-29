@@ -23,11 +23,18 @@ class ExploreProjectsController extends Controller
 
         $projects = $apiService->callProjectsEngineApi(ApiService::ROUTE_PE_GET_PROJECTS_LISTING, $parameterBag);
 
+        $categories = $apiService->callProjectsEngineApi(
+            ApiService::ROUTE_PE_GET_CATEGORIES,
+            [],
+            ApiService::METHOD_GET
+        );
+
         return $this->render(
             'Explore/explore.html.twig',
             [
                 'user' => $user,
-                'projects' => $projects['data']
+                'projects' => $projects['data'],
+                'categories' => $categories
             ]
         );
     }
