@@ -21,14 +21,14 @@
         </div>
         <div class="container">
             <div class="content-center">
-                <h1 class="title">Take some time and explore...</h1>
+                <h1 class="title">Ia o ceasca de ceai sau cafea si cauta un proiect pe placul tau...</h1>
                 <br>
                 <div class="text-center">
                     <div class="input-group input-lg">
-                        <input type="text" class="form-control" placeholder="Search project...">
+                        <input type="text" class="form-control" placeholder="Cauta proiecte...">
                     </div>
                     <div class="font-weight-bold" style="margin-top: 20%">
-                        ...or just scroll down <i class="far fa-smile"></i>
+                        ...sau pur si simplu verifica mai jos <i class="far fa-smile"></i>
                         <h1>
                             <i class="fa fa-arrow-down" aria-hidden="true"></i>
                         </h1>
@@ -38,28 +38,45 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section" style="background-color: #f5f5f5">
         <div class="container-fluid">
-            <div class="row">
+            {% for projectTitle,projectsInfo in projects %}
+            <div class="row mt-5">
                 <div class="offset-1 col-auto">
                     <h2 class="title">
-                        Top projects
+                        {{ projectTitle }}
                     </h2>
                 </div>
             </div>
             <div class="main-carousel" id="inner-projects">
-                {% for project in projects %}
-                        <div class="card carousel-cell">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ project['project_title'] }}</h5>
-                                <p class="card-text">{{ project['short_description'] }}</p>
-                                <p class="card-text">{{ project['project_pledged_amount'] }}</p>
-                                <p class="card-text">{{ project['project_total_amount'] }}</p>
-                                <a href="#" class="btn btn-primary">CHECK</a>
-                            </div>
+                {% for project in projectsInfo %}
+                    <div class="card carousel-cell" style="position:relative;">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ project['card_image'] }}">
+                            <h5 class="card-title">{{ project['project_title'] }}</h5>
+                            <p class="card-text">{{ project['short_description'] }}</p>
                         </div>
+
+                        <div class="carousel-bottom w-100" style="position:absolute; bottom: 0">
+                            <p class="card-text border-top">Fonduri stranse: {{ project['project_pledged_amount'] }} /
+                                <b>{{ project['project_total_amount'] }} RON</b></p>
+                            <div class="progress-container progress-success">
+                                {% set completedPercentage = project['project_pledged_amount'] * 100 / project['project_total_amount'] %}
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar"
+                                         style="width: {{ completedPercentage }}%"
+                                         aria-valuenow="{{ completedPercentage }}"
+                                         aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary"
+                               style="margin-left: 5rem; width: 8rem">Afla mai multe</a>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
@@ -69,14 +86,13 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <script>
-        var elem = document.querySelector('#inner-projects');
-        var flkty = new Flickity(elem, {
-            // options
+        $('.main-carousel').flickity({
             cellAlign: 'left',
             autoPlay: true,
             draggable: true,
-            pageDots: false
-        });
+            pageDots: false,
+            wrapAround: true
+        })
     </script>
 {% endblock %}
 

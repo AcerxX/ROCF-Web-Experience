@@ -1,114 +1,135 @@
-{% include "base.html.twig" %}
+{% extends "base.html.twig" %}
 
-{% block body %}
-    {% include "topmenu.html.twig" %}
-
-    <div class="container">
-        <br>
-        <div class="row">
-            <h2>Pasul 1</h2>
-        </div>
-        <div class="row">
-            <h7 class="text-muted">
-                Te rog sa ne spui cateva lucruri de baza despre proiectul tau.
-                <br>
-                Nu iti face griji, in pasul urmator vei avea posibilitatea sa editezi MULT mai multe lucruri!
-            </h7>
-        </div>
-        <br>
-        <br>
-
-        <form action="{{ path('saveProjectBasicInfo', {'projectId':projectData['id'],'link':projectData['link']}) }}"
-              method="post">
-            <div class="form-group row">
-                <label for="project-title">Titlul proiectului</label>
-                <input id="project-title" class="form-control" name="project-title" type="text"
-                       value="{{ projectData['title'] }}" required>
-                <small id="project-title-help" class="form-text text-muted">Alege un titlu potrivit.</small>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="comment">Idea proiectului</label>
-                <textarea id="comment" class="form-control" rows="2"
-                          name="comment" required>{{ projectData['shortDescription'] }}</textarea>
-                <small id="comment-help" class="form-text text-muted">Alege cateva cuvinte (o propozitie) care descriu
-                    perfect proiectul tau.
-                </small>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="total-amount" class="col-3 col-form-label">Valoarea proiectului (in RON)</label>
-                <div class="col-9">
-                    <input id="total-amount" class="form-control" name="total-amount" type="number"
-                           value="{{ projectData['totalAmount'] }}" required>
-                    <small id="total-amount-help" class="form-text text-muted">Alege suma pe care doresti sa o strangi pentru proiectul tau. Daca doresti, in aceasta suma poti include si comisionul de 7% pe care noi il vom percepe.</small>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="category" class="col-3 col-form-label">Categoria</label>
-                <div class="col-9">
-                    <select id="category" class="form-control" name="category" required>
-                        {% for category in category_data %}
-                            <option>{{ category['nameRo'] }}</option>
-                        {% endfor %}
-                    </select>
-                    <small id="category-help" class="form-text text-muted">Alege categoria potrivita pentru proiectul
-                        tau.
-                    </small>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="city" class="col-3 col-form-label">Localitatea</label>
-                <div class="col-9">
-                    <select id="city" class="form-control" name="city" required>
-                        {% for county in county_array %}
-                            <option>{{ county }}</option>
-                        {% endfor %}
-                    </select>
-                    <small id="category-help" class="form-text text-muted">Alege zona impactata de proiectul tau.
-                    </small>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="tags" class="col-3 col-form-label">Tags</label>
-                <div class="col-9">
-                    <input id="tags" class="form-control" name="tags" type="text" required>
-                    <small id="tags-help" class="form-text text-muted">Insereaza cu virgula minim 5 taguri (cuvinte)
-                        care definesc proiectul tau.
-                    </small>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label for="expiration-date" class="col-3 col-form-label">Data limita</label>
-                <div class="col-9">
-                    <input class="form-control" name="expiration-date" type="date" value="{{ now }}" max="{{ maxDate }}"
-                           id="expiration-date" required>
-                    <small id="tags-help" class="form-text text-muted">Data limita pana la care se pot strange fonduri
-                        pentru proiectul tau.
-                    </small>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <input class="form-control btn btn-primary" type="submit" value="Pasul urmator">
-            </div>
-        </form>
-        <br>
-    </div>
+{% block javascripts %}
+    {{ parent() }}
     <script>
         $(function () {
             $("#datepicker").datepicker();
         });
     </script>
+{% endblock %}
+
+{% block body %}
+    {% include "topmenu.html.twig" %}
+    <div class="page-header page-header-small mt-5">
+        <div class="page-header-image" data-parallax="true"
+             style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Brasov%2C_Piata_Sfatului.jpg/1280px-Brasov%2C_Piata_Sfatului.jpg');">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <h1 class="title">Aici ia nastere ideea ta</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="background-color: #f5f5f5">
+        <div class="container font-weight-bold">
+            <br>
+            <div class="row">
+                <h2>Pasul 1</h2>
+            </div>
+            <div class="row">
+                <h7 class="text-muted">
+                    Te rog sa ne spui cateva lucruri de baza despre proiectul tau.
+                    <br>
+                    Nu iti face griji, in pasul urmator vei avea posibilitatea sa editezi MULT mai multe lucruri!
+                </h7>
+            </div>
+            <br>
+            <br>
+
+            <form action="{{ path('saveProjectBasicInfo', {'projectId':projectData['id'],'link':projectData['link']}) }}"
+                  method="post">
+                <div class="form-group row">
+                    <label for="project-title">Titlul proiectului</label>
+                    <input id="project-title" class="form-control" name="project-title" type="text"
+                           value="{{ projectData['title'] }}" required>
+                    <small id="project-title-help" class="form-text text-muted">Alege un titlu potrivit.</small>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="comment">Idea proiectului</label>
+                    <textarea id="comment" class="form-control" rows="2"
+                              name="comment" required>{{ projectData['shortDescription'] }}</textarea>
+                    <small id="comment-help" class="form-text text-muted">Alege cateva cuvinte (o propozitie) care
+                        descriu
+                        perfect proiectul tau.
+                    </small>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="total-amount" class="col-3 col-form-label">Valoarea proiectului (in RON)</label>
+                    <div class="col-9">
+                        <input id="total-amount" class="form-control" name="total-amount" type="number"
+                               value="{{ projectData['totalAmount'] }}" required>
+                        <small id="total-amount-help" class="form-text text-muted">Alege suma pe care doresti sa o
+                            strangi pentru proiectul tau. Daca doresti, in aceasta suma poti include si comisionul de 7%
+                            pe care noi il vom percepe.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="category" class="col-3 col-form-label">Categoria</label>
+                    <div class="col-9">
+                        <select id="category" class="form-control" name="category" required>
+                            {% for category in category_data %}
+                                <option>{{ category['nameRo'] }}</option>
+                            {% endfor %}
+                        </select>
+                        <small id="category-help" class="form-text text-muted">Alege categoria potrivita pentru
+                            proiectul
+                            tau.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="city" class="col-3 col-form-label">Localitatea</label>
+                    <div class="col-9">
+                        <select id="city" class="form-control" name="city" required>
+                            {% for county in county_array %}
+                                <option>{{ county }}</option>
+                            {% endfor %}
+                        </select>
+                        <small id="category-help" class="form-text text-muted">Alege zona impactata de proiectul tau.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="tags" class="col-3 col-form-label">Tags</label>
+                    <div class="col-9">
+                        <input id="tags" class="form-control" name="tags" type="text" required>
+                        <small id="tags-help" class="form-text text-muted">Insereaza cu virgula minim 5 taguri (cuvinte)
+                            care definesc proiectul tau.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="expiration-date" class="col-3 col-form-label">Data limita</label>
+                    <div class="col-9">
+                        <input class="form-control" name="expiration-date" type="date" value="{{ now }}"
+                               max="{{ maxDate }}"
+                               id="expiration-date" required>
+                        <small id="tags-help" class="form-text text-muted">Data limita pana la care se pot strange
+                            fonduri
+                            pentru proiectul tau.
+                        </small>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <input class="btn btn-primary w-100 btn-round" type="submit" value="Pasul urmator">
+            </form>
+            <br>
+        </div>
+    </div>
 {% endblock %}

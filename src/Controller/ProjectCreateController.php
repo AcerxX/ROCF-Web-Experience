@@ -21,12 +21,14 @@ class ProjectCreateController extends Controller
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render(
-            'Project/Create/chooseType.html.twig',
-            [
-                'user' => $this->getUser()
-            ]
-        );
+        return $this->redirectToRoute('editProjectBasic');
+
+//        return $this->render(
+//            'Project/Create/chooseType.html.twig',
+//            [
+//                'user' => $this->getUser()
+//            ]
+//        );
     }
 
 
@@ -187,6 +189,7 @@ class ProjectCreateController extends Controller
             print_r($projectInfo);
             die();
         }
+
         $completedPercentage = 0;
         if (isset($projectInfo['data']['totalAmount'])) {
             $completedPercentage = $projectInfo['data']['pledgedAmount'] * 100 / $projectInfo['data']['totalAmount'];
