@@ -1050,12 +1050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "4bb5742787fd08db0204c8ff33e1608f4dd9613a"
+                "reference": "c320161f60a10c6e6f3e222ece53372c534dbfc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/4bb5742787fd08db0204c8ff33e1608f4dd9613a",
-                "reference": "4bb5742787fd08db0204c8ff33e1608f4dd9613a",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/c320161f60a10c6e6f3e222ece53372c534dbfc2",
+                "reference": "c320161f60a10c6e6f3e222ece53372c534dbfc2",
                 "shasum": ""
             },
             "require": {
@@ -1157,7 +1157,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-04-26T23:34:37+00:00"
+            "time": "2018-04-29T06:06:02+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -1219,12 +1219,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "4030d122ff23458180b91c04236dfde1908ad6a0"
+                "reference": "40f3032d1b22aa175ecd599ec757aa005fbf935d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4030d122ff23458180b91c04236dfde1908ad6a0",
-                "reference": "4030d122ff23458180b91c04236dfde1908ad6a0",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/40f3032d1b22aa175ecd599ec757aa005fbf935d",
+                "reference": "40f3032d1b22aa175ecd599ec757aa005fbf935d",
                 "shasum": ""
             },
             "require": {
@@ -1297,7 +1297,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-26T16:12:45+00:00"
+            "time": "2018-04-28T18:41:18+00:00"
         },
         {
             "name": "symfony/inflector",
@@ -1830,12 +1830,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-bundle.git",
-                "reference": "4553e88aad9d0ced8bdee5359a77cd94a8535331"
+                "reference": "dc1632acbcbd969d764b6df11b60f0f09d6786d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/4553e88aad9d0ced8bdee5359a77cd94a8535331",
-                "reference": "4553e88aad9d0ced8bdee5359a77cd94a8535331",
+                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/dc1632acbcbd969d764b6df11b60f0f09d6786d5",
+                "reference": "dc1632acbcbd969d764b6df11b60f0f09d6786d5",
                 "shasum": ""
             },
             "require": {
@@ -1902,7 +1902,7 @@
             ],
             "description": "Symfony SecurityBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-04-20T13:23:35+00:00"
+            "time": "2018-04-26T12:01:44+00:00"
         },
         {
             "name": "symfony/translation",
@@ -2620,12 +2620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "7b672e7880fb1d44220066a168991b3522151943"
+                "reference": "660887cb807731571eb9d40cd612a2cba3c9aa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/7b672e7880fb1d44220066a168991b3522151943",
-                "reference": "7b672e7880fb1d44220066a168991b3522151943",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/660887cb807731571eb9d40cd612a2cba3c9aa52",
+                "reference": "660887cb807731571eb9d40cd612a2cba3c9aa52",
                 "shasum": ""
             },
             "require": {
@@ -2678,7 +2678,7 @@
             ],
             "description": "Symfony WebProfilerBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-04-25T17:14:10+00:00"
+            "time": "2018-04-29T07:29:55+00:00"
         }
     ],
     "aliases": [],
